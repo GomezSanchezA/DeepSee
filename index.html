@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>DeepSee Meeting 2025</title>
   <style>
     :root {
@@ -12,10 +12,12 @@
       --light: #f8f9fa;
       --dark: #343a40;
       --spacing: 2rem;
+
       /* Animation Timing */
       --transition-speed: 0.6s;
     }
 
+    /* RESET & GLOBAL STYLES */
     * {
       margin: 0;
       padding: 0;
@@ -28,9 +30,10 @@
       background-color: var(--light);
       color: var(--dark);
       line-height: 1.6;
-      overflow-x: hidden; /* Helps hide any horizontal overflow during animations */
+      overflow-x: hidden; /* Hides any horizontal overflow */
     }
 
+    /* HEADER */
     header {
       background: linear-gradient(to right, var(--primary), var(--secondary));
       color: white;
@@ -51,6 +54,7 @@
     }
 
     .header-bg {
+      /* Dim background circles behind the header text, if needed */
       position: absolute;
       top: 0;
       left: 0;
@@ -68,6 +72,7 @@
       font-weight: 700;
     }
 
+    /* NAVIGATION */
     nav ul {
       display: flex;
       list-style: none;
@@ -82,10 +87,15 @@
       text-decoration: none;
       font-weight: 500;
       transition: color 0.3s;
+      /* Hover effect styling is below */
     }
 
+    /* Hover effect on nav items */
     nav ul li a:hover {
-      color: var(--light);
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 0.3rem 0.6rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
     }
 
     .mobile-menu-btn {
@@ -97,26 +107,50 @@
       cursor: pointer;
     }
 
+    /* HERO SECTION with “molecular/network” background */
     .hero {
+      /* Dark background */
+      background-color: #1b1b1b;
+      /* Network-like SVG as a background image */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 1600 900' xmlns='http://www.w3.org/2000/svg'%3E%3C!-- Circles --%3E%3Ccircle cx='200' cy='200' r='4' fill='%2363ace5'/%3E%3Ccircle cx='400' cy='300' r='4' fill='%2363ace5'/%3E%3Ccircle cx='700' cy='150' r='4' fill='%2363ace5'/%3E%3Ccircle cx='900' cy='400' r='4' fill='%2363ace5'/%3E%3Ccircle cx='1200' cy='250' r='4' fill='%2363ace5'/%3E%3Ccircle cx='1400' cy='500' r='4' fill='%2363ace5'/%3E%3C!-- Lines connecting circles --%3E%3Cline x1='200' y1='200' x2='400' y2='300' stroke='%2363ace5' stroke-width='1'/%3E%3Cline x1='400' y1='300' x2='700' y2='150' stroke='%2363ace5' stroke-width='1'/%3E%3Cline x1='700' y1='150' x2='900' y2='400' stroke='%2363ace5' stroke-width='1'/%3E%3Cline x1='900' y1='400' x2='1200' y2='250' stroke='%2363ace5' stroke-width='1'/%3E%3Cline x1='1200' y1='250' x2='1400' y2='500' stroke='%2363ace5' stroke-width='1'/%3E%3C/svg%3E");
+      background-position: center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      /* Subtle drifting animation for background */
+      animation: drift-bg 30s linear infinite;
+      color: #fff;
       padding: 5rem 2rem;
       text-align: center;
-      background-color: white;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       position: relative;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+    }
+
+    @keyframes drift-bg {
+      0% {
+        background-position: 0% 0%;
+      }
+      100% {
+        background-position: 100% 0%;
+      }
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+      margin: 0 auto;
     }
 
     .hero h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
-      color: var(--primary);
+      color: var(--accent);
     }
 
     .hero p {
       font-size: 1.2rem;
-      max-width: 800px;
-      margin: 0 auto 2rem;
-      color: var(--dark);
+      color: #f0f0f0;
     }
 
     .date-location {
@@ -132,12 +166,14 @@
       transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
     }
 
+    /* CONTAINER */
     .container {
       max-width: 1200px;
       margin: 0 auto;
       padding: var(--spacing);
     }
 
+    /* SCROLL-REVEAL SECTIONS */
     section {
       margin-bottom: 4rem;
       padding-top: 60px;
@@ -146,8 +182,6 @@
       transform: translateY(30px);
       transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
     }
-
-    /* Section will become visible when .reveal-active is applied by JS */
     section.reveal-active {
       opacity: 1;
       transform: translateY(0);
@@ -170,67 +204,8 @@
       background-color: var(--accent);
     }
 
-    /* =========================
-       FANCY ABOUT SECTION
-       ========================= */
-    .microscopy-bg {
-      position: relative;
-      overflow: hidden;
-      padding-bottom: 4rem; /* ensure space for the floating circles */
-      background: radial-gradient(closest-side, var(--light), transparent);
-    }
-
-    /* The floating circles that evoke molecules/cells */
-    .floating-circles {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none; /* so it doesn't interfere with mouse events */
-      z-index: 0; /* behind the content */
-      overflow: hidden;
-    }
-
-    .floating-circles::before,
-    .floating-circles::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      opacity: 0.25;
-      animation: floatCells 10s ease-in-out infinite alternate;
-    }
-
-    /* "Cell" #1 */
-    .floating-circles::before {
-      width: 250px;
-      height: 250px;
-      background: var(--accent);
-      top: 20%;
-      left: -10%;
-    }
-
-    /* "Cell" #2 */
-    .floating-circles::after {
-      width: 400px;
-      height: 400px;
-      background: var(--secondary);
-      bottom: 10%;
-      right: -20%;
-    }
-
-    @keyframes floatCells {
-      0% {
-        transform: translateY(0) scale(1);
-      }
-      100% {
-        transform: translateY(-40px) scale(1.1);
-      }
-    }
-
+    /* ABOUT SECTION (No more floating circles here) */
     .about-content {
-      position: relative;
-      z-index: 1; /* ensures text is above circles */
       display: flex;
       gap: 2rem;
       align-items: center;
@@ -240,30 +215,6 @@
     @media (max-width: 768px) {
       .about-content {
         flex-direction: column;
-      }
-    }
-
-    /* Fade-in utility classes */
-    .fade-in {
-      opacity: 0;
-      transform: translateY(10px);
-      animation: fadeIn 1s forwards;
-    }
-
-    .delay-1 {
-      animation-delay: 0.3s;
-    }
-    .delay-2 {
-      animation-delay: 0.6s;
-    }
-    .delay-3 {
-      animation-delay: 0.9s;
-    }
-
-    @keyframes fadeIn {
-      to {
-        opacity: 1;
-        transform: translateY(0);
       }
     }
 
@@ -283,7 +234,6 @@
       height: auto;
       display: block;
     }
-    /* END FANCY ABOUT SECTION */
 
     /* SCHEDULE STYLING */
     .schedule {
@@ -291,8 +241,8 @@
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       padding: 2rem;
-      /* Removed the hover scale effect */
       transition: transform var(--transition-speed) ease;
+      /* Zoom on hover removed */
     }
 
     .day {
@@ -403,8 +353,8 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      /* Removed the hover scale effect */
       transition: transform var(--transition-speed) ease;
+      /* Zoom on hover removed */
     }
 
     /* CONTACT STYLING */
@@ -431,6 +381,7 @@
       color: var(--primary);
     }
 
+    /* FOOTER */
     footer {
       background-color: var(--primary);
       color: white;
@@ -463,6 +414,7 @@
       transform: translateY(-3px);
     }
 
+    /* BACK TO TOP BUTTON */
     .back-to-top {
       position: fixed;
       bottom: 20px;
@@ -485,6 +437,7 @@
       opacity: 1;
     }
 
+    /* RESPONSIVE ADJUSTMENTS */
     @media (max-width: 768px) {
       .header-content {
         flex-direction: column;
@@ -543,6 +496,7 @@
   </style>
 </head>
 <body>
+  <!-- HEADER -->
   <header>
     <div class="header-bg"></div>
     <div class="header-content">
@@ -560,50 +514,48 @@
     </div>
   </header>
 
+  <!-- HERO WITH MOLECULAR / NETWORK BACKGROUND -->
   <section class="hero">
-    <div class="date-location" id="dateLocation">June 3, 2025 • Lille, France</div>
-    <h1>DeepSee Meeting 2025</h1>
-    <p>From Single-Molecule Sensitivity to High-Speed 3D Tissue Imaging</p>
+    <div class="hero-content">
+      <div class="date-location" id="dateLocation">June 3, 2025 • Lille, France</div>
+      <h1>DeepSee Meeting 2025</h1>
+      <p>From Single-Molecule Sensitivity to High-Speed 3D Tissue Imaging</p>
+    </div>
   </section>
 
+  <!-- MAIN CONTENT CONTAINER -->
   <div class="container">
 
-    <!-- ABOUT SECTION WITH FLOATING CIRCLES BACKGROUND -->
-    <section id="about" class="microscopy-bg">
+    <!-- ABOUT SECTION -->
+    <section id="about">
       <h2>About the DEEPSEE Scientific Meeting</h2>
-      <!-- The floating "cells/molecules" go behind this content -->
-      <div class="floating-circles"></div>
-
       <div class="about-content">
         <div class="about-text">
-          <p class="fade-in">
+          <p>
             <strong>The DEEPSEE Scientific Meeting</strong> offers a dynamic forum for exploring
-            <strong>high-resolution imaging, advanced spectroscopy, and chemometric techniques</strong>
-            from the realm of <em>single-molecule sensitivity</em> up to the scale of <em>entire tissues</em>.
+            <strong>high-resolution imaging, advanced spectroscopy, and chemometric techniques</strong>.
+            From <em>single-molecule</em> insights to <em>tissue-scale</em> imaging, we invite experts
+            to share novel approaches, breakthroughs, and collaborations.
           </p>
 
-          <p class="fade-in delay-1">
-            This event provides a unique opportunity to discuss state-of-the-art
-            <strong>fluorescence microscopy</strong>, <strong>superresolution imaging</strong>, and
-            <strong>computational spectral analysis</strong>, fostering new insights into
-            <strong>emitter multiplexing</strong>, <em>‘smart’ imaging</em>, and more.
-          </p>
-
-          <p class="fade-in delay-2">
-            Through a series of <strong>invited talks, discussions, and networking sessions</strong>,
-            we will connect researchers from diverse fields to <em>accelerate innovations</em>
-            that push microscopy and chemometrics to new frontiers.
+          <p>
+            Through in-depth discussions, <strong>invited talks</strong>, and <strong>networking sessions</strong>,
+            this meeting will spark <em>innovative research directions</em> in areas such as
+            <strong>fluorescence microscopy, superresolution imaging</strong>, and <strong>computational analysis</strong>.
+            Join us to discover how <em>cutting-edge chemometrics</em> can revolutionize molecular imaging.
           </p>
         </div>
-        <div class="about-image fade-in delay-3">
+        <div class="about-image">
           <img
             src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg"
-            alt="Microscopy visualization">
+            alt="Microscopy visualization"
+          />
         </div>
       </div>
     </section>
     <!-- END ABOUT SECTION -->
 
+    <!-- SCHEDULE SECTION -->
     <section id="schedule">
       <h2>Meeting Schedule</h2>
       <div class="schedule">
@@ -683,6 +635,7 @@
       </div>
     </section>
 
+    <!-- SPEAKERS SECTION -->
     <section id="speakers">
       <h2>Invited Speakers</h2>
       <div class="speakers-grid">
@@ -690,7 +643,8 @@
           <div class="speaker-image">
             <img
               src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
-              alt="Speaker 1">
+              alt="Speaker 1"
+            />
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 1</h3>
@@ -702,7 +656,8 @@
           <div class="speaker-image">
             <img
               src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
-              alt="Speaker 2">
+              alt="Speaker 2"
+            />
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 2</h3>
@@ -714,7 +669,8 @@
           <div class="speaker-image">
             <img
               src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
-              alt="Speaker 3">
+              alt="Speaker 3"
+            />
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 3</h3>
@@ -726,7 +682,8 @@
           <div class="speaker-image">
             <img
               src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
-              alt="Speaker 4">
+              alt="Speaker 4"
+            />
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 4</h3>
@@ -737,6 +694,7 @@
       </div>
     </section>
 
+    <!-- VENUE SECTION -->
     <section id="venue">
       <h2>Venue Information</h2>
       <div class="venue">
@@ -744,8 +702,8 @@
           <h3>Polytech Lille Amphitheater</h3>
           <p>Avenue Paul Langevin<br>Cité Scientifique<br>59655 Villeneuve d'Ascq<br>France</p>
           <p>
-            The meeting will be held in the amphitheater at Polytech Lille, offering modern facilities
-            and audiovisual equipment to support our scientific discussions.
+            The meeting will be held in the amphitheater at Polytech Lille, offering modern
+            facilities and audiovisual equipment to support our scientific discussions.
           </p>
           <p>
             The venue is easily accessible by public transportation from Lille city center.
@@ -754,8 +712,8 @@
           <h4>Expected Attendance:</h4>
           <p>
             The meeting is aimed at researchers in advanced microscopy, spectroscopy, and related fields.
-            We anticipate approximately 50-70 attendees, including invited speakers, researchers from the
-            collaborating laboratories (LASIRE and Leuven), and other interested scientists.
+            We anticipate approximately 50-70 attendees, including invited speakers, researchers from
+            the collaborating laboratories (LASIRE and Leuven), and other interested scientists.
           </p>
         </div>
         <div class="venue-map">
@@ -766,58 +724,92 @@
             style="border:0; border-radius:10px;"
             allowfullscreen=""
             loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade">
-          </iframe>
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </section>
 
+    <!-- CONTACT SECTION -->
     <section id="contact">
       <h2>Contact Information</h2>
       <div class="contact-info">
         <div class="contact-item">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 
-            19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 
-            12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 
-            0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07
+               19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2
+               0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09
+               9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0
+               2.81.7A2 2 0 0 1 22 16.92z"
+            ></path>
           </svg>
           <span>+33 (0)3 20 XX XX XX</span>
         </div>
         <div class="contact-item">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 
-            0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1
+               0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+            ></path>
             <polyline points="22,6 12,13 2,6"></polyline>
           </svg>
           <span>deepsee@univ-lille.fr</span>
         </div>
         <div class="contact-item">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13 
-            a9 9 0 0 1 18 0z"></path>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M21 10c0 7-9 13-9 13s-9-6-9-13
+               a9 9 0 0 1 18 0z"
+            ></path>
             <circle cx="12" cy="10" r="3"></circle>
           </svg>
           <span>
-            Polytech Lille Amphitheater<br>
-            Avenue Paul Langevin, Cité Scientifique<br>
+            Polytech Lille Amphitheater<br />
+            Avenue Paul Langevin, Cité Scientifique<br />
             59655 Villeneuve d'Ascq, France
           </span>
         </div>
         <p>
-          For any questions about the DeepSee meeting, please contact the
-          organizing committee at deepsee@univ-lille.fr.
+          For any questions about the DeepSee meeting, please contact
+          the organizing committee at deepsee@univ-lille.fr.
         </p>
       </div>
     </section>
 
-  </div>
+  </div><!-- /.container -->
 
+  <!-- BACK TO TOP BUTTON -->
   <a href="#" class="back-to-top" id="backToTop">↑</a>
 
+  <!-- FOOTER -->
   <footer>
     <div class="footer-links">
       <a href="#about">About</a>
@@ -828,23 +820,42 @@
     </div>
     <div class="social-links">
       <a href="#" aria-label="Twitter">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round"
-             stroke-linejoin="round">
-          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 
-          0 0 0-7.86 3v1A10.66 10.66 
-          0 0 1 3 4s-4 9 5 13a11.64 11.64 
-          0 0 1-7 2c9 5 20 0 20-11.5a4.5 
-          4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M23 3a10.9 10.9 0 0 1-3.14 1.53
+               4.48 4.48 0 0 0-7.86 3v1A10.66
+               10.66 0 0 1 3 4s-4 9 5 13a11.64
+               11.64 0 0 1-7 2c9 5 20 0
+               20-11.5a4.5 4.5 0 0 0-.08-.83
+               A7.72 7.72 0 0 0 23 3z"
+          ></path>
         </svg>
       </a>
       <a href="#" aria-label="LinkedIn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2" stroke-linecap="round"
-             stroke-linejoin="round">
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 
-          2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7
-          a6 6 0 0 1 6-6z"></path>
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path
+            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2
+               2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7
+               a6 6 0 0 1 6-6z"
+          ></path>
           <rect x="2" y="9" width="4" height="12"></rect>
           <circle cx="4" cy="4" r="2"></circle>
         </svg>
@@ -853,6 +864,7 @@
     <p>&copy; 2025 DeepSee Project. All Rights Reserved.</p>
   </footer>
 
+  <!-- SCRIPTS -->
   <script>
     // Mobile menu toggle
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
