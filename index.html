@@ -170,10 +170,101 @@
       background-color: var(--accent);
     }
 
-    .about {
+    /* =========================
+       FANCY ABOUT SECTION
+       ========================= */
+    .microscopy-bg {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 4rem; /* ensure space for the floating circles */
+      background: radial-gradient(closest-side, var(--light), transparent);
+    }
+
+    /* The floating circles that evoke molecules/cells */
+    .floating-circles {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none; /* so it doesn't interfere with mouse events */
+      z-index: 0; /* behind the content */
+      overflow: hidden;
+    }
+
+    .floating-circles::before,
+    .floating-circles::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.25;
+      animation: floatCells 10s ease-in-out infinite alternate;
+    }
+
+    /* "Cell" #1 */
+    .floating-circles::before {
+      width: 250px;
+      height: 250px;
+      background: var(--accent);
+      top: 20%;
+      left: -10%;
+    }
+
+    /* "Cell" #2 */
+    .floating-circles::after {
+      width: 400px;
+      height: 400px;
+      background: var(--secondary);
+      bottom: 10%;
+      right: -20%;
+    }
+
+    @keyframes floatCells {
+      0% {
+        transform: translateY(0) scale(1);
+      }
+      100% {
+        transform: translateY(-40px) scale(1.1);
+      }
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 1; /* ensures text is above circles */
       display: flex;
-      gap: 3rem;
+      gap: 2rem;
       align-items: center;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 768px) {
+      .about-content {
+        flex-direction: column;
+      }
+    }
+
+    /* Fade-in utility classes */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeIn 1s forwards;
+    }
+
+    .delay-1 {
+      animation-delay: 0.3s;
+    }
+    .delay-2 {
+      animation-delay: 0.6s;
+    }
+    .delay-3 {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .about-text {
@@ -185,11 +276,6 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform var(--transition-speed) ease;
-    }
-
-    .about-image:hover {
-      transform: scale(1.02);
     }
 
     .about-image img {
@@ -197,17 +283,16 @@
       height: auto;
       display: block;
     }
+    /* END FANCY ABOUT SECTION */
 
+    /* SCHEDULE STYLING */
     .schedule {
       background-color: white;
       border-radius: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       padding: 2rem;
+      /* Removed the hover scale effect */
       transition: transform var(--transition-speed) ease;
-    }
-
-    .schedule:hover {
-      transform: scale(1.01);
     }
 
     .day {
@@ -253,6 +338,7 @@
       opacity: 0.8;
     }
 
+    /* SPEAKERS STYLING */
     .speakers-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -302,6 +388,7 @@
       line-height: 1.5;
     }
 
+    /* VENUE STYLING */
     .venue {
       display: flex;
       gap: 3rem;
@@ -316,13 +403,11 @@
       border-radius: 10px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      /* Removed the hover scale effect */
       transition: transform var(--transition-speed) ease;
     }
 
-    .venue-map:hover {
-      transform: scale(1.01);
-    }
-
+    /* CONTACT STYLING */
     .contact-info {
       background-color: white;
       border-radius: 10px;
@@ -438,7 +523,7 @@
         padding: 3rem 1rem;
       }
 
-      .about, .venue {
+      .venue {
         flex-direction: column;
       }
 
@@ -483,39 +568,37 @@
 
   <div class="container">
 
-    <!-- ABOUT SECTION -->
-    <section id="about">
+    <!-- ABOUT SECTION WITH FLOATING CIRCLES BACKGROUND -->
+    <section id="about" class="microscopy-bg">
       <h2>About the DEEPSEE Scientific Meeting</h2>
-      <div class="about">
+      <!-- The floating "cells/molecules" go behind this content -->
+      <div class="floating-circles"></div>
+
+      <div class="about-content">
         <div class="about-text">
-          <p>
-            <strong>The DEEPSEE Scientific Meeting</strong> is a dedicated forum for researchers and experts in
-            <strong>high-resolution imaging, chemometric techniques, and advanced spectroscopy</strong>
-            to exchange insights and explore cutting-edge developments in the field.
-            This event provides a unique opportunity to discuss the latest advancements in
-            <strong>fluorescence microscopy, superresolution imaging, and computational spectral analysis</strong>.
+          <p class="fade-in">
+            <strong>The DEEPSEE Scientific Meeting</strong> offers a dynamic forum for exploring
+            <strong>high-resolution imaging, advanced spectroscopy, and chemometric techniques</strong>
+            from the realm of <em>single-molecule sensitivity</em> up to the scale of <em>entire tissues</em>.
           </p>
 
-          <p>
-            Our meeting explores the synergy between sophisticated imaging approaches and robust data analysis methods, with potential impacts across:
+          <p class="fade-in delay-1">
+            This event provides a unique opportunity to discuss state-of-the-art
+            <strong>fluorescence microscopy</strong>, <strong>superresolution imaging</strong>, and
+            <strong>computational spectral analysis</strong>, fostering new insights into
+            <strong>emitter multiplexing</strong>, <em>‘smart’ imaging</em>, and more.
           </p>
-          <ul>
-            <li>Life and material sciences</li>
-            <li>Spatially-resolved 'omics' (transcriptomics, proteomics, etc.)</li>
-            <li>New approaches for emitter multiplexing</li>
-            <li>'Smart' imaging and adaptive microscopy</li>
-            <li>Nanoparticle monitoring and characterization</li>
-          </ul>
 
-          <p>
+          <p class="fade-in delay-2">
             Through a series of <strong>invited talks, discussions, and networking sessions</strong>,
-            this meeting will foster <strong>scientific exchange and collaboration</strong>,
-            providing a platform to <strong>explore emerging research directions</strong>
-            and inspire future innovations in microscopy and computational spectroscopy.
+            we will connect researchers from diverse fields to <em>accelerate innovations</em>
+            that push microscopy and chemometrics to new frontiers.
           </p>
         </div>
-        <div class="about-image">
-          <img src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg" alt="Microscopy visualization">
+        <div class="about-image fade-in delay-3">
+          <img
+            src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg"
+            alt="Microscopy visualization">
         </div>
       </div>
     </section>
@@ -605,7 +688,9 @@
       <div class="speakers-grid">
         <div class="speaker-card">
           <div class="speaker-image">
-            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 1">
+            <img
+              src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
+              alt="Speaker 1">
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 1</h3>
@@ -615,7 +700,9 @@
         </div>
         <div class="speaker-card">
           <div class="speaker-image">
-            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 2">
+            <img
+              src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
+              alt="Speaker 2">
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 2</h3>
@@ -625,7 +712,9 @@
         </div>
         <div class="speaker-card">
           <div class="speaker-image">
-            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 3">
+            <img
+              src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
+              alt="Speaker 3">
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 3</h3>
@@ -635,7 +724,9 @@
         </div>
         <div class="speaker-card">
           <div class="speaker-image">
-            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 4">
+            <img
+              src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png"
+              alt="Speaker 4">
           </div>
           <div class="speaker-info">
             <h3>Speaker Name 4</h3>
@@ -652,10 +743,20 @@
         <div class="venue-info">
           <h3>Polytech Lille Amphitheater</h3>
           <p>Avenue Paul Langevin<br>Cité Scientifique<br>59655 Villeneuve d'Ascq<br>France</p>
-          <p>The meeting will be held in the amphitheater at Polytech Lille, offering modern facilities and audiovisual equipment to support our scientific discussions.</p>
-          <p>The venue is easily accessible by public transportation from Lille city center. Detailed directions will be provided to registered participants.</p>
+          <p>
+            The meeting will be held in the amphitheater at Polytech Lille, offering modern facilities
+            and audiovisual equipment to support our scientific discussions.
+          </p>
+          <p>
+            The venue is easily accessible by public transportation from Lille city center.
+            Detailed directions will be provided to registered participants.
+          </p>
           <h4>Expected Attendance:</h4>
-          <p>The meeting is aimed at researchers in advanced microscopy, spectroscopy, and related fields. We anticipate approximately 50-70 attendees, including invited speakers, researchers from the collaborating laboratories (LASIRE and Leuven), and other interested scientists.</p>
+          <p>
+            The meeting is aimed at researchers in advanced microscopy, spectroscopy, and related fields.
+            We anticipate approximately 50-70 attendees, including invited speakers, researchers from the
+            collaborating laboratories (LASIRE and Leuven), and other interested scientists.
+          </p>
         </div>
         <div class="venue-map">
           <iframe
@@ -706,7 +807,10 @@
             59655 Villeneuve d'Ascq, France
           </span>
         </div>
-        <p>For any questions about the DeepSee meeting, please contact the organizing committee at deepsee@univ-lille.fr.</p>
+        <p>
+          For any questions about the DeepSee meeting, please contact the
+          organizing committee at deepsee@univ-lille.fr.
+        </p>
       </div>
     </section>
 
