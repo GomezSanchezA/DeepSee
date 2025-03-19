@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>DeepSee Meeting 2025</title>
+
   <style>
     :root {
       --primary: #2a4d69;
@@ -166,7 +167,7 @@
     .about-content {
       display: flex;
       gap: 2rem;
-      align-items: center;
+      align-items: flex-start;
       margin-top: 2rem;
     }
     @media (max-width: 768px) {
@@ -177,15 +178,29 @@
     .about-text {
       flex: 1;
     }
-    .about-image {
-      flex: 1;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+
+    /* Container for 2 images side by side */
+    .about-images {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
     }
+
+    /* Make both images smaller */
+    .about-image,
+    .comparison-container {
+      width: 250px; /* adjust as needed */
+      height: 200px; /* adjust as needed */
+      position: relative;
+      overflow: hidden;
+    }
+
     .about-image img {
       width: 100%;
-      height: auto;
+      height: 100%;
+      object-fit: cover;
       display: block;
     }
 
@@ -360,15 +375,12 @@
       opacity: 1;
     }
 
-    /* IMAGE COMPARISON (NEW SECTION) */
+    /* IMAGE COMPARISON */
     .comparison-container {
+      width: 250px;   /* same as .about-image */
+      height: 200px;  /* same as .about-image */
       position: relative;
-      width: 100%;
-      max-width: 600px; /* Adjust width */
-      height: 400px; /* Adjust height */
       overflow: hidden;
-      margin: auto;
-      user-select: none;
     }
     .comparison-container img {
       position: absolute;
@@ -379,6 +391,7 @@
     .comparison-overlay {
       position: absolute;
       width: 50%; /* default halfway split */
+      height: 100%;
       overflow: hidden;
     }
     .comparison-slider {
@@ -386,13 +399,13 @@
       top: 0;
       bottom: 0;
       left: 50%;
-      width: 5px;
+      width: 4px;
       background: white;
       cursor: ew-resize;
       transition: background 0.3s ease;
     }
     .comparison-slider:hover {
-      background: var(--accent); /* accent color on hover */
+      background: var(--accent);
     }
 
     @media (max-width: 768px) {
@@ -440,9 +453,12 @@
       .speakers-grid {
         grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
       }
+
+      /* Scale the images down further on mobile if needed */
+      .about-image,
       .comparison-container {
-        max-width: 100%;
-        height: 300px;
+        width: 200px;
+        height: 160px;
       }
     }
   </style>
@@ -495,15 +511,39 @@
           <p>
             Through <strong>invited talks</strong>, and <strong>in-depth discussions</strong>,
             this meeting will spark <em>innovative research directions</em> in areas such as
-            <strong>fluorescence microscopy, superresolution imaging</strong>, and <strong>computational analysis</strong>.
-            Join us to discover how <em>cutting-edge microscopy and chemometrics</em> can revolutionize molecular imaging.
+            <strong>fluorescence microscopy, superresolution imaging</strong>, and
+            <strong>computational analysis</strong>.
+            Join us to discover how <em>cutting-edge microscopy and chemometrics</em> can revolutionize
+            molecular imaging.
           </p>
         </div>
-        <div class="about-image">
-          <img
-            src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg"
-            alt="Microscopy visualization"
-          />
+
+        <!-- Side-by-side images container -->
+        <div class="about-images">
+          <!-- Smaller version of your existing image -->
+          <div class="about-image">
+            <img
+              src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg"
+              alt="Microscopy visualization"
+            />
+          </div>
+
+          <!-- Comparison slider to the right -->
+          <div class="comparison-container">
+            <div class="comparison-image">
+              <img
+                src="https://via.placeholder.com/600x400/ff0000/ffffff?text=Left+Image"
+                alt="Left Image"
+              />
+            </div>
+            <div class="comparison-overlay">
+              <img
+                src="https://via.placeholder.com/600x400/0000ff/ffffff?text=Right+Image"
+                alt="Right Image"
+              />
+            </div>
+            <div class="comparison-slider"></div>
+          </div>
         </div>
       </div>
     </section>
@@ -628,23 +668,6 @@
             <p class="bio">Short bio or area of expertise for Speaker 4.</p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- IMAGE COMPARISON SECTION (NEW) -->
-    <section id="image-comparison">
-      <h2>Image Comparison</h2>
-      <div class="comparison-container">
-        <!-- LEFT IMAGE -->
-        <div class="comparison-image">
-          <img src="https://via.placeholder.com/600x400/ff0000/ffffff?text=Left+Image" alt="Left Image">
-        </div>
-        <!-- RIGHT IMAGE (overlay) -->
-        <div class="comparison-overlay">
-          <img src="https://via.placeholder.com/600x400/0000ff/ffffff?text=Right+Image" alt="Right Image">
-        </div>
-        <!-- SLIDER HANDLE -->
-        <div class="comparison-slider"></div>
       </div>
     </section>
 
@@ -887,13 +910,10 @@
           let dy = this.y - mouse.y;
           let dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < repelRadius) {
-            // push away smoothly (1 - dist / repelRadius) for stronger effect near mouse
+            // push away smoothly
             let factor = 1 - dist / repelRadius;
-            // Normalized direction away from mouse
             dx /= dist;
             dy /= dist;
-
-            // apply small velocity change
             this.vx += dx * factor * repelStrength;
             this.vy += dy * factor * repelStrength;
           }
@@ -955,7 +975,6 @@
           }
         }
       }
-
       requestAnimationFrame(animate);
     }
     animate();
