@@ -90,7 +90,7 @@
       padding: 5rem 2rem;
       overflow: hidden;
     }
-    /* The canvas for the particle network */
+    /* Canvas behind text */
     #particlesCanvas {
       position: absolute;
       top: 0;
@@ -109,7 +109,8 @@
     .hero h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
-      color: var(--accent);
+      /* CHANGED TO WHITE */
+      color: #fff;
     }
     .hero p {
       font-size: 1.2rem;
@@ -442,7 +443,6 @@
     </div>
   </section>
 
-  <!-- MAIN CONTAINER -->
   <div class="container">
     <!-- ABOUT SECTION -->
     <section id="about">
@@ -471,7 +471,7 @@
       </div>
     </section>
 
-    <!-- SCHEDULE -->
+    <!-- SCHEDULE SECTION -->
     <section id="schedule">
       <h2>Meeting Schedule</h2>
       <div class="schedule">
@@ -535,7 +535,7 @@
       </div>
     </section>
 
-    <!-- SPEAKERS -->
+    <!-- SPEAKERS SECTION -->
     <section id="speakers">
       <h2>Invited Speakers</h2>
       <div class="speakers-grid">
@@ -594,7 +594,7 @@
       </div>
     </section>
 
-    <!-- VENUE -->
+    <!-- VENUE SECTION -->
     <section id="venue">
       <h2>Venue Information</h2>
       <div class="venue">
@@ -630,7 +630,7 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
+    <!-- CONTACT SECTION -->
     <section id="contact">
       <h2>Contact Information</h2>
       <div class="contact-info">
@@ -751,7 +751,9 @@
           stroke-linecap="round"
           stroke-linejoin="round"
         >
-          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7 a6 6 0 0 1 6-6z"></path>
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2
+               2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7
+               a6 6 0 0 1 6-6z"></path>
           <rect x="2" y="9" width="4" height="12"></rect>
           <circle cx="4" cy="4" r="2"></circle>
         </svg>
@@ -821,7 +823,6 @@
     const canvas = document.getElementById('particlesCanvas');
     const ctx = canvas.getContext('2d');
 
-    // Resize canvas to match hero section
     function resizeCanvas() {
       canvas.width = canvas.offsetWidth;
       canvas.height = canvas.offsetHeight;
@@ -829,13 +830,16 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Tweak these values to reduce CPU usage further if needed
-    const numParticles = 50;     // Number of particles (fewer -> lighter load)
-    const maxVelocity = 0.4;    // Speed (smaller -> calmer movement)
-    const connectDist = 80;     // Dist threshold for lines (smaller -> fewer lines)
+    // Tweak these for performance/appearance
+    const numParticles = 50;      
+    const maxVelocity = 0.4;     
+    const connectDist = 80;      
     const particleColor = 'rgba(255, 255, 255, 0.8)';
-    const lineColor = 'rgba(255, 255, 255, 0.3)';
     const particleRadius = 3;
+
+    // The "max line alpha" for lines at distance=0
+    // We'll fade it to 0 at distance=connectDist
+    const maxLineAlpha = 0.3;
 
     let particles = [];
 
@@ -904,8 +908,10 @@
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < connectDist) {
+            // Smooth line alpha from 0 -> maxLineAlpha as dist goes from connectDist -> 0
+            let alpha = (1 - dist / connectDist) * maxLineAlpha; 
             ctx.beginPath();
-            ctx.strokeStyle = lineColor;
+            ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.lineWidth = 1;
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
