@@ -71,7 +71,6 @@
       padding: 0.3rem 0.6rem;
       border-radius: 4px;
     }
-
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -109,8 +108,7 @@
     .hero h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
-      /* CHANGED TO WHITE */
-      color: #fff;
+      color: #fff; /* White Title */
     }
     .hero p {
       font-size: 1.2rem;
@@ -443,6 +441,7 @@
     </div>
   </section>
 
+  <!-- MAIN CONTENT -->
   <div class="container">
     <!-- ABOUT SECTION -->
     <section id="about">
@@ -767,12 +766,9 @@
     // ============ Mobile Menu Toggle ============
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const navMenu = document.getElementById('navMenu');
-
     mobileMenuBtn.addEventListener('click', () => {
       navMenu.classList.toggle('active');
     });
-
-    // Close menu on link click
     const navLinks = document.querySelectorAll('nav ul li a');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -797,7 +793,6 @@
     // ============ Scroll Reveal Intersection Observer ============
     const revealSections = document.querySelectorAll('section');
     const dateLocation = document.getElementById('dateLocation');
-
     const options = { threshold: 0.1 };
     function revealOnScroll(entries, observer) {
       entries.forEach(entry => {
@@ -811,17 +806,29 @@
     revealSections.forEach(section => {
       observer.observe(section);
     });
-
     // Fade in date-location on load (hero section)
     window.addEventListener('load', () => {
       dateLocation.style.opacity = 1;
       dateLocation.style.transform = 'translateY(0)';
     });
 
-    // ============ PARTICLE NETWORK ============
-
+    // ============ PARTICLE NETWORK w/ MOUSE REACTIVITY ============
     const canvas = document.getElementById('particlesCanvas');
     const ctx = canvas.getContext('2d');
+
+    // Keep track of mouse coords (relative to canvas)
+    let mouse = { x: 0, y: 0, isActive: false };
+
+    canvas.addEventListener('mousemove', e => {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
+      mouse.isActive = true;
+    });
+    // If mouse leaves the canvas area
+    canvas.addEventListener('mouseleave', () => {
+      mouse.isActive = false;
+    });
 
     function resizeCanvas() {
       canvas.width = canvas.offsetWidth;
@@ -830,17 +837,18 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Tweak these for performance/appearance
-    const numParticles = 50;      
-    const maxVelocity = 0.4;     
-    const connectDist = 80;      
-    const particleColor = 'rgba(255, 255, 255, 0.8)';
+    // Config
+    const numParticles = 50;
+    const maxVelocity = 0.4;
+    const connectDist = 80;
     const particleRadius = 3;
-
-    // The "max line alpha" for lines at distance=0
-    // We'll fade it to 0 at distance=connectDist
     const maxLineAlpha = 0.3;
 
+    // Mouse repulsion
+    const repelRadius = 80;      // radius around mouse
+    const repelStrength = 0.05;  // how strongly to push them away
+
+    const particleColor = 'rgba(255,255,255,0.8)';
     let particles = [];
 
     class Particle {
@@ -853,12 +861,31 @@
 
       draw() {
         ctx.beginPath();
-        ctx.arc(this.x, this.y, particleRadius, 0, Math.PI * 2, false);
+        ctx.arc(this.x, this.y, particleRadius, 0, Math.PI * 2);
         ctx.fillStyle = particleColor;
         ctx.fill();
       }
 
       update() {
+        // Mouse repulsion
+        if (mouse.isActive) {
+          let dx = this.x - mouse.x;
+          let dy = this.y - mouse.y;
+          let dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < repelRadius) {
+            // push away smoothly (1 - dist / repelRadius) for stronger effect near mouse
+            let factor = 1 - dist / repelRadius;
+            // Normalized direction away from mouse
+            dx /= dist;
+            dy /= dist;
+
+            // apply small velocity change
+            this.vx += dx * factor * repelStrength;
+            this.vy += dy * factor * repelStrength;
+          }
+        }
+
+        // Move
         this.x += this.vx;
         this.y += this.vy;
 
@@ -880,7 +907,6 @@
       }
     }
 
-    // Initialize particles
     function initParticles() {
       particles = [];
       for (let i = 0; i < numParticles; i++) {
@@ -889,27 +915,23 @@
     }
     initParticles();
 
-    // Animation loop
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Draw & update all particles
-      for (let i = 0; i < particles.length; i++) {
-        const p = particles[i];
+      // Update & draw
+      for (let p of particles) {
         p.draw();
         p.update();
       }
 
-      // Draw lines between close particles
+      // Lines
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
-
           if (dist < connectDist) {
-            // Smooth line alpha from 0 -> maxLineAlpha as dist goes from connectDist -> 0
-            let alpha = (1 - dist / connectDist) * maxLineAlpha; 
+            let alpha = (1 - dist / connectDist) * maxLineAlpha;
             ctx.beginPath();
             ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
             ctx.lineWidth = 1;
