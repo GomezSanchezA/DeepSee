@@ -96,19 +96,19 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: 1; /* behind text but above hero background color */
+      z-index: 1;
     }
     /* Hero text content above the canvas */
     .hero-content {
       position: relative;
-      z-index: 2; /* so text is above the canvas */
+      z-index: 2;
       max-width: 800px;
       margin: 0 auto;
     }
     .hero h1 {
       font-size: 2.8rem;
       margin-bottom: 1rem;
-      color: #fff; /* White Title */
+      color: #fff;
     }
     .hero p {
       font-size: 1.2rem;
@@ -187,16 +187,13 @@
       align-items: center;
       justify-content: center;
     }
-
-    /* Make both images smaller */
     .about-image,
     .comparison-container {
-      width: 250px; /* adjust as needed */
-      height: 200px; /* adjust as needed */
+      width: 250px;
+      height: 200px;
       position: relative;
       overflow: hidden;
     }
-
     .about-image img {
       width: 100%;
       height: 100%;
@@ -205,7 +202,12 @@
     }
 
     /* COMPARISON SLIDER STYLES */
-    .comparison-container img {
+    .comparison-container {
+      position: relative;
+      overflow: hidden;
+    }
+    /* The bottom (base) image */
+    .comparison-container .base-image {
       position: absolute;
       top: 0;
       left: 0;
@@ -213,26 +215,38 @@
       height: 100%;
       object-fit: cover;
     }
+    /* The overlay container remains full size */
     .comparison-overlay {
       position: absolute;
       top: 0;
       left: 0;
-      width: 50%; /* default halfway split */
+      width: 100%;
       height: 100%;
-      overflow: hidden;
-      pointer-events: none; /* let mouse events pass to the slider handle */
+      pointer-events: none;
     }
+    /* The top (overlay) image remains fixed and is clipped */
+    .comparison-overlay .overlay-image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      /* Initial clip: show 50% of the image (from left) */
+      clip-path: inset(0 calc(100% - 50%) 0 0);
+    }
+    /* The slider handle */
     .comparison-slider {
       position: absolute;
       top: 0;
       bottom: 0;
-      left: 50%; /* initial position matches overlay’s width */
+      left: 50%;
       width: 4px;
       background: #fff;
       cursor: ew-resize;
+      transform: translateX(-50%);
+      z-index: 10;
       transition: background 0.3s ease;
-      z-index: 10; /* above the images */
-      transform: translateX(-50%); /* center the slider line */
     }
     .comparison-slider:hover {
       background: var(--accent);
@@ -538,14 +552,14 @@
 
           <!-- Updated Comparison Slider -->
           <div class="comparison-container">
-            <!-- Base image (After Image) -->
-            <img
+            <!-- Base image (bottom image) -->
+            <img class="base-image"
               src="https://tinypic.host/images/2025/03/19/Im2.png"
               alt="After Image"
             />
-            <!-- Overlay with the Before Image -->
+            <!-- Overlay container with the top image -->
             <div class="comparison-overlay">
-              <img
+              <img class="overlay-image"
                 src="https://tinypic.host/images/2025/03/19/Im1.png"
                 alt="Before Image"
               />
@@ -642,12 +656,8 @@
                      19.5 19.5 0 0 1-6-6
                      19.79 19.79 0 0 1-3.07-8.67
                      A2 2 0 0 1 4.11 2h3
-                     a2 2 0 0 1 2 1.72
-                     12.84 12.84 0 0 0 .7 2.81
-                     a2 2 0 0 1-.45 2.11
-                     L8.09 9.91a16 16 0 0 0 6 6
-                     l1.27-1.27a2 2 0 0 1 2.11-.45
-                     12.84 12.84 0 0 0 2.81.7
+                     a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81
+                     a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7
                      A2 2 0 0 1 22 16.92z"
             ></path>
           </svg>
@@ -786,7 +796,6 @@
         ctx.fill();
       }
       update() {
-        // Mouse repulsion
         if (mouse.isActive) {
           let dx = this.x - mouse.x;
           let dy = this.y - mouse.y;
@@ -799,12 +808,8 @@
             this.vy += dy * factor * repelStrength;
           }
         }
-
-        // Move
         this.x += this.vx;
         this.y += this.vy;
-
-        // Bounce off edges
         if (this.x < 0) {
           this.x = 0;
           this.vx *= -1;
@@ -832,14 +837,10 @@
 
     function animate() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      // Update & draw each particle
       for (let p of particles) {
         p.draw();
         p.update();
       }
-
-      // Draw connecting lines if particles are close
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
@@ -860,28 +861,32 @@
     }
     animate();
 
-    // ============ IMAGE COMPARISON SLIDER ============
+    // ============ UPDATED IMAGE COMPARISON SLIDER ============
     document.addEventListener("DOMContentLoaded", function () {
       const slider = document.querySelector(".comparison-slider");
-      const overlay = document.querySelector(".comparison-overlay");
+      const overlayImage = document.querySelector(".comparison-overlay .overlay-image");
       const container = document.querySelector(".comparison-container");
+      
+      let sliderPosition = 0.5; // initial position (0 to 1)
 
-      // Initialize the overlay at 50%
-      overlay.style.width = "50%";
-      slider.style.left = "50%";
-
+      function updateClip() {
+        // Calculate the right inset as 100% - (sliderPosition * 100)%
+        const rightInset = 100 - sliderPosition * 100;
+        overlayImage.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
+        slider.style.left = (sliderPosition * 100) + "%";
+      }
+      
+      updateClip();
+      
       let isDragging = false;
-
+      
       function moveSlider(clientX) {
         const rect = container.getBoundingClientRect();
         const offsetX = clientX - rect.left;
-        const percentage = Math.max(0, Math.min(offsetX / rect.width, 1));
-
-        // Update overlay width & slider position
-        overlay.style.width = (percentage * 100) + "%";
-        slider.style.left = (percentage * 100) + "%";
+        sliderPosition = Math.max(0, Math.min(offsetX / rect.width, 1));
+        updateClip();
       }
-
+      
       // Mouse events
       slider.addEventListener("mousedown", (e) => {
         isDragging = true;
@@ -894,7 +899,7 @@
       document.addEventListener("mouseup", () => {
         isDragging = false;
       });
-
+      
       // Touch events
       slider.addEventListener("touchstart", (e) => {
         isDragging = true;
@@ -908,11 +913,6 @@
       document.addEventListener("touchend", () => {
         isDragging = false;
       });
-
-      // (Optional) Clicking anywhere in the container to move the slider:
-      // container.addEventListener("click", (e) => {
-      //   moveSlider(e.clientX);
-      // });
     });
   </script>
 </body>
