@@ -829,15 +829,14 @@
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // Configuration
-    const numParticles = 70;     // Number of particles
-    const maxVelocity = 0.5;    // Max speed in px/frame
-    const connectDist = 100;    // Distance threshold for connecting lines
+    // Tweak these values to reduce CPU usage further if needed
+    const numParticles = 50;     // Number of particles (fewer -> lighter load)
+    const maxVelocity = 0.4;    // Speed (smaller -> calmer movement)
+    const connectDist = 80;     // Dist threshold for lines (smaller -> fewer lines)
     const particleColor = 'rgba(255, 255, 255, 0.8)';
     const lineColor = 'rgba(255, 255, 255, 0.3)';
     const particleRadius = 3;
 
-    // Create particle array
     let particles = [];
 
     class Particle {
