@@ -1,757 +1,813 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DeepSee Meeting 2025</title>
-    <style>
-        :root {
-            --primary: #2a4d69;
-            --secondary: #4b86b4;
-            --accent: #63ace5;
-            --light: #f8f9fa;
-            --dark: #343a40;
-            --spacing: 2rem;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-color: var(--light);
-            color: var(--dark);
-            line-height: 1.6;
-        }
-
-        header {
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            color: white;
-            padding: 1.5rem 2rem;
-            position: relative;
-            overflow: hidden;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0.1;
-            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="white" stroke-width="2"/><circle cx="100" cy="100" r="40" fill="none" stroke="white" stroke-width="2"/><circle cx="100" cy="100" r="20" fill="none" stroke="white" stroke-width="2"/></svg>');
-            background-size: 150px;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
-        nav ul li {
-            margin-left: 1.5rem;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        nav ul li a:hover {
-            color: var(--light);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        .hero {
-            padding: 5rem 2rem;
-            text-align: center;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero h1 {
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 2rem;
-            color: var(--dark);
-        }
-
-        .date-location {
-            display: inline-block;
-            padding: 0.5rem 1.5rem;
-            background-color: var(--primary);
-            color: white;
-            border-radius: 50px;
-            font-weight: 500;
-            margin-bottom: 2rem;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: var(--spacing);
-        }
-
-        section {
-            margin-bottom: 4rem;
-            padding-top: 60px;
-            margin-top: -60px;
-        }
-
-        h2 {
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            position: relative;
-            display: inline-block;
-        }
-
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 50%;
-            height: 3px;
-            background-color: var(--accent);
-        }
-
-        .about {
-            display: flex;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-text {
-            flex: 1;
-        }
-
-        .about-image {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        .schedule {
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            padding: 2rem;
-        }
-
-        .day {
-            margin-bottom: 2rem;
-        }
-
-        .day h3 {
-            color: var(--primary);
-            margin-bottom: 1rem;
-            font-size: 1.4rem;
-        }
-
-        .event {
-            display: flex;
-            border-left: 3px solid var(--secondary);
-            padding: 0.5rem 0 0.5rem 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .event-time {
-            width: 150px;
-            font-weight: 500;
-        }
-
-        .event-details {
-            flex: 1;
-        }
-
-        .event-title {
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-        }
-
-        .event-speaker {
-            font-size: 0.9rem;
-            color: var(--dark);
-            opacity: 0.8;
-        }
-
-        .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .speaker-card {
-            background-color: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s;
-        }
-
-        .speaker-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .speaker-image {
-            height: 250px;
-            overflow: hidden;
-        }
-
-        .speaker-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .speaker-info {
-            padding: 1.5rem;
-        }
-
-        .speaker-info h3 {
-            margin-bottom: 0.5rem;
-            color: var(--primary);
-        }
-
-        .speaker-info p.role {
-            font-size: 0.9rem;
-            color: var(--secondary);
-            margin-bottom: 1rem;
-        }
-
-        .speaker-info p.bio {
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        .tbc {
-            font-style: italic;
-            color: #666;
-        }
-
-        .venue {
-            display: flex;
-            gap: 3rem;
-        }
-
-        .venue-info {
-            flex: 1;
-        }
-
-        .venue-map {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-info {
-            background-color: white;
-            border-radius: 10px;
-            padding: 2rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .contact-item {
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-        }
-
-        .contact-item svg {
-            margin-right: 1rem;
-            color: var(--primary);
-        }
-
-        footer {
-            background-color: var(--primary);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .footer-links {
-            margin-bottom: 1rem;
-        }
-
-        .footer-links a {
-            color: white;
-            margin: 0 1rem;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        .social-links a {
-            display: inline-block;
-            margin: 0 0.5rem;
-            color: white;
-        }
-
-        .sponsors {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-            margin-top: 2rem;
-        }
-
-        .sponsor {
-            background-color: white;
-            padding: 1rem;
-            border-radius: 10px;
-            width: 180px;
-            height: 100px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .back-to-top {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: var(--primary);
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-
-        .back-to-top.visible {
-            opacity: 1;
-        }
-
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 1.5rem;
-                right: 1.5rem;
-            }
-
-            nav ul {
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background-color: var(--primary);
-                margin-top: 0;
-                padding: 1rem 0;
-                display: none;
-                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            }
-
-            nav ul.active {
-                display: flex;
-            }
-
-            nav ul li {
-                margin: 0.5rem 0;
-            }
-
-            .about, .venue {
-                flex-direction: column;
-            }
-
-            .event {
-                flex-direction: column;
-            }
-
-            .event-time {
-                width: 100%;
-                margin-bottom: 0.5rem;
-            }
-
-            .speakers-grid {
-                grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>DeepSee Meeting 2025</title>
+  <style>
+    :root {
+      --primary: #2a4d69;
+      --secondary: #4b86b4;
+      --accent: #63ace5;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --spacing: 2rem;
+      /* Animation Timing */
+      --transition-speed: 0.6s;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--light);
+      color: var(--dark);
+      line-height: 1.6;
+      overflow-x: hidden; /* Helps hide any horizontal overflow during animations */
+    }
+
+    header {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      padding: 1.5rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    .header-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0.1;
+      pointer-events: none;
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="white" stroke-width="2"/><circle cx="100" cy="100" r="40" fill="none" stroke="white" stroke-width="2"/><circle cx="100" cy="100" r="20" fill="none" stroke="white" stroke-width="2"/></svg>');
+      background-size: 150px;
+      z-index: -1;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+    }
+
+    nav ul li {
+      margin-left: 1.5rem;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    nav ul li a:hover {
+      color: var(--light);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 5rem 2rem;
+      text-align: center;
+      background-color: white;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero h1 {
+      font-size: 2.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      color: var(--dark);
+    }
+
+    .date-location {
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 50px;
+      font-weight: 500;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--spacing);
+    }
+
+    section {
+      margin-bottom: 4rem;
+      padding-top: 60px;
+      margin-top: -60px;
+      opacity: 0; /* For scroll reveal */
+      transform: translateY(30px);
+      transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
+    }
+
+    /* Section will become visible when .reveal-active is applied by JS */
+    section.reveal-active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background-color: var(--accent);
+    }
+
+    .about {
+      display: flex;
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-image {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .about-image:hover {
+      transform: scale(1.02);
+    }
+
+    .about-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .schedule {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .schedule:hover {
+      transform: scale(1.01);
+    }
+
+    .day {
+      margin-bottom: 2rem;
+    }
+
+    .day h3 {
+      color: var(--primary);
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+
+    .event {
+      display: flex;
+      border-left: 3px solid var(--secondary);
+      padding: 0.5rem 0 0.5rem 1rem;
+      margin-bottom: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .event:hover {
+      background-color: #f3f6f9;
+    }
+
+    .event-time {
+      width: 150px;
+      font-weight: 500;
+      margin-right: 1rem;
+    }
+
+    .event-details {
+      flex: 1;
+    }
+
+    .event-title {
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+
+    .event-speaker {
+      font-size: 0.9rem;
+      color: var(--dark);
+      opacity: 0.8;
+    }
+
+    .speakers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .speaker-card {
+      background-color: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .speaker-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .speaker-image {
+      height: 250px;
+      overflow: hidden;
+    }
+
+    .speaker-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .speaker-info {
+      padding: 1.5rem;
+    }
+
+    .speaker-info h3 {
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .speaker-info p.role {
+      font-size: 0.9rem;
+      color: var(--secondary);
+      margin-bottom: 1rem;
+    }
+
+    .speaker-info p.bio {
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .venue {
+      display: flex;
+      gap: 3rem;
+    }
+
+    .venue-info {
+      flex: 1;
+    }
+
+    .venue-map {
+      flex: 1;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .venue-map:hover {
+      transform: scale(1.01);
+    }
+
+    .contact-info {
+      background-color: white;
+      border-radius: 10px;
+      padding: 2rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      transition: transform var(--transition-speed) ease;
+    }
+
+    .contact-info:hover {
+      transform: scale(1.01);
+    }
+
+    .contact-item {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .contact-item svg {
+      margin-right: 1rem;
+      color: var(--primary);
+    }
+
+    footer {
+      background-color: var(--primary);
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-links {
+      margin-bottom: 1rem;
+    }
+
+    .footer-links a {
+      color: white;
+      margin: 0 1rem;
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+
+    .social-links a {
+      display: inline-block;
+      margin: 0 0.5rem;
+      color: white;
+      transition: transform 0.3s;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: var(--primary);
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-decoration: none;
+      opacity: 0;
+      transition: opacity var(--transition-speed) ease;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 768px) {
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: var(--primary);
+        margin-top: 0;
+        padding: 1rem 0;
+        display: none;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      nav ul.active {
+        display: flex;
+      }
+
+      nav ul li {
+        margin: 0.5rem 0;
+      }
+
+      .hero {
+        padding: 3rem 1rem;
+      }
+
+      .about, .venue {
+        flex-direction: column;
+      }
+
+      .event {
+        flex-direction: column;
+      }
+
+      .event-time {
+        width: 100%;
+        margin-bottom: 0.5rem;
+      }
+
+      .speakers-grid {
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      }
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <div class="header-bg"></div>
-        <div class="header-content">
-            <div class="logo">DeepSee 2025</div>
-            <button class="mobile-menu-btn">☰</button>
-            <nav>
-                <ul id="navMenu">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#schedule">Schedule</a></li>
-                    <li><a href="#speakers">Speakers</a></li>
-                    <li><a href="#venue">Venue</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+  <header>
+    <div class="header-bg"></div>
+    <div class="header-content">
+      <div class="logo">DeepSee 2025</div>
+      <button class="mobile-menu-btn">☰</button>
+      <nav>
+        <ul id="navMenu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#venue">Venue</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <section class="hero">
-        <div class="date-location">June 3, 2025 • Lille, France</div>
-        <h1>DeepSee Meeting 2025</h1>
-        <p>From Single-Molecule Sensitivity to High-Speed 3D Tissue Imaging</p>
+  <section class="hero">
+    <div class="date-location" id="dateLocation">June 3, 2025 • Lille, France</div>
+    <h1>DeepSee Meeting 2025</h1>
+    <p>From Single-Molecule Sensitivity to High-Speed 3D Tissue Imaging</p>
+  </section>
+
+  <div class="container">
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+      <h2>About the DEEPSEE Scientific Meeting</h2>
+      <div class="about">
+        <div class="about-text">
+          <p>
+            <strong>The DEEPSEE Scientific Meeting</strong> is a dedicated forum for researchers and experts in
+            <strong>high-resolution imaging, chemometric techniques, and advanced spectroscopy</strong>
+            to exchange insights and explore cutting-edge developments in the field.
+            This event provides a unique opportunity to discuss the latest advancements in
+            <strong>fluorescence microscopy, superresolution imaging, and computational spectral analysis</strong>.
+          </p>
+
+          <p>
+            Our meeting explores the synergy between sophisticated imaging approaches and robust data analysis methods, with potential impacts across:
+          </p>
+          <ul>
+            <li>Life and material sciences</li>
+            <li>Spatially-resolved 'omics' (transcriptomics, proteomics, etc.)</li>
+            <li>New approaches for emitter multiplexing</li>
+            <li>'Smart' imaging and adaptive microscopy</li>
+            <li>Nanoparticle monitoring and characterization</li>
+          </ul>
+
+          <p>
+            Through a series of <strong>invited talks, discussions, and networking sessions</strong>,
+            this meeting will foster <strong>scientific exchange and collaboration</strong>,
+            providing a platform to <strong>explore emerging research directions</strong>
+            and inspire future innovations in microscopy and computational spectroscopy.
+          </p>
+        </div>
+        <div class="about-image">
+          <img src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg" alt="Microscopy visualization">
+        </div>
+      </div>
+    </section>
+    <!-- END ABOUT SECTION -->
+
+    <section id="schedule">
+      <h2>Meeting Schedule</h2>
+      <div class="schedule">
+        <div class="day">
+          <h3>Day X</h3>
+
+          <!-- Initial Talk -->
+          <div class="event">
+            <div class="event-time">Time Slot 1</div>
+            <div class="event-details">
+              <div class="event-title">Opening Talk</div>
+              <div class="event-speaker">Speaker Name</div>
+            </div>
+          </div>
+
+          <!-- Talk 1 -->
+          <div class="event">
+            <div class="event-time">Time Slot 2</div>
+            <div class="event-details">
+              <div class="event-title">Talk Title 1</div>
+              <div class="event-speaker">Speaker Name</div>
+            </div>
+          </div>
+
+          <!-- Coffee Break -->
+          <div class="event">
+            <div class="event-time">Time Slot 3</div>
+            <div class="event-details">
+              <div class="event-title">Coffee Break</div>
+            </div>
+          </div>
+
+          <!-- Talk 2 -->
+          <div class="event">
+            <div class="event-time">Time Slot 4</div>
+            <div class="event-details">
+              <div class="event-title">Talk Title 2</div>
+              <div class="event-speaker">Speaker Name</div>
+            </div>
+          </div>
+
+          <!-- Talk 3 -->
+          <div class="event">
+            <div class="event-time">Time Slot 5</div>
+            <div class="event-details">
+              <div class="event-title">Talk Title 3</div>
+              <div class="event-speaker">Speaker Name</div>
+            </div>
+          </div>
+
+          <!-- Lunch Break -->
+          <div class="event">
+            <div class="event-time">Time Slot 6</div>
+            <div class="event-details">
+              <div class="event-title">Lunch Break</div>
+            </div>
+          </div>
+
+          <!-- Talk 4 -->
+          <div class="event">
+            <div class="event-time">Time Slot 7</div>
+            <div class="event-details">
+              <div class="event-title">Talk Title 4</div>
+              <div class="event-speaker">Speaker Name</div>
+            </div>
+          </div>
+
+          <!-- Talk 5 -->
+          <div class="event">
+            <div class="event-time">Time Slot 8</div>
+            <div class="event-details">
+              <div class="event-title">Talk Title 5</div>
+              <div class="event-speaker">Speaker Name</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <div class="container">
+    <section id="speakers">
+      <h2>Invited Speakers</h2>
+      <div class="speakers-grid">
+        <div class="speaker-card">
+          <div class="speaker-image">
+            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 1">
+          </div>
+          <div class="speaker-info">
+            <h3>Speaker Name 1</h3>
+            <p class="role">Affiliation</p>
+            <p class="bio">Short bio or area of expertise for Speaker 1.</p>
+          </div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-image">
+            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 2">
+          </div>
+          <div class="speaker-info">
+            <h3>Speaker Name 2</h3>
+            <p class="role">Affiliation</p>
+            <p class="bio">Short bio or area of expertise for Speaker 2.</p>
+          </div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-image">
+            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 3">
+          </div>
+          <div class="speaker-info">
+            <h3>Speaker Name 3</h3>
+            <p class="role">Affiliation</p>
+            <p class="bio">Short bio or area of expertise for Speaker 3.</p>
+          </div>
+        </div>
+        <div class="speaker-card">
+          <div class="speaker-image">
+            <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 4">
+          </div>
+          <div class="speaker-info">
+            <h3>Speaker Name 4</h3>
+            <p class="role">Affiliation</p>
+            <p class="bio">Short bio or area of expertise for Speaker 4.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- ABOUT SECTION -->
-        <section id="about">
-            <h2>About the DEEPSEE Scientific Meeting</h2>
-            <div class="about">
-                <div class="about-text">
-                    <p>
-                        <strong>The DEEPSEE Scientific Meeting</strong> is a dedicated forum for researchers and experts in 
-                        <strong>high-resolution imaging, chemometric techniques, and advanced spectroscopy</strong> 
-                        to exchange insights and explore cutting-edge developments in the field. 
-                        This event provides a unique opportunity to discuss the latest advancements in 
-                        <strong>fluorescence microscopy, superresolution imaging, and computational spectral analysis</strong>.
-                    </p>
+    <section id="venue">
+      <h2>Venue Information</h2>
+      <div class="venue">
+        <div class="venue-info">
+          <h3>Polytech Lille Amphitheater</h3>
+          <p>Avenue Paul Langevin<br>Cité Scientifique<br>59655 Villeneuve d'Ascq<br>France</p>
+          <p>The meeting will be held in the amphitheater at Polytech Lille, offering modern facilities and audiovisual equipment to support our scientific discussions.</p>
+          <p>The venue is easily accessible by public transportation from Lille city center. Detailed directions will be provided to registered participants.</p>
+          <h4>Expected Attendance:</h4>
+          <p>The meeting is aimed at researchers in advanced microscopy, spectroscopy, and related fields. We anticipate approximately 50-70 attendees, including invited speakers, researchers from the collaborating laboratories (LASIRE and Leuven), and other interested scientists.</p>
+        </div>
+        <div class="venue-map">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2530.6979290037673!2d3.1349!3d50.6069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d6318000000%3A0x573b2b8f3488c462!2sPolytech%20Lille!5e0!3m2!1sen!2sus!4v1710764233646!5m2!1sen!2sus"
+            width="100%"
+            height="400"
+            style="border:0; border-radius:10px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </section>
 
-                    <p>Our meeting explores the synergy between sophisticated imaging approaches and robust data analysis methods, with potential impacts across:</p>
-                    <ul>
-                        <li>Life and material sciences</li>
-                        <li>Spatially-resolved 'omics' (transcriptomics, proteomics, etc.)</li>
-                        <li>New approaches for emitter multiplexing</li>
-                        <li>'Smart' imaging and adaptive microscopy</li>
-                        <li>Nanoparticle monitoring and characterization</li>
-                    </ul>
+    <section id="contact">
+      <h2>Contact Information</h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+               stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 
+            19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 
+            12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 
+            0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+          </svg>
+          <span>+33 (0)3 20 XX XX XX</span>
+        </div>
+        <div class="contact-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 
+            0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+          <span>deepsee@univ-lille.fr</span>
+        </div>
+        <div class="contact-item">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13 
+            a9 9 0 0 1 18 0z"></path>
+            <circle cx="12" cy="10" r="3"></circle>
+          </svg>
+          <span>
+            Polytech Lille Amphitheater<br>
+            Avenue Paul Langevin, Cité Scientifique<br>
+            59655 Villeneuve d'Ascq, France
+          </span>
+        </div>
+        <p>For any questions about the DeepSee meeting, please contact the organizing committee at deepsee@univ-lille.fr.</p>
+      </div>
+    </section>
 
-                    <p>
-                        Through a series of <strong>invited talks, discussions, and networking sessions</strong>, 
-                        this meeting will foster <strong>scientific exchange and collaboration</strong>, 
-                        providing a platform to <strong>explore emerging research directions</strong> 
-                        and inspire future innovations in microscopy and computational spectroscopy.
-                    </p>
-                </div>
-                <div class="about-image">
-                    <img src="https://www.biorxiv.org/content/biorxiv/early/2023/04/11/2023.04.11.536163/F6.large.jpg" alt="Microscopy visualization">
-                </div>
-            </div>
-        </section>
-        <!-- END ABOUT SECTION -->
+  </div>
 
-        <section id="schedule">
-            <h2>Meeting Schedule</h2>
-            <div class="schedule">
-                <div class="day">
-                    <h3>Day X</h3>
-                    
-                    <!-- Initial Talk -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 1</div>
-                        <div class="event-details">
-                            <div class="event-title">Opening Talk</div>
-                            <div class="event-speaker">Speaker Name</div>
-                        </div>
-                    </div>
+  <a href="#" class="back-to-top" id="backToTop">↑</a>
 
-                    <!-- Talk 1 -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 2</div>
-                        <div class="event-details">
-                            <div class="event-title">Talk Title 1</div>
-                            <div class="event-speaker">Speaker Name</div>
-                        </div>
-                    </div>
-
-                    <!-- Coffee Break -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 3</div>
-                        <div class="event-details">
-                            <div class="event-title">Coffee Break</div>
-                        </div>
-                    </div>
-
-                    <!-- Talk 2 -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 4</div>
-                        <div class="event-details">
-                            <div class="event-title">Talk Title 2</div>
-                            <div class="event-speaker">Speaker Name</div>
-                        </div>
-                    </div>
-
-                    <!-- Talk 3 -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 5</div>
-                        <div class="event-details">
-                            <div class="event-title">Talk Title 3</div>
-                            <div class="event-speaker">Speaker Name</div>
-                        </div>
-                    </div>
-
-                    <!-- Lunch Break -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 6</div>
-                        <div class="event-details">
-                            <div class="event-title">Lunch Break</div>
-                        </div>
-                    </div>
-
-                    <!-- Talk 4 -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 7</div>
-                        <div class="event-details">
-                            <div class="event-title">Talk Title 4</div>
-                            <div class="event-speaker">Speaker Name</div>
-                        </div>
-                    </div>
-
-                    <!-- Talk 5 -->
-                    <div class="event">
-                        <div class="event-time">Time Slot 8</div>
-                        <div class="event-details">
-                            <div class="event-title">Talk Title 5</div>
-                            <div class="event-speaker">Speaker Name</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="speakers">
-            <h2>Invited Speakers</h2>
-            <div class="speakers-grid">
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 1">
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Speaker Name 1</h3>
-                        <p class="role">Affiliation</p>
-                        <p class="bio">Short bio or area of expertise for Speaker 1.</p>
-                    </div>
-                </div>
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 2">
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Speaker Name 2</h3>
-                        <p class="role">Affiliation</p>
-                        <p class="bio">Short bio or area of expertise for Speaker 2.</p>
-                    </div>
-                </div>
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 3">
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Speaker Name 3</h3>
-                        <p class="role">Affiliation</p>
-                        <p class="bio">Short bio or area of expertise for Speaker 3.</p>
-                    </div>
-                </div>
-                <div class="speaker-card">
-                    <div class="speaker-image">
-                        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 4">
-                    </div>
-                    <div class="speaker-info">
-                        <h3>Speaker Name 4</h3>
-                        <p class="role">Affiliation</p>
-                        <p class="bio">Short bio or area of expertise for Speaker 4.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="venue">
-            <h2>Venue Information</h2>
-            <div class="venue">
-                <div class="venue-info">
-                    <h3>Polytech Lille Amphitheater</h3>
-                    <p>Avenue Paul Langevin<br>Cité Scientifique<br>59655 Villeneuve d'Ascq<br>France</p>
-                    <p>The meeting will be held in the amphitheater at Polytech Lille, offering modern facilities and audiovisual equipment to support our scientific discussions.</p>
-                    <p>The venue is easily accessible by public transportation from Lille city center. Detailed directions will be provided to registered participants.</p>
-                    <h4>Expected Attendance:</h4>
-                    <p>The meeting is aimed at researchers in advanced microscopy, spectroscopy, and related fields. We anticipate approximately 50-70 attendees, including invited speakers, researchers from the collaborating laboratories (LASIRE and Leuven), and other interested scientists.</p>
-                </div>
-                <div class="venue-map">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2530.6979290037673!2d3.1349!3d50.6069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d6318000000%3A0x573b2b8f3488c462!2sPolytech%20Lille!5e0!3m2!1sen!2sus!4v1710764233646!5m2!1sen!2sus" 
-                        width="100%" 
-                        height="400" 
-                        style="border:0; border-radius:10px;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
-                </div>
-            </div>
-        </section>
-
-        <section id="contact">
-            <h2>Contact Information</h2>
-            <div class="contact-info">
-                <div class="contact-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                    </svg>
-                    <span>+33 (0)3 20 XX XX XX</span>
-                </div>
-                <div class="contact-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                        <polyline points="22,6 12,13 2,6"></polyline>
-                    </svg>
-                    <span>deepsee@univ-lille.fr</span>
-                </div>
-                <div class="contact-item">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
-                        <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                    <span>Polytech Lille Amphitheater<br>Avenue Paul Langevin, Cité Scientifique<br>59655 Villeneuve d'Ascq, France</span>
-                </div>
-                <p>For any questions about the DeepSee meeting, please contact the organizing committee at deepsee@univ-lille.fr.</p>
-            </div>
-        </section>
-
+  <footer>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#speakers">Speakers</a>
+      <a href="#venue">Venue</a>
+      <a href="#contact">Contact</a>
     </div>
+    <div class="social-links">
+      <a href="#" aria-label="Twitter">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round">
+          <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 
+          0 0 0-7.86 3v1A10.66 10.66 
+          0 0 1 3 4s-4 9 5 13a11.64 11.64 
+          0 0 1-7 2c9 5 20 0 20-11.5a4.5 
+          4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+        </svg>
+      </a>
+      <a href="#" aria-label="LinkedIn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2" stroke-linecap="round"
+             stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 
+          2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7
+          a6 6 0 0 1 6-6z"></path>
+          <rect x="2" y="9" width="4" height="12"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      </a>
+    </div>
+    <p>&copy; 2025 DeepSee Project. All Rights Reserved.</p>
+  </footer>
 
-    <a href="#" class="back-to-top" id="backToTop">↑</a>
+  <script>
+    // Mobile menu toggle
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navMenu = document.getElementById('navMenu');
 
-    <footer>
-        <div class="footer-links">
-            <a href="#about">About</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#speakers">Speakers</a>
-            <a href="#venue">Venue</a>
-            <a href="#contact">Contact</a>
-        </div>
-        <div class="social-links">
-            <a href="#" aria-label="Twitter">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
-                </svg>
-            </a>
-            <a href="#" aria-label="LinkedIn">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-                    <rect x="2" y="9" width="4" height="12"></rect>
-                    <circle cx="4" cy="4" r="2"></circle>
-                </svg>
-            </a>
-        </div>
-        <p>&copy; 2025 DeepSee Project. All Rights Reserved.</p>
-    </footer>
+    mobileMenuBtn.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+    });
 
-    <script>
-        // Mobile menu toggle
-        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-        const navMenu = document.getElementById('navMenu');
-        
-        mobileMenuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-        
-        // Close menu when clicking on a link
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-        
-        // Back to top button visibility
-        const backToTopBtn = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('visible');
-            } else {
-                backToTopBtn.classList.remove('visible');
-            }
-        });
-        
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 60,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        
-        // Back to top button functionality
-        backToTopBtn.addEventListener('click', (e) => {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    </script>
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('nav ul li a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+      });
+    });
+
+    // Back to top button
+    const backToTopBtn = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
+      }
+    });
+
+    backToTopBtn.addEventListener('click', e => {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    // Scroll Reveal using Intersection Observer
+    const revealSections = document.querySelectorAll('section');
+    const dateLocation = document.getElementById('dateLocation');
+
+    const options = {
+      threshold: 0.1
+    };
+
+    function revealOnScroll(entries, observer) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('reveal-active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }
+
+    const observer = new IntersectionObserver(revealOnScroll, options);
+    revealSections.forEach(section => {
+      observer.observe(section);
+    });
+
+    // Fade in the date-location element on load (hero section)
+    window.addEventListener('load', () => {
+      dateLocation.style.opacity = 1;
+      dateLocation.style.transform = 'translateY(0)';
+    });
+  </script>
 </body>
 </html>
