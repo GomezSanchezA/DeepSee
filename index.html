@@ -127,6 +127,63 @@
       transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
     }
 
+
+    /* SPONSORS SECTION */
+    .sponsors-section {
+      background-color: white;
+      padding: 2rem 0;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    }
+    .sponsors-section h2 {
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    .sponsors-section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 0;
+      width: 50%;
+      height: 3px;
+      background-color: var(--accent);
+    }
+    .sponsors-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: nowrap;
+      gap: 2rem;
+    }
+    .sponsor-logo {
+      width: 120px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sponsor-logo img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    
+    @media (max-width: 768px) {
+      .sponsors-row {
+        overflow-x: auto;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding-bottom: 1rem;
+      }
+      .sponsor-logo {
+        flex: 0 0 auto;
+        width: 100px;
+        height: 50px;
+      }
+    }
     .container {
       max-width: 1200px;
       margin: 0 auto;
@@ -517,19 +574,19 @@
     </div>
   </section>
   
-  <!-- SPONSORS/LOGOS SECTION -->
-  <section class="sponsors">
-    <div class="container">
-      <h2>Sponsors</h2>
-      <div class="logo-container">
-        <div class="logo-item"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/KU_Leuven_logo.svg?raw=true" alt="KU Leuven" /></div>
-        <div class="logo-item"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Centre_national_de_la_recherche_scientifique_(2023-).svg?raw=true" alt="CNRS" /></div>
-        <div class="logo-item"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Reseau_Polytech.svg?raw=true" alt="Reseau Polytech" /></div>
-        <div class="logo-item"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logotype_Université_de_Lille_2022.svg?raw=true" alt="Université de Lille" /></div>
-        <div class="logo-item"><img src="/api/placeholder/180/90" alt="Sponsor Logo 5" /></div>
-      </div>
+<!-- SPONSORS/LOGOS SECTION -->
+<div class="sponsors-section">
+  <div class="container">
+    <h2>Sponsors</h2>
+    <div class="sponsors-row">
+      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/KU_Leuven_logo.svg?raw=true" alt="KU Leuven" /></div>
+      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Centre_national_de_la_recherche_scientifique_(2023-).svg?raw=true" alt="CNRS" /></div>
+      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Reseau_Polytech.svg?raw=true" alt="Reseau Polytech" /></div>
+      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logotype_Université_de_Lille_2022.svg?raw=true" alt="Université de Lille" /></div>
+      <div class="sponsor-logo"><img src="/api/placeholder/120/60" alt="Sponsor Logo 5" /></div>
     </div>
-  </section>
+  </div>
+</div>
 
   <!-- MAIN CONTENT -->
   <div class="container">
@@ -867,6 +924,12 @@
       dateLocation.style.opacity = 1;
       dateLocation.style.transform = 'translateY(0)';
     });
+
+    // Make sponsors section visible immediately
+    const sponsorsSection = document.querySelector('.sponsors-section');
+    if (sponsorsSection) {
+      sponsorsSection.style.opacity = '1';
+    }
 
     // ============ PARTICLE NETWORK w/ MOUSE REACTIVITY ============
     const canvas = document.getElementById('particlesCanvas');
