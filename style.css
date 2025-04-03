@@ -369,13 +369,13 @@ section.reveal-active {
 }
 
 .about-images {
-  flex: 1;
   display: flex;
-  flex-direction: column; /* Stack images vertically */
-  gap: var(--spacing-md);
-  align-items: center; /* Center images */
+  flex-direction: row;
+  gap: var(--spacing-md); /* Adjust gap as needed */
+  align-items: center;
   justify-content: center;
 }
+
 
 .about-image,
 .comparison-container {
