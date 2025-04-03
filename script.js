@@ -194,12 +194,6 @@ if (canvas) {
         }
       }
 
-      // Apply slight friction (instead of returning to a base velocity)
-      if (!appliedRepel) {
-        this.vx *= 0.99;
-        this.vy *= 0.99;
-      }
-
       // Move particle
       this.x += this.vx;
       this.y += this.vy;
