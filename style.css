@@ -297,8 +297,9 @@ nav ul li a:focus {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Allow wrapping on smaller screens */
-  gap: var(--spacing-lg); /* Increased gap */
+  flex-wrap: nowrap; /* Changed from wrap to nowrap */
+  gap: var(--spacing-lg);
+  overflow-x: auto;
 }
 
 .sponsor-logo {
