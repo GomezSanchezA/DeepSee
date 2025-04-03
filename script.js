@@ -105,7 +105,7 @@ if (canvas) {
     numParticles: 60,
     maxVelocity: 0.5,
     connectDist: 160,
-    particleRadius: 5,
+    particleRadius: 3,
     maxLineAlpha: 0.6,
     repelRadius: 120,
     repelStrength: 0.1, // Reduced slightly
