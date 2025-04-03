@@ -102,15 +102,15 @@ if (canvas) {
 
   // Particle settings (adjust as needed)
   const particleSettings = {
-    numParticles: 60,
-    maxVelocity: 0.5,
-    connectDist: 160,
+    numParticles: 40,
+    maxVelocity: 0.4,
+    connectDist: 130,
     particleRadius: 3,
-    maxLineAlpha: 0.6,
-    repelRadius: 120,
-    repelStrength: 0.1, // Reduced slightly
-    particleColor: 'rgba(255, 255, 255, 0.7)', // Slightly more transparent
-    lineColor: 'rgba(255, 255, 255, $alpha)', // Template for line color
+    maxLineAlpha: 0.5,
+    repelRadius: 80,
+    repelStrength: 0.05,
+    particleColor: 'rgba(255, 255, 255, 0.7)',
+    lineColor: 'rgba(255, 255, 255, $alpha)' // Template string: $alpha will be replaced
   };
 
   let mouse = { x: undefined, y: undefined, isActive: false };
@@ -156,8 +156,6 @@ if (canvas) {
       this.y = Math.random() * canvas.height;
       this.vx = (Math.random() - 0.5) * particleSettings.maxVelocity * 2;
       this.vy = (Math.random() - 0.5) * particleSettings.maxVelocity * 2;
-      this.baseVx = this.vx; // Store base velocity for return
-      this.baseVy = this.vy;
     }
 
     draw() {
@@ -179,7 +177,6 @@ if (canvas) {
           appliedRepel = true;
           const forceDirectionX = dx / dist;
           const forceDirectionY = dy / dist;
-          // Make repel stronger closer to the mouse
           const force = (particleSettings.repelRadius - dist) / particleSettings.repelRadius;
           const directionX = forceDirectionX * force * particleSettings.repelStrength;
           const directionY = forceDirectionY * force * particleSettings.repelStrength;
@@ -187,9 +184,9 @@ if (canvas) {
           this.vx += directionX;
           this.vy += directionY;
 
-          // Limit velocity increase due to repel
+          // Limit the velocity increase due to repel
           const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-          const maxSpeed = particleSettings.maxVelocity * 3; // Allow faster repel speed
+          const maxSpeed = particleSettings.maxVelocity * 3;
           if (currentSpeed > maxSpeed) {
             this.vx = (this.vx / currentSpeed) * maxSpeed;
             this.vy = (this.vy / currentSpeed) * maxSpeed;
@@ -197,10 +194,10 @@ if (canvas) {
         }
       }
 
-      // If not repelled, gradually return to base velocity (dampening)
+      // Apply slight friction (instead of returning to a base velocity)
       if (!appliedRepel) {
-        this.vx += (this.baseVx - this.vx) * 0.05; // Dampening factor
-        this.vy += (this.baseVy - this.vy) * 0.05;
+        this.vx *= 0.99;
+        this.vy *= 0.99;
       }
 
       // Move particle
@@ -209,18 +206,18 @@ if (canvas) {
 
       // Boundary collision (bounce) using particle radius
       if (this.x < particleSettings.particleRadius) {
-        this.vx *= -1;
+        this.vx = Math.abs(this.vx);  // Force positive x-velocity
         this.x = particleSettings.particleRadius;
       } else if (this.x > canvas.width - particleSettings.particleRadius) {
-        this.vx *= -1;
+        this.vx = -Math.abs(this.vx); // Force negative x-velocity
         this.x = canvas.width - particleSettings.particleRadius;
       }
 
       if (this.y < particleSettings.particleRadius) {
-        this.vy *= -1;
+        this.vy = Math.abs(this.vy);  // Force positive y-velocity
         this.y = particleSettings.particleRadius;
       } else if (this.y > canvas.height - particleSettings.particleRadius) {
-        this.vy *= -1;
+        this.vy = -Math.abs(this.vy); // Force negative y-velocity
         this.y = canvas.height - particleSettings.particleRadius;
       }
     }
@@ -245,7 +242,7 @@ if (canvas) {
           alpha = Math.max(0, Math.min(alpha, 1)); // Clamp alpha between 0 and 1
 
           ctx.beginPath();
-          // Use template string for color alpha
+          // Replace $alpha in the template with the computed alpha
           ctx.strokeStyle = particleSettings.lineColor.replace('$alpha', alpha.toFixed(3));
           ctx.lineWidth = 1;
           ctx.moveTo(particles[i].x, particles[i].y);
@@ -281,11 +278,12 @@ if (canvas) {
     resizeTimeout = setTimeout(() => {
       cancelAnimationFrame(animationFrameId);
       resizeCanvas();
-      initParticles(); // Re-init particles for new size
+      initParticles(); // Reinitialize particles for the new size
       animate(); // Restart animation
     }, 250);
   });
 }
+
 
 
   // ============ IMAGE COMPARISON SLIDER ============
