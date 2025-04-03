@@ -355,45 +355,48 @@ section.reveal-active {
     padding-bottom: var(--spacing-lg); /* Add some bottom padding */
 }
 .about-content {
-  display: flex;
-  gap: var(--spacing-lg); /* Increased gap */
-  align-items: flex-start; /* Align items to the top */
-  margin-top: var(--spacing-lg);
+  /* Instead of display: flex, switch to a grid layout */
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 2rem;                     /* Space between columns */
+  align-items: start;            /* Align items at the top */
+  margin-top: 2rem;
 }
 
+/* Text column */
 .about-text {
-  flex: 1.5; /* Give text more space */
+  max-width: 600px; /* Optional: limit text width for readability */
 }
 .about-text p {
     margin-bottom: var(--spacing-sm);
 }
 
+/* Images column */
 .about-images {
-  display: flex;
-  flex-direction: row;
-  gap: var(--spacing-md); /* Adjust gap as needed */
-  align-items: center;
-  justify-content: center;
+  display: flex; 
+  flex-direction: column; /* Stack the two images vertically */
+  gap: 1rem;
+  align-items: center;    /* Center the images horizontally in this column */
 }
 
 
+/* Style each image box */
 .about-image,
 .comparison-container {
-  width: 100%; /* Take full width of container */
-  max-width: 400px; /* Limit max width */
-  height: auto; /* Adjust height automatically */
-  aspect-ratio: 5 / 4; /* Maintain aspect ratio (e.g., 250/200) */
+  width: 100%;        /* Let each image fill the column width */
+  max-width: 400px;   /* Optional: a max-width so they don't get huge */
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
-  border-radius: 8px; /* Rounded corners */
-  box-shadow: var(--shadow-md);
 }
+
 
 .about-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 /* COMPARISON SLIDER STYLES */
