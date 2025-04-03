@@ -2,1126 +2,367 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>DEEPSEE Symposium 2025</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <style>
-     .event.break {
-      background-color: #eaf4fb; /* pale blue */
-      border-left: 4px solid #b3d9f5;
-      padding: 10px;
-      border-radius: 4px;
-      margin-bottom: 10px;
-    }
-    :root {
-      --primary: #2a4d69;
-      --secondary: #4b86b4;
-      --accent: #63ace5;
-      --light: #f8f9fa;
-      --dark: #343a40;
-      --spacing: 2rem;
-      --transition-speed: 0.6s;
-    }
+  <title>DEEPSEE Symposium 2025 | Advancing Molecular Imaging</title>
+  <meta name="description" content="Join the DEEPSEE Symposium 2025 in Lille, France (June 3, 2025), exploring advancements in high-resolution imaging, spectroscopy, and chemometrics from single molecules to tissues.">
+  <meta name="keywords" content="DEEPSEE, symposium, imaging, microscopy, spectroscopy, chemometrics, Lille, single molecule, tissue imaging, super resolution, Polytech Lille">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      scroll-behavior: smooth;
-    }
+  <meta property="og:title" content="DEEPSEE Symposium 2025 | Advancing Molecular Imaging">
+  <meta property="og:description" content="Explore the latest in high-resolution imaging & spectroscopy. June 3, 2025, Lille, France.">
+  <meta property="og:image" content="REPLACE_WITH_URL_to_a_featured_image.jpg"> <meta property="og:url" content="REPLACE_WITH_YOUR_WEBSITE_URL"> <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_US">
 
-    body {
-      background-color: var(--light);
-      color: var(--dark);
-      line-height: 1.6;
-      overflow-x: hidden;
-    }
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="DEEPSEE Symposium 2025 | Advancing Molecular Imaging">
+  <meta name="twitter:description" content="Explore the latest in high-resolution imaging & spectroscopy. June 3, 2025, Lille, France.">
+  <meta name="twitter:image" content="REPLACE_WITH_URL_to_a_featured_image.jpg"> <link rel="icon" href="/path/to/favicon.ico" sizes="any"> <link rel="icon" href="/path/to/favicon.svg" type="image/svg+xml"> <link rel="apple-touch-icon" href="/path/to/apple-touch-icon.png"> <link rel="manifest" href="/path/to/site.webmanifest"> <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    /* HEADER */
-    header {
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      color: white;
-      padding: 1.5rem 2rem;
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-    }
-    .logo {
-      font-size: 1.8rem;
-      font-weight: 700;
-    }
-    nav ul {
-      display: flex;
-      list-style: none;
-    }
-    nav ul li {
-      margin-left: 1.5rem;
-    }
-    nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      background-color: rgba(255, 255, 255, 0.2);
-      padding: 0.3rem 0.6rem;
-      border-radius: 4px;
-    }
-    .mobile-menu-btn {
-      display: none;
-      background: none;
-      border: none;
-      color: white;
-      font-size: 1.5rem;
-      cursor: pointer;
-    }
+  <link rel="stylesheet" href="style.css">
 
-    /* HERO SECTION WITH PARTICLE CANVAS */
-    .hero {
-      position: relative;
-      background-color: #1b1b1b;
-      color: #fff;
-      text-align: center;
-      padding: 5rem 2rem;
-      overflow: hidden;
-    }
-    /* Canvas behind text */
-    #particlesCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1;
-    }
-    /* Hero text content above the canvas */
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    .hero h1 {
-      font-size: 2.8rem;
-      margin-bottom: 1rem;
-      color: #fff;
-    }
-    .hero p {
-      font-size: 1.2rem;
-      color: #f0f0f0;
-    }
-    .date-location {
-      display: inline-block;
-      padding: 0.5rem 1.5rem;
-      background-color: var(--primary);
-      color: white;
-      border-radius: 50px;
-      font-weight: 500;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
-    }
-
-
-    /* SPONSORS SECTION */
-    .sponsors-section {
-      background-color: white;
-      padding: 0.1rem 0;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-    }
-    .sponsors-section h2 {
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      position: relative;
-      display: inline-block;
-    }
-    .sponsors-section h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50%;
-      height: 3px;
-      background-color: var(--accent);
-    }
-    .sponsors-row {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      flex-wrap: nowrap;
-      gap: 2rem;
-    }
-    .sponsor-logo {
-      width: 140px;
-      height: 70px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .sponsor-logo img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-    }
-    
-    @media (max-width: 768px) {
-      .sponsors-row {
-        overflow-x: auto;
-        justify-content: flex-start;
-        gap: 1rem;
-        padding-bottom: 1rem;
-      }
-      .sponsor-logo {
-        flex: 0 0 auto;
-        width: 100px;
-        height: 50px;
-      }
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: var(--spacing);
-    }
-
-    /* SCROLL REVEAL SECTIONS */
-    section {
-      margin-bottom: 4rem;
-      padding-top: 60px;
-      margin-top: -60px;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
-    }
-    section.reveal-active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    h2 {
-      color: var(--primary);
-      margin-bottom: 1.5rem;
-      position: relative;
-      display: inline-block;
-    }
-    h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 0;
-      width: 50%;
-      height: 3px;
-      background-color: var(--accent);
-    }
-
-    /* ABOUT SECTION */
-    .about-content {
-      display: flex;
-      gap: 2rem;
-      align-items: flex-start;
-      margin-top: 2rem;
-    }
-    @media (max-width: 768px) {
-      .about-content {
-        flex-direction: column;
-      }
-    }
-    .about-text {
-      flex: 1;
-    }
-
-    /* Container for 2 images side by side */
-    .about-images {
-      display: flex;
-      flex-direction: row;
-      gap: 1rem;
-      align-items: center;
-      justify-content: center;
-    }
-    .about-image,
-    .comparison-container {
-      width: 250px;
-      height: 200px;
-      position: relative;
-      overflow: hidden;
-    }
-    .about-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    /* COMPARISON SLIDER STYLES */
-    .comparison-container {
-      position: relative;
-      overflow: hidden;
-    }
-    /* The bottom (base) image */
-    .comparison-container .base-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    /* The overlay container remains full size */
-    .comparison-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-    /* The top (overlay) image remains fixed and is clipped */
-    .comparison-overlay .overlay-image {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      /* Initial clip: show 50% of the image (from left) */
-      clip-path: inset(0 calc(100% - 50%) 0 0);
-    }
-    /* The slider handle */
-    .comparison-slider {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      left: 50%;
-      width: 4px;
-      background: #fff;
-      cursor: ew-resize;
-      transform: translateX(-50%);
-      z-index: 10;
-      transition: background 0.3s ease;
-    }
-    .comparison-slider:hover {
-      background: var(--accent);
-    }
-    .comparison-slider::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 20px;
-      height: 20px;
-      background: #fff;
-      border-radius: 50%;
-      border: 2px solid var(--accent);
-    }
-
-    /* SCHEDULE */
-    .schedule {
-      background-color: white;
-      border-radius: 10px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      padding: 2rem;
-    }
-    .day {
-      margin-bottom: 2rem;
-    }
-    .day h3 {
-      color: var(--primary);
-      margin-bottom: 1rem;
-      font-size: 1.4rem;
-    }
-    .event {
-      display: flex;
-      border-left: 3px solid var(--secondary);
-      padding: 0.5rem 0 0.5rem 1rem;
-      margin-bottom: 1rem;
-      transition: background-color 0.3s;
-    }
-    .event:hover {
-      background-color: #f3f6f9;
-    }
-    .event-time {
-      width: 150px;
-      font-weight: 500;
-      margin-right: 1rem;
-    }
-    .event-details {
-      flex: 1;
-    }
-    .event-title {
-      font-weight: 600;
-      margin-bottom: 0.25rem;
-    }
-    .event-speaker {
-      font-size: 0.9rem;
-      color: var(--dark);
-      opacity: 0.8;
-    }
-
-    /* SPEAKERS */
-    .speakers-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .speaker-card {
-      background-color: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform var(--transition-speed) ease;
-    }
-    .speaker-card:hover {
-      transform: translateY(-5px);
-    }
-    .speaker-image {
-      height: 250px;
-      overflow: hidden;
-    }
-    .speaker-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-    .speaker-info {
-      padding: 1.5rem;
-    }
-    .speaker-info h3 {
-      margin-bottom: 0.5rem;
-      color: var(--primary);
-    }
-    .speaker-info p.role {
-      font-size: 0.9rem;
-      color: var(--secondary);
-      margin-bottom: 1rem;
-    }
-    .speaker-info p.bio {
-      font-size: 0.9rem;
-      line-height: 1.5;
-    }
-
-    /* VENUE */
-    .venue {
-      display: flex;
-      gap: 3rem;
-    }
-    .venue-info {
-      flex: 1;
-    }
-    .venue-map {
-      flex: 1;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    /* CONTACT */
-    .contact-info {
-      background-color: white;
-      border-radius: 10px;
-      padding: 2rem;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      transition: transform var(--transition-speed) ease;
-    }
-    .contact-info:hover {
-      transform: scale(1.01);
-    }
-    .contact-item {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-    }
-    .contact-item svg {
-      margin-right: 1rem;
-      color: var(--primary);
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: var(--primary);
-      color: white;
-      padding: 2rem;
-      text-align: center;
-    }
-    .footer-links {
-      margin-bottom: 1rem;
-    }
-    .footer-links a {
-      color: white;
-      margin: 0 1rem;
-      text-decoration: none;
-    }
-    .footer-links a:hover {
-      text-decoration: underline;
-    }
-    .social-links a {
-      display: inline-block;
-      margin: 0 0.5rem;
-      color: white;
-      transition: transform 0.3s;
-    }
-    .social-links a:hover {
-      transform: translateY(-3px);
-    }
-
-    /* BACK TO TOP */
-    .back-to-top {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background-color: var(--primary);
-      color: white;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      text-decoration: none;
-      opacity: 0;
-      transition: opacity var(--transition-speed) ease;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    }
-    .back-to-top.visible {
-      opacity: 1;
-    }
-
-    @media (max-width: 768px) {
-      .header-content {
-        flex-direction: column;
-        text-align: center;
-      }
-      .mobile-menu-btn {
-        display: block;
-        position: absolute;
-        top: 1.5rem;
-        right: 1.5rem;
-      }
-      nav ul {
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: var(--primary);
-        margin-top: 0;
-        padding: 1rem 0;
-        display: none;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-      }
-      nav ul.active {
-        display: flex;
-      }
-      nav ul li {
-        margin: 0.5rem 0;
-      }
-      .hero {
-        padding: 3rem 1rem;
-      }
-      .venue {
-        flex-direction: column;
-      }
-      .event {
-        flex-direction: column;
-      }
-      .event-time {
-        width: 100%;
-        margin-bottom: 0.5rem;
-      }
-      .speakers-grid {
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-      }
-      .about-image,
-      .comparison-container {
-        width: 200px;
-        height: 160px;
-      }
-    }
-  </style>
 </head>
 
 <body>
-  <!-- HEADER -->
   <header>
     <div class="header-content">
       <div class="logo">DEEPSEE 2025</div>
-      <button class="mobile-menu-btn">☰</button>
+      <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">☰</button>
       <nav>
         <ul id="navMenu">
           <li><a href="#about">About</a></li>
           <li><a href="#schedule">Schedule</a></li>
           <li><a href="#speakers">Speakers</a></li>
           <li><a href="#venue">Venue</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#contact">Contact & Registration</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
-<!-- HERO WITH PARTICLE CANVAS -->
   <section class="hero">
     <canvas id="particlesCanvas"></canvas>
     <div class="hero-content">
       <div class="date-location" id="dateLocation">June 3, 2025 • Lille, France</div>
       <h1>DEEPSEE Symposium 2025</h1>
       <p>From Single-Molecule Sensitivity to High-Speed 3D Tissue Imaging</p>
+      <a href="#contact" class="cta-button hero-cta">Register Now</a>
     </div>
   </section>
-  
-<!-- SPONSORS/LOGOS SECTION -->
-<div class="sponsors-section">
-  <div class="container">
-    <div class="sponsors-row">
-      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/KU_Leuven_logo.svg?raw=true" alt="KU Leuven" /></div>
-      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/LOGO_LASIRE.svg?raw=true" alt="LASIRE" /></div>
-      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logotype_Université_de_Lille_2022.svg?raw=true" alt="Université de Lille" /></div>
-      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Reseau_Polytech.svg?raw=true" alt="Reseau Polytech" /></div>
-      <div class="sponsor-logo"><img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Centre_national_de_la_recherche_scientifique_(2023-).svg?raw=true" alt="CNRS" /></div>
+
+  <div class="sponsors-section">
+    <div class="container">
+      <div class="sponsors-row">
+         <div class="sponsor-logo">
+            <a href="#" target="_blank" title="KU Leuven">
+                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/KU_Leuven_logo.svg?raw=true" alt="KU Leuven Logo" />
+            </a>
+        </div>
+        <div class="sponsor-logo">
+            <a href="#" target="_blank" title="LASIRE">
+                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/LOGO_LASIRE.svg?raw=true" alt="LASIRE Logo" />
+            </a>
+        </div>
+        <div class="sponsor-logo">
+            <a href="#" target="_blank" title="Université de Lille">
+                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logotype_Université_de_Lille_2022.svg?raw=true" alt="Université de Lille Logo" />
+            </a>
+        </div>
+        <div class="sponsor-logo">
+            <a href="#" target="_blank" title="Reseau Polytech">
+                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Reseau_Polytech.svg?raw=true" alt="Reseau Polytech Logo" />
+            </a>
+        </div>
+        <div class="sponsor-logo">
+            <a href="#" target="_blank" title="CNRS">
+                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Centre_national_de_la_recherche_scientifique_(2023-).svg?raw=true" alt="CNRS Logo" />
+            </a>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-  <!-- MAIN CONTENT -->
   <div class="container">
-    <!-- ABOUT SECTION -->
     <section id="about">
       <h2>About the DEEPSEE Scientific Symposium</h2>
       <div class="about-content">
         <div class="about-text">
-  <p>
-    <strong>The DEEPSEE Symposium</strong> explores several of the latest advancements in 
-    <strong>high-resolution imaging, advanced spectroscopy, and chemometric techniques</strong>. 
-    With improvements in <em>sensitivity</em> and <em>imaging speed</em>, these technologies now enable 
-    molecular-level insights from <em>single molecules</em> to <em>tissue-scale</em> imaging, 
-    surpassing conventional optical methods.
-  </p><br>
-  <p>
-    The goal of this symposium is to share <strong>state-of-the-art developments</strong> in 
-    <strong>instrumentation and applications</strong>, fostering discussions on 
-    <em>current challenges and future directions</em>. Through invited talks and 
-    in-depth discussions, we invite researchers from all disciplines to explore 
-    fluorescence microscopy, super-resolution imaging, and data analysis, 
-    strengthening collaborations and expanding the boundaries of molecular imaging.
-  </p>
-</div>
+          <p>
+            <strong>The DEEPSEE Symposium</strong> explores several of the latest advancements in
+            <strong>high-resolution imaging, advanced spectroscopy, and chemometric techniques</strong>.
+            With improvements in <em>sensitivity</em> and <em>imaging speed</em>, these technologies now enable
+            molecular-level insights from <em>single molecules</em> to <em>tissue-scale</em> imaging,
+            surpassing conventional optical methods.
+          </p><br>
+          <p>
+            The goal of this symposium is to share <strong>state-of-the-art developments</strong> in
+            <strong>instrumentation and applications</strong>, fostering discussions on
+            <em>current challenges and future directions</em>. Through invited talks and
+            in-depth discussions, we invite researchers from all disciplines to explore
+            fluorescence microscopy, super-resolution imaging, and data analysis,
+            strengthening collaborations and expanding the boundaries of molecular imaging.
+          </p>
+        </div>
 
-
-        <!-- Side-by-side images container with updated comparison slider -->
         <div class="about-images">
-          <!-- Left image (unchanged) -->
           <div class="about-image">
             <img
               src="https://github.com/GomezSanchezA/DeepSee/blob/main/Lille%20TriScan%20Render%20Jon.png?raw=true"
-              alt="Microscopy visualization"
+              alt="3D Render of TriScan Microscopy Setup"
             />
           </div>
 
-          <!-- Updated Comparison Slider -->
           <div class="comparison-container">
-            <!-- Base image (bottom image) -->
             <img class="base-image"
               src="https://github.com/GomezSanchezA/DeepSee/blob/main/Im2_processed.png?raw=true"
-              alt="After Image"
+              alt="Processed Microscopy Image - After"
             />
-            <!-- Overlay container with the top image -->
             <div class="comparison-overlay">
               <img class="overlay-image"
                 src="https://github.com/GomezSanchezA/DeepSee/blob/main/Im1_processed.png?raw=true"
-                alt="Before Image"
+                alt="Processed Microscopy Image - Before"
               />
             </div>
-            <!-- Slider handle -->
-            <div class="comparison-slider"></div>
+            <div class="comparison-slider" aria-label="Image comparison slider handle"></div>
           </div>
         </div>
       </div>
     </section>
 
-<section id="schedule">
-  <h2>Program Schedule, June 3rd</h2>
-  <div class="schedule">
-    <div class="day">
+    <section id="schedule">
+      <h2>Program Schedule, June 3rd</h2>
+      <div class="schedule">
+        <div class="day">
 
-      <!-- Introduction -->
-      <div class="event">
-        <div class="event-time">09:15 AM</div>
-        <div class="event-details">
-          <div class="event-title">Introduction</div>
-          <div class="event-speaker">Host Name</div>
+          <div class="event">
+            <div class="event-time">09:15 AM</div>
+            <div class="event-details">
+              <div class="event-title">Introduction</div>
+              <div class="event-speaker">Host Name </div>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">09:30 AM</div>
+            <div class="event-details">
+              <div class="event-title">Invited Talk: Lydia Danglot</div>
+               </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">10:10 AM</div>
+            <div class="event-details">
+              <div class="event-title">Oral presentations</div>
+            </div>
+          </div>
+
+          <div class="event break">
+            <div class="event-time">10:40 AM</div>
+            <div class="event-details">
+              <div class="event-title"><span class="event-icon">☕</span> Coffee Break</div>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">11:10 AM</div>
+            <div class="event-details">
+              <div class="event-title">Invited Talk: Thomas Bocklitz</div>
+               </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">11:50 AM</div>
+            <div class="event-details">
+              <div class="event-title">Oral presentations</div>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">12:20 PM</div>
+            <div class="event-details">
+              <div class="event-title">Visit of the TriScan microscopy setup</div>
+            </div>
+          </div>
+
+          <div class="event break">
+             <div class="event-time">01:50 PM</div>
+             <div class="event-details">
+               <div class="event-title"><span class="event-icon">🍽️</span> Lunch Break</div>
+             </div>
+           </div>
+
+
+          <div class="event">
+            <div class="event-time">03:20 PM</div>
+            <div class="event-details">
+              <div class="event-title">Invited Talk: Speaker Name </div>
+              </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">04:00 PM</div>
+            <div class="event-details">
+              <div class="event-title">Oral presentations</div>
+            </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">04:30 PM</div>
+            <div class="event-details">
+              <div class="event-title">Invited Talk: Friedemann Kiefer</div>
+              </div>
+          </div>
+
+          <div class="event">
+            <div class="event-time">05:10 PM</div>
+            <div class="event-details">
+              <div class="event-title"><strong>End of Session & Closing Remarks</strong></div>
+            </div>
+          </div>
+
         </div>
       </div>
+    </section>
 
-      <!-- Invited Talk 1: Lydia -->
-      <div class="event">
-        <div class="event-time">09:30 AM</div>
-        <div class="event-details">
-          <div class="event-title">Invited Talk: Lydia Danglot</div>
+    <section id="speakers">
+      <h2>Invited Speakers</h2>
+      <div class="speakers-grid">
+         <div class="speaker-card" id="speaker-kiefer">
+          <div class="speaker-image">
+             <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Friedemann Kiefer">
+          </div>
+          <div class="speaker-info">
+            <h3>Friedemann Kiefer</h3>
+            <p class="role">Affiliation </p>
+            <p class="bio">Short bio or area of expertise for Friedemann Kiefer. </p>
+            <div class="speaker-links"> <a href="#" target="_blank">Profile</a> </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Oral presentations -->
-      <div class="event">
-        <div class="event-time">10:10 AM</div>
-        <div class="event-details">
-          <div class="event-title">Oral presentations</div>
+        <div class="speaker-card" id="speaker-bocklitz">
+          <div class="speaker-image">
+             <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Thomas Bocklitz">
+          </div>
+          <div class="speaker-info">
+            <h3>Thomas Bocklitz</h3>
+            <p class="role">Affiliation </p>
+            <p class="bio">Short bio or area of expertise for Thomas Bocklitz. </p>
+             <div class="speaker-links"> <a href="#" target="_blank">Profile</a> </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Coffee Break -->
-      <div class="event break">
-        <div class="event-time">10:40 AM</div>
-        <div class="event-details">
-          <div class="event-title">Coffee Break</div>
+        <div class="speaker-card" id="speaker-danglot">
+          <div class="speaker-image">
+             <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Lydia Danglot">
+          </div>
+          <div class="speaker-info">
+            <h3>Lydia Danglot</h3>
+            <p class="role">Affiliation </p>
+            <p class="bio">Short bio or area of expertise for Lydia Danglot. </p>
+             <div class="speaker-links"> <a href="#" target="_blank">Profile</a> </div>
+          </div>
         </div>
-      </div>
-
-      <!-- Invited Talk 2: Thomas -->
-      <div class="event">
-        <div class="event-time">11:10 AM</div>
-        <div class="event-details">
-          <div class="event-title">Invited Talk: Thomas Bocklitz</div>
+        <div class="speaker-card" id="speaker-4">
+          <div class="speaker-image">
+             <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Speaker 4">
+          </div>
+          <div class="speaker-info">
+            <h3>Speaker Name 4 </h3>
+            <p class="role">Affiliation </p>
+            <p class="bio">Short bio or area of expertise for Speaker 4. </p>
+             <div class="speaker-links"> <a href="#" target="_blank">Profile</a> </div>
+          </div>
         </div>
-      </div>
+         </div>
+    </section>
 
-      <!-- Oral presentations -->
-      <div class="event">
-        <div class="event-time">11:50 AM</div>
-        <div class="event-details">
-          <div class="event-title">Oral presentations</div>
+
+    <section id="contact">
+      <h2>Contact & Registration</h2>
+
+      <div class="contact-registration-content">
+        <div class="registration-info">
+          <h3>🔗 Registration</h3>
+          <p>
+            We kindly invite you to register in advance to help us organize the event more effectively. Registration is free but mandatory for all participants. Please use the button below to access the registration form.
+          </p>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAVyA1eTPNCA8cM0U0OmYUQIfQXcqMuMSDrV85C-bqy8yUkA/viewform" target="_blank" class="cta-button">
+            Register via Google Forms
+          </a>
+           <p style="margin-top: 1.5rem;">
+              Deadline for registration: [Insert Deadline Date Here] </p>
         </div>
+
+         <div class="contact-details">
+             <h3>📧 Contact</h3>
+             <p>
+               If you have any questions about the symposium or encounter issues with registration, please feel free to contact the organizers:
+             </p>
+             <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                </svg>
+                <a href="mailto:adrian.gomez-sanchez@univ-lille.fr">adrian.gomez-sanchez@univ-lille.fr</a>
+             </div>
+             <div class="contact-item">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                   <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+                </svg>
+               <a href="mailto:riley.hargreaves@univ-lille.fr">riley.hargreaves@univ-lille.fr</a>
+             </div>
+         </div>
       </div>
+    </section>
 
-      <!-- Visit of the Setup -->
-      <div class="event">
-        <div class="event-time">12:20 PM</div>
-        <div class="event-details">
-          <div class="event-title">Visit of the TriScan microscopy setup</div>
-        </div>
-      </div>
-
-      <!-- Lunch Break -->
-      <div class="event break">
-        <div class="event-time">01:50 PM</div>
-        <div class="event-details">
-          <div class="event-title">Lunch Break</div>
-        </div>
-      </div>
-
-      <!-- Invited Talk 3 -->
-      <div class="event">
-        <div class="event-time">03:20 PM</div>
-        <div class="event-details">
-          <div class="event-title">Invited Talk</div>
-        </div>
-      </div>
-
-      <!-- Oral presentations -->
-      <div class="event">
-        <div class="event-time">04:00 PM</div>
-        <div class="event-details">
-          <div class="event-title">Oral presentations</div>
-        </div>
-      </div>
-
-      <!-- Invited Talk 4: Friedemann -->
-      <div class="event">
-        <div class="event-time">04:30 PM</div>
-        <div class="event-details">
-          <div class="event-title">Invited Talk: Friedemann Kiefer</div>
-        </div>
-      </div>
-
-      <!-- End of Session -->
-      <div class="event">
-        <div class="event-time">05:10 PM</div>
-        <div class="event-details">
-          <div class="event-title"><strong>End of Session</strong></div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
-
-
-
-
-
-   <section id="speakers">
-  <h2>Invited Speakers</h2>
-  <div class="speakers-grid">
-    <!-- Speaker Card 1: Friedemann Kiefer -->
-    <div class="speaker-card">
-      <div class="speaker-image">
-        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Friedemann Kiefer">
-      </div>
-      <div class="speaker-info">
-        <h3>Friedemann Kiefer</h3>
-        <p class="role">Affiliation</p>
-        <p class="bio">Short bio or area of expertise for Friedemann Kiefer.</p>
-      </div>
-    </div>
-    <!-- Speaker Card 2: Thomas Bocklitz -->
-    <div class="speaker-card">
-      <div class="speaker-image">
-        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Thomas Bocklitz">
-      </div>
-      <div class="speaker-info">
-        <h3>Thomas Bocklitz</h3>
-        <p class="role">Affiliation</p>
-        <p class="bio">Short bio or area of expertise for Thomas Bocklitz.</p>
-      </div>
-    </div>
-    <!-- Speaker Card 3: Lydia Danglot -->
-    <div class="speaker-card">
-      <div class="speaker-image">
-        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 3">
-      </div>
-      <div class="speaker-info">
-        <h3>Lydia Danglot</h3>
-        <p class="role">Affiliation</p>
-        <p class="bio">Short bio or area of expertise for Lydia Danglot.</p>
-      </div>
-    </div>
-    <!-- Speaker Card 4: Placeholder -->
-    <div class="speaker-card">
-      <div class="speaker-image">
-        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 4">
-      </div>
-      <div class="speaker-info">
-        <h3>Speaker Name 4</h3>
-        <p class="role">Affiliation</p>
-        <p class="bio">Short bio or area of expertise for Speaker 4.</p>
-      </div>
-    </div>
-    <!-- Speaker Card 5: Placeholder -->
-    <div class="speaker-card">
-      <div class="speaker-image">
-        <img src="https://w7.pngwing.com/pngs/298/647/png-transparent-computer-icons-user-human-face-miscellaneous-monochrome-black.png" alt="Speaker 5">
-      </div>
-      <div class="speaker-info">
-        <h3>Speaker Name 5</h3>
-        <p class="role">Affiliation</p>
-        <p class="bio">Short bio or area of expertise for Speaker 5.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-
-<!-- CONTACT SECTION -->
-<section id="contact">
-  <h2>Contact & Registration</h2>
-  
-  <!-- REGISTRATION INFO -->
-<div class="registration-info" style="margin-bottom: 20px;">
-  <h3>🔗 Registration</h3>
-  <p>
-    We kindly invite you to register in advance to help us organize the event more effectively. Registration is free but mandatory for all participants.
-  </p>
-  <p>
-    Please use the form below to submit your details. It only takes a minute, and you’ll receive a confirmation once your registration is complete.<br>
-  </p>
-  <p>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAVyA1eTPNCA8cM0U0OmYUQIfQXcqMuMSDrV85C-bqy8yUkA/viewform" target="_blank" style="font-weight: bold; color: #0066cc;">
-      👉 Click here to register via Google Forms
-    </a>
-  </p>
-  <p>
-    If you have any questions or encounter issues with the registration process, feel free to contact us at:<br>
-    📧 <a href="mailto:adrian.gomez-sanchez@univ-lille.fr">adrian.gomez-sanchez@univ-lille.fr</a><br>
-    📧 <a href="mailto:riley.hargreaves@univ-lille.fr">riley.hargreaves@univ-lille.fr</a>
-  </p>
-</div>
-</section>
-
-    
-
-    <!-- VENUE SECTION -->
     <section id="venue">
       <h2>Venue Information</h2>
       <div class="venue">
         <div class="venue-info">
-          <h3>Polytech Lille Amphitheater</h3>
-          <p>Avenue Paul Langevin<br />Cité Scientifique<br />59655 Villeneuve d'Ascq<br />France</p>
+          <h3>📍 Polytech Lille Amphitheater</h3>
           <p>
-            The symposium will be held in the amphitheater at Polytech Lille, offering modern
-            facilities and audiovisual equipment to support our scientific discussions.
+            Avenue Paul Langevin<br />
+            Cité Scientifique<br />
+            59655 Villeneuve d'Ascq<br />
+            France
           </p>
-<p>
-  The venue is easily accessible by public transportation from Lille city center. 
-  Detailed directions will be provided to registered participants. 
-</p>
-
+          <p>
+            The symposium will be held in the main amphitheater at Polytech Lille, offering modern
+            facilities and audiovisual equipment ideal for our scientific discussions and presentations.
+          </p>
+          <p>
+            The venue is conveniently located on the Cité Scientifique campus and is easily accessible by public transportation (Metro Line 1, Stop "Cité Scientifique - Professeur Gabillard" or "4 Cantons - Stade Pierre Mauroy"). Detailed directions will be provided to registered participants closer to the event date.
+          </p>
         </div>
         <div class="venue-map">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2530.6979290037673!2d3.1349!3d50.6069!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d6318000000%3A0x573b2b8f3488c462!2sPolytech%20Lille!5e0!3m2!1sen!2sus!4v1710764233646!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2531.668816371109!2d3.136021677008358!3d50.6088943716223!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2d630a54561ff%3A0xdac705c758e74a9e!2sPolytech%20Lille!5e0!3m2!1sen!2sfr!4v1712129888888!5m2!1sen!2sfr"
             width="100%"
             height="400"
-            style="border:0; border-radius:10px;"
+            style="border:0; border-radius: 10px;"
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
+            title="Location of Polytech Lille on Google Maps"
           ></iframe>
-        </div>
+           </div>
       </div>
     </section>
 
-</div><!-- /.container -->
+  </div><a href="#" class="back-to-top" id="backToTop" title="Back to Top">↑</a>
 
-  <!-- BACK TO TOP -->
-  <a href="#" class="back-to-top" id="backToTop">↑</a>
-
-  <!-- FOOTER -->
   <footer>
-    <div class="footer-links">
-      <a href="#about">About</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#speakers">Speakers</a>
-      <a href="#venue">Venue</a>
-      <a href="#contact">Contact</a>
+    <div class="footer-content">
+        <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#schedule">Schedule</a>
+        <a href="#speakers">Speakers</a>
+        <a href="#venue">Venue</a>
+        <a href="#contact">Contact</a>
+        </div>
+         <p class="copyright">© 2025 DeepSee Project. All Rights Reserved.</p>
     </div>
-    <p>&copy; 2025 DeepSee Project. All Rights Reserved.</p>
   </footer>
 
-  <!-- SCRIPTS -->
-  <script>
-    // ============ Mobile Menu Toggle ============
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navMenu = document.getElementById('navMenu');
-    mobileMenuBtn.addEventListener('click', () => {
-      navMenu.classList.toggle('active');
-    });
-    const navLinks = document.querySelectorAll('nav ul li a');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        navMenu.classList.remove('active');
-      });
-    });
+  <script src="script.js" defer></script>
 
-    // ============ Back to Top Button ============
-    const backToTopBtn = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      if (window.pageYOffset > 300) {
-        backToTopBtn.classList.add('visible');
-      } else {
-        backToTopBtn.classList.remove('visible');
-      }
-    });
-    backToTopBtn.addEventListener('click', e => {
-      e.preventDefault();
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-
-    // ============ Scroll Reveal Intersection Observer ============
-    const revealSections = document.querySelectorAll('section');
-    const dateLocation = document.getElementById('dateLocation');
-    const options = { threshold: 0.1 };
-    function revealOnScroll(entries, observer) {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('reveal-active');
-          observer.unobserve(entry.target);
-        }
-      });
-    }
-    const observer = new IntersectionObserver(revealOnScroll, options);
-    revealSections.forEach(section => {
-      observer.observe(section);
-    });
-    window.addEventListener('load', () => {
-      dateLocation.style.opacity = 1;
-      dateLocation.style.transform = 'translateY(0)';
-    });
-
-    // Make sponsors section visible immediately
-    const sponsorsSection = document.querySelector('.sponsors-section');
-    if (sponsorsSection) {
-      sponsorsSection.style.opacity = '1';
-    }
-
-    // ============ PARTICLE NETWORK w/ MOUSE REACTIVITY ============
-    const canvas = document.getElementById('particlesCanvas');
-    const ctx = canvas.getContext('2d');
-    let mouse = { x: 0, y: 0, isActive: false };
-
-    canvas.addEventListener('mousemove', e => {
-      const rect = canvas.getBoundingClientRect();
-      mouse.x = e.clientX - rect.left;
-      mouse.y = e.clientY - rect.top;
-      mouse.isActive = true;
-    });
-    canvas.addEventListener('mouseleave', () => {
-      mouse.isActive = false;
-    });
-
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-
-    const numParticles = 40;
-    const maxVelocity = 0.4;
-    const connectDist = 130;
-    const particleRadius = 3;
-    const maxLineAlpha = 0.5;
-    const repelRadius = 80;
-    const repelStrength = 0.05;
-    const particleColor = 'rgba(255,255,255,0.8)';
-    let particles = [];
-
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * maxVelocity * 2;
-        this.vy = (Math.random() - 0.5) * maxVelocity * 2;
-      }
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, particleRadius, 0, Math.PI * 2);
-        ctx.fillStyle = particleColor;
-        ctx.fill();
-      }
-      update() {
-        if (mouse.isActive) {
-          let dx = this.x - mouse.x;
-          let dy = this.y - mouse.y;
-          let dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < repelRadius) {
-            let factor = 1 - dist / repelRadius;
-            dx /= dist;
-            dy /= dist;
-            this.vx += dx * factor * repelStrength;
-            this.vy += dy * factor * repelStrength;
-          }
-        }
-        this.x += this.vx;
-        this.y += this.vy;
-        if (this.x < 0) {
-          this.x = 0;
-          this.vx *= -1;
-        } else if (this.x > canvas.width) {
-          this.x = canvas.width;
-          this.vx *= -1;
-        }
-        if (this.y < 0) {
-          this.y = 0;
-          this.vy *= -1;
-        } else if (this.y > canvas.height) {
-          this.y = canvas.height;
-          this.vy *= -1;
-        }
-      }
-    }
-
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < numParticles; i++) {
-        particles.push(new Particle());
-      }
-    }
-    initParticles();
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
-        p.draw();
-        p.update();
-      }
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < connectDist) {
-            let alpha = (1 - dist / connectDist) * maxLineAlpha;
-            ctx.beginPath();
-            ctx.strokeStyle = `rgba(255,255,255,${alpha.toFixed(3)})`;
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-      requestAnimationFrame(animate);
-    }
-    animate();
-
-    // ============ UPDATED IMAGE COMPARISON SLIDER ============
-    document.addEventListener("DOMContentLoaded", function () {
-      const slider = document.querySelector(".comparison-slider");
-      const overlayImage = document.querySelector(".comparison-overlay .overlay-image");
-      const container = document.querySelector(".comparison-container");
-      
-      let sliderPosition = 0.5; // initial position (0 to 1)
-
-      function updateClip() {
-        // Calculate the right inset as 100% - (sliderPosition * 100)%
-        const rightInset = 100 - sliderPosition * 100;
-        overlayImage.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
-        slider.style.left = (sliderPosition * 100) + "%";
-      }
-      
-      updateClip();
-      
-      let isDragging = false;
-      
-      function moveSlider(clientX) {
-        const rect = container.getBoundingClientRect();
-        const offsetX = clientX - rect.left;
-        sliderPosition = Math.max(0, Math.min(offsetX / rect.width, 1));
-        updateClip();
-      }
-      
-      // Mouse events
-      slider.addEventListener("mousedown", (e) => {
-        isDragging = true;
-        e.preventDefault();
-      });
-      document.addEventListener("mousemove", (e) => {
-        if (!isDragging) return;
-        moveSlider(e.clientX);
-      });
-      document.addEventListener("mouseup", () => {
-        isDragging = false;
-      });
-      
-      // Touch events
-      slider.addEventListener("touchstart", (e) => {
-        isDragging = true;
-        e.preventDefault();
-      });
-      document.addEventListener("touchmove", (e) => {
-        if (!isDragging) return;
-        const touch = e.touches[0];
-        moveSlider(touch.clientX);
-      });
-      document.addEventListener("touchend", () => {
-        isDragging = false;
-      });
-    });
-  </script>
 </body>
 </html>
