@@ -62,6 +62,12 @@ a {
   transition: color var(--transition-fast) ease;
 }
 
+.logo a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+
 a:hover {
   color: var(--primary);
   text-decoration: underline;
