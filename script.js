@@ -93,197 +93,199 @@
   }
 
 
-  // ============ PARTICLE NETWORK w/ MOUSE REACTIVITY ============
-  const canvas = document.getElementById('particlesCanvas');
-  if (canvas) {
-    const ctx = canvas.getContext('2d');
-    let particles = [];
-    let animationFrameId;
+ // ============ PARTICLE NETWORK w/ MOUSE REACTIVITY ============
+const canvas = document.getElementById('particlesCanvas');
+if (canvas) {
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  let animationFrameId;
 
-    // Particle settings (adjust as needed)
-    const particleSettings = {
-        numParticles: 40,
-        maxVelocity: 0.4,
-        connectDist: 130,
-        particleRadius: 3,
-        maxLineAlpha: 0.5,
-        repelRadius: 80,
-        repelStrength: 0.05, // Reduced slightly
-        particleColor: 'rgba(255, 255, 255, 0.7)', // Slightly more transparent
-        lineColor: 'rgba(255, 255, 255, $alpha)', // Template for line color
-    };
+  // Particle settings (adjust as needed)
+  const particleSettings = {
+    numParticles: 60,
+    maxVelocity: 0.5,
+    connectDist: 160,
+    particleRadius: 5,
+    maxLineAlpha: 0.6,
+    repelRadius: 120,
+    repelStrength: 0.1, // Reduced slightly
+    particleColor: 'rgba(255, 255, 255, 0.7)', // Slightly more transparent
+    lineColor: 'rgba(255, 255, 255, $alpha)', // Template for line color
+  };
 
-    let mouse = { x: undefined, y: undefined, isActive: false };
+  let mouse = { x: undefined, y: undefined, isActive: false };
 
-    const handleMouseMove = (e) => {
-        const rect = canvas.getBoundingClientRect();
-        mouse.x = e.clientX - rect.left;
-        mouse.y = e.clientY - rect.top;
-        mouse.isActive = true;
-    };
+  const handleMouseMove = (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+    mouse.isActive = true;
+  };
 
-    const handleMouseLeave = () => {
-        mouse.isActive = false;
-    };
+  const handleMouseLeave = () => {
+    mouse.isActive = false;
+  };
 
-    const handleTouchMove = (e) => {
-        if (e.touches.length > 0) {
-            const rect = canvas.getBoundingClientRect();
-            mouse.x = e.touches[0].clientX - rect.left;
-            mouse.y = e.touches[0].clientY - rect.top;
-            mouse.isActive = true;
-        }
-    };
-
-     const handleTouchEnd = () => {
-        mouse.isActive = false;
-    };
-
-    canvas.addEventListener('mousemove', handleMouseMove);
-    canvas.addEventListener('mouseleave', handleMouseLeave);
-    canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
-    canvas.addEventListener('touchend', handleTouchEnd);
-    canvas.addEventListener('touchcancel', handleTouchEnd);
-
-
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-      // Re-initialize particles on resize *if needed* to fill new space well
-      // initParticles(); // Can cause jumpiness, use cautiously
+  const handleTouchMove = (e) => {
+    if (e.touches.length > 0) {
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - rect.left;
+      mouse.y = e.touches[0].clientY - rect.top;
+      mouse.isActive = true;
     }
+  };
 
-    class Particle {
-      constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.vx = (Math.random() - 0.5) * particleSettings.maxVelocity * 2;
-        this.vy = (Math.random() - 0.5) * particleSettings.maxVelocity * 2;
-        this.baseVx = this.vx; // Store base velocity for return
-        this.baseVy = this.vy;
-      }
+  const handleTouchEnd = () => {
+    mouse.isActive = false;
+  };
 
-      draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, particleSettings.particleRadius, 0, Math.PI * 2);
-        ctx.fillStyle = particleSettings.particleColor;
-        ctx.fill();
-      }
+  canvas.addEventListener('mousemove', handleMouseMove);
+  canvas.addEventListener('mouseleave', handleMouseLeave);
+  canvas.addEventListener('touchmove', handleTouchMove, { passive: true });
+  canvas.addEventListener('touchend', handleTouchEnd);
+  canvas.addEventListener('touchcancel', handleTouchEnd);
 
-      update() {
-        let appliedRepel = false;
-        // Mouse interaction (repel)
-        if (mouse.isActive && mouse.x !== undefined && mouse.y !== undefined) {
-          const dx = this.x - mouse.x;
-          const dy = this.y - mouse.y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < particleSettings.repelRadius) {
-            appliedRepel = true;
-            const forceDirectionX = dx / dist;
-            const forceDirectionY = dy / dist;
-            // Make repel stronger closer to the mouse
-            const force = (particleSettings.repelRadius - dist) / particleSettings.repelRadius;
-            const directionX = forceDirectionX * force * particleSettings.repelStrength;
-            const directionY = forceDirectionY * force * particleSettings.repelStrength;
-
-            this.vx += directionX;
-            this.vy += directionY;
-
-            // Limit velocity increase due to repel
-             const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-             const maxSpeed = particleSettings.maxVelocity * 3; // Allow faster repel speed
-             if (currentSpeed > maxSpeed) {
-                 this.vx = (this.vx / currentSpeed) * maxSpeed;
-                 this.vy = (this.vy / currentSpeed) * maxSpeed;
-             }
-          }
-        }
-
-         // If not repelled, gradually return to base velocity (dampening)
-         if (!appliedRepel) {
-            this.vx += (this.baseVx - this.vx) * 0.05; // Dampening factor
-            this.vy += (this.baseVy - this.vy) * 0.05;
-         }
-
-
-        // Move particle
-        this.x += this.vx;
-        this.y += this.vy;
-
-        // Boundary collision (bounce)
-        if (this.x < 0 || this.x > canvas.width) {
-            this.vx *= -1;
-            this.x = Math.max(0, Math.min(this.x, canvas.width)); // Clamp position
-        }
-        if (this.y < 0 || this.y > canvas.height) {
-            this.vy *= -1;
-            this.y = Math.max(0, Math.min(this.y, canvas.height)); // Clamp position
-        }
-      }
-    }
-
-    function initParticles() {
-      particles = [];
-      for (let i = 0; i < particleSettings.numParticles; i++) {
-        particles.push(new Particle());
-      }
-    }
-
-    function connectParticles() {
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-
-          if (dist < particleSettings.connectDist) {
-            let alpha = (1 - dist / particleSettings.connectDist) * particleSettings.maxLineAlpha;
-            alpha = Math.max(0, Math.min(alpha, 1)); // Clamp alpha between 0 and 1
-
-            ctx.beginPath();
-            // Use template string for color alpha
-            ctx.strokeStyle = particleSettings.lineColor.replace('$alpha', alpha.toFixed(3));
-            ctx.lineWidth = 1;
-            ctx.moveTo(particles[i].x, particles[i].y);
-            ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
-          }
-        }
-      }
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach(p => {
-        p.update();
-        p.draw();
-      });
-
-      connectParticles();
-
-      animationFrameId = requestAnimationFrame(animate);
-    }
-
-    // Initial setup
-    resizeCanvas();
-    initParticles();
-    animate(); // Start animation
-
-    // Debounced resize handler
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            // Stop animation briefly to avoid artifacts during resize
-            cancelAnimationFrame(animationFrameId);
-            resizeCanvas();
-            initParticles(); // Re-init particles for new size
-            animate(); // Restart animation
-        }, 250); // 250ms delay
-    });
+  function resizeCanvas() {
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
   }
+
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * particleSettings.maxVelocity * 2;
+      this.vy = (Math.random() - 0.5) * particleSettings.maxVelocity * 2;
+      this.baseVx = this.vx; // Store base velocity for return
+      this.baseVy = this.vy;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, particleSettings.particleRadius, 0, Math.PI * 2);
+      ctx.fillStyle = particleSettings.particleColor;
+      ctx.fill();
+    }
+
+    update() {
+      let appliedRepel = false;
+      // Mouse interaction (repel)
+      if (mouse.isActive && mouse.x !== undefined && mouse.y !== undefined) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < particleSettings.repelRadius) {
+          appliedRepel = true;
+          const forceDirectionX = dx / dist;
+          const forceDirectionY = dy / dist;
+          // Make repel stronger closer to the mouse
+          const force = (particleSettings.repelRadius - dist) / particleSettings.repelRadius;
+          const directionX = forceDirectionX * force * particleSettings.repelStrength;
+          const directionY = forceDirectionY * force * particleSettings.repelStrength;
+
+          this.vx += directionX;
+          this.vy += directionY;
+
+          // Limit velocity increase due to repel
+          const currentSpeed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+          const maxSpeed = particleSettings.maxVelocity * 3; // Allow faster repel speed
+          if (currentSpeed > maxSpeed) {
+            this.vx = (this.vx / currentSpeed) * maxSpeed;
+            this.vy = (this.vy / currentSpeed) * maxSpeed;
+          }
+        }
+      }
+
+      // If not repelled, gradually return to base velocity (dampening)
+      if (!appliedRepel) {
+        this.vx += (this.baseVx - this.vx) * 0.05; // Dampening factor
+        this.vy += (this.baseVy - this.vy) * 0.05;
+      }
+
+      // Move particle
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Boundary collision (bounce) using particle radius
+      if (this.x < particleSettings.particleRadius) {
+        this.vx *= -1;
+        this.x = particleSettings.particleRadius;
+      } else if (this.x > canvas.width - particleSettings.particleRadius) {
+        this.vx *= -1;
+        this.x = canvas.width - particleSettings.particleRadius;
+      }
+
+      if (this.y < particleSettings.particleRadius) {
+        this.vy *= -1;
+        this.y = particleSettings.particleRadius;
+      } else if (this.y > canvas.height - particleSettings.particleRadius) {
+        this.vy *= -1;
+        this.y = canvas.height - particleSettings.particleRadius;
+      }
+    }
+  }
+
+  function initParticles() {
+    particles = [];
+    for (let i = 0; i < particleSettings.numParticles; i++) {
+      particles.push(new Particle());
+    }
+  }
+
+  function connectParticles() {
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < particleSettings.connectDist) {
+          let alpha = (1 - dist / particleSettings.connectDist) * particleSettings.maxLineAlpha;
+          alpha = Math.max(0, Math.min(alpha, 1)); // Clamp alpha between 0 and 1
+
+          ctx.beginPath();
+          // Use template string for color alpha
+          ctx.strokeStyle = particleSettings.lineColor.replace('$alpha', alpha.toFixed(3));
+          ctx.lineWidth = 1;
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach(p => {
+      p.update();
+      p.draw();
+    });
+
+    connectParticles();
+
+    animationFrameId = requestAnimationFrame(animate);
+  }
+
+  // Initial setup
+  resizeCanvas();
+  initParticles();
+  animate(); // Start animation
+
+  // Debounced resize handler
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      cancelAnimationFrame(animationFrameId);
+      resizeCanvas();
+      initParticles(); // Re-init particles for new size
+      animate(); // Restart animation
+    }, 250);
+  });
+}
 
 
   // ============ IMAGE COMPARISON SLIDER ============
