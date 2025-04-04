@@ -275,7 +275,7 @@ nav ul li a:focus {
   border-bottom: 1px solid var(--border-color); /* Usar variable de tema si existe */
   position: relative;
   z-index: 5;
-    margin-bottom: var(--spacing-lg); /* o spacing-xl para más espacio */
+    margin-bottom: var(--spacing-xl); 
 
 }
 
