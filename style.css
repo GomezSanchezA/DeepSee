@@ -266,70 +266,88 @@ nav ul li a:focus {
   margin-top: var(--spacing-lg); /* More space in hero */
 }
 
-/* ==================== SPONSORS SECTION ==================== */
+/* ==================== SPONSORS SECTION (Intento Final Combinado) ==================== */
 .sponsors-section {
   background-color: var(--white);
-  padding: var(--spacing-md) 0;
+  padding: var(--spacing-md) 0; /* Usar variable de tema si existe, o 1.5rem 0 */
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm); /* Usar variable de tema si existe */
+  border-bottom: 1px solid var(--border-color); /* Usar variable de tema si existe */
   position: relative;
   z-index: 5;
 }
 
-
 .sponsors-row {
   display: flex;
-  flex-wrap: wrap; /* Asegúrate que sigue wrap */
-  justify-content: center;
-  align-items: center;
-  gap: var(--spacing-lg);
-  padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
+  flex-wrap: wrap; /* <<< PERMITIR ENVOLVER (Wrapping) */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  gap: var(--spacing-lg); /* Espacio entre logos (ajusta 2.5rem o el valor de tu tema) */
+  padding: 0 var(--spacing-md); /* Espacio a los lados */
 }
 
 .sponsor-logo {
+  /* <<< VOLVER A DIMENSIONES FIJAS (como en la versión antigua) */
+  width: 140px;
+  height: 70px;
+  /* Flex solo para centrar la imagen dentro de la caja fija */
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px; /* Altura fija para el contenedor */
-  /* Eliminamos flex-basis por ahora para simplificar */
-  width: 160px; /* Damos un ancho base */
-  max-width: 100%; /* Asegura que no se desborde en contenedores muy pequeños antes de envolver */
-  /* padding: 0.5rem; */ /* Comentamos el padding temporalmente */
-  transition: transform var(--transition-fast) ease;
+  padding: 0.25rem; /* Pequeño padding interno opcional */
+  box-sizing: border-box;
+  transition: transform var(--transition-fast) ease; /* Usar variable de tema */
+}
+
+.sponsor-logo a { /* Asegurar que el enlace llene el div */
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   text-decoration: none;
+}
+
+.sponsor-logo img {
+   /* <<< Usar max-width/max-height (como en la versión antigua) */
+   display: block;
+   max-width: 100%;
+   max-height: 100%;
+   object-fit: contain; /* Mantener proporción */
+   /* Quitar width/height explícitos de intentos anteriores */
 }
 
 .sponsor-logo:hover {
   transform: scale(1.05);
 }
 
-.sponsor-logo img {
-  display: block;
-  max-width: 100%;
-  max-height: 100%; /* La imagen se ajustará DENTRO del alto de 80px */
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Estas reglas se mantienen igual */
 .sponsor-logo a:hover img,
 .sponsor-logo a:focus img {
-  filter: grayscale(0%);
+  filter: none;
   opacity: 1;
 }
 
-/* No olvides ajustar el media query si es necesario */
+/* ==================== RESPONSIVE AJUSTES (SIN SCROLL) ==================== */
 @media (max-width: 768px) {
   .sponsors-row {
-    gap: var(--spacing-md);
+    gap: var(--spacing-md); /* Menos espacio */
+    /* Ya no se necesita overflow-x: auto; */
   }
   .sponsor-logo {
-    /* Puedes ajustar el flex-basis o max-width para pantallas pequeñas si es necesario */
-    flex-basis: 120px;
-    height: 60px; /* Quizás más pequeños en móvil */
+    /* Ajustar tamaño fijo para móvil */
+    width: 110px;
+    height: 55px;
   }
+}
+
+@media (max-width: 480px) {
+    .sponsors-row {
+        gap: var(--spacing-sm); /* Menos espacio aún */
+    }
+   .sponsor-logo {
+     width: 90px;
+     height: 45px;
+   }
 }
 
 /* ==================== SCROLL REVEAL SECTIONS ==================== */
