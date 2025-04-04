@@ -269,49 +269,71 @@ nav ul li a:focus {
 /* ==================== SPONSORS SECTION ==================== */
 .sponsors-section {
   background-color: var(--white);
-  padding: var(--spacing-md) 0; /* Reduced padding */
+  padding: var(--spacing-md) 0;
   text-align: center;
   box-shadow: var(--shadow-sm);
   border-bottom: 1px solid var(--border-color);
-  position: relative; /* Ensure it's above hero canvas if overlap occurs */
+  position: relative;
   z-index: 5;
 }
 
 .sponsors-row {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: center; /* O space-around si prefieres más espacio entre ellos */
   align-items: center;
-  flex-wrap: nowrap;
-  gap: var(--spacing-lg);
-  overflow-x: auto;
+  flex-wrap: wrap; /* ****** CAMBIADO ****** */
+  gap: var(--spacing-lg); /* Espacio entre logos */
+  /* overflow-x: auto; */ /* ****** ELIMINADO ****** */
+  /* Agregamos padding al contenedor general para evitar que los logos toquen los bordes */
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
 }
 
 .sponsor-logo {
-  display: flex;
+  display: flex; /* Para centrar la imagen fácilmente */
   align-items: center;
   justify-content: center;
-  width: 150px; /* Fixed width */
-  height: 100px; /* Fixed height */
+  /* width: 150px; */ /* ****** ELIMINADO/MODIFICADO ****** */
+  height: 80px; /* ****** AJUSTADO (o el valor que prefieras) ****** */
+  flex: 0 1 150px; /* ****** AÑADIDO/AJUSTADO: No crece, se encoge si es necesario, base de 150px ****** */
+  /* Opcional: Limitar tamaño mínimo y máximo si 'flex-basis' no es suficiente */
+   max-width: 160px;
+   min-width: 100px;
+  padding: 0.5rem; /* ****** AÑADIDO: Espacio interno ****** */
+  transition: transform var(--transition-fast) ease;
 }
 
-
-
-
 .sponsor-logo:hover {
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
 .sponsor-logo img {
-  height: 100px;
-  width: auto;
-  object-fit: contain;
+  display: block; /* Añadido por seguridad */
+  max-width: 100%;  /* ****** AÑADIDO/AJUSTADO ****** */
+  max-height: 100%; /* ****** AÑADIDO/AJUSTADO ****** */
+  width: auto; /* Mantenido para proporción */
+  height: auto; /* ****** AJUSTADO para proporción ****** */
+  object-fit: contain; /* Mantenido */
 }
 
+/* Estas reglas se mantienen igual */
 .sponsor-logo a:hover img,
 .sponsor-logo a:focus img {
   filter: grayscale(0%);
   opacity: 1;
+}
+
+/* No olvides ajustar el media query si es necesario */
+@media (max-width: 768px) {
+  .sponsors-row {
+    gap: var(--spacing-md);
+  }
+  .sponsor-logo {
+    /* Puedes ajustar el flex-basis o max-width para pantallas pequeñas si es necesario */
+    flex-basis: 120px;
+    height: 60px; /* Quizás más pequeños en móvil */
+  }
 }
 
 /* ==================== SCROLL REVEAL SECTIONS ==================== */
