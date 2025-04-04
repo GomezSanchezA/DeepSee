@@ -277,30 +277,26 @@ nav ul li a:focus {
   z-index: 5;
 }
 
+
 .sponsors-row {
   display: flex;
-  flex-direction: row;
-  justify-content: center; /* O space-around si prefieres más espacio entre ellos */
+  flex-wrap: wrap; /* Asegúrate que sigue wrap */
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* ****** CAMBIADO ****** */
-  gap: var(--spacing-lg); /* Espacio entre logos */
-  /* overflow-x: auto; */ /* ****** ELIMINADO ****** */
-  /* Agregamos padding al contenedor general para evitar que los logos toquen los bordes */
+  gap: var(--spacing-lg);
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
 }
 
 .sponsor-logo {
-  display: flex; /* Para centrar la imagen fácilmente */
+  display: flex;
   align-items: center;
   justify-content: center;
-  /* width: 150px; */ /* ****** ELIMINADO/MODIFICADO ****** */
-  height: 80px; /* ****** AJUSTADO (o el valor que prefieras) ****** */
-  flex: 0 1 150px; /* ****** AÑADIDO/AJUSTADO: No crece, se encoge si es necesario, base de 150px ****** */
-  /* Opcional: Limitar tamaño mínimo y máximo si 'flex-basis' no es suficiente */
-   max-width: 160px;
-   min-width: 100px;
-  padding: 0.5rem; /* ****** AÑADIDO: Espacio interno ****** */
+  height: 80px; /* Altura fija para el contenedor */
+  /* Eliminamos flex-basis por ahora para simplificar */
+  width: 160px; /* Damos un ancho base */
+  max-width: 100%; /* Asegura que no se desborde en contenedores muy pequeños antes de envolver */
+  /* padding: 0.5rem; */ /* Comentamos el padding temporalmente */
   transition: transform var(--transition-fast) ease;
 }
 
@@ -309,12 +305,12 @@ nav ul li a:focus {
 }
 
 .sponsor-logo img {
-  display: block; /* Añadido por seguridad */
-  max-width: 100%;  /* ****** AÑADIDO/AJUSTADO ****** */
-  max-height: 100%; /* ****** AÑADIDO/AJUSTADO ****** */
-  width: auto; /* Mantenido para proporción */
-  height: auto; /* ****** AJUSTADO para proporción ****** */
-  object-fit: contain; /* Mantenido */
+  display: block;
+  max-width: 100%;
+  max-height: 100%; /* La imagen se ajustará DENTRO del alto de 80px */
+  width: auto;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Estas reglas se mantienen igual */
