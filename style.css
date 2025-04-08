@@ -592,10 +592,11 @@ section.reveal-active {
 }
 
 .speaker-image {
-  height: 250px;
+  height: 300px;
   overflow: hidden;
   background-color: var(--light-gray);
 }
+
 
 .speaker-image img {
   width: 100%;
