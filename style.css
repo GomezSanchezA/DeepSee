@@ -571,164 +571,126 @@ section.reveal-active {
 }
 
 /* ==================== SPEAKERS SECTION ==================== */
-
-/* Define your root variables (examples below). 
-  Adjust these colors, fonts, and spacing to match your site's design system.
-*/
-/*
-:root {
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --font-secondary: var(--font-primary); /* Or a different font for specific elements */
-
-  /* Color Palette (Example: A slightly muted professional look) */
-/* --color-primary: #2c3e50;  /* Dark Blue/Gray */
-/* --color-secondary: #3498db; /* Standard Blue */
-/* --color-accent: #e74c3c;   /* Soft Red/Accent */
-/* --color-text-base: #333333; /* Dark Gray for text */
-/* --color-text-muted: #7f8c8d; /* Medium Gray for less important text */
-/* --color-background: #f8f9fa; /* Very Light Gray Background */
-/* --color-card-background: #ffffff; /* White */
-/* --color-border: #e_0_e_0_e_0_;     /* Light Gray Border */
-
-  /* Spacing */
-/* --spacing-xs: 0.25rem; /* 4px */
-/* --spacing-sm: 0.5rem;  /* 8px */
-/* --spacing-md: 1rem;    /* 16px */
-/* --spacing-lg: 1.5rem;  /* 24px */
-/* --spacing-xl: 2rem;    /* 32px */
-
-  /* Shadows */
-/* --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.06); */
-
-  /* Transitions */
-/* --transition-duration: 0.25s;
-  --transition-timing: ease-in-out; */
-
-  /* Borders */
-/* --border-radius-md: 8px;
-  --border-radius-lg: 12px; */
-/*}
-*/
-
 .speakers-grid {
   display: grid;
-  /* Consider adjusting minmax if 280px feels too small/large */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-  gap: var(--spacing-lg, 1.5rem); /* Default fallback added */
-  margin-top: var(--spacing-xl, 2rem); /* Increased top margin slightly */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 }
 
 .speaker-card {
-  background-color: var(--color-card-background, #ffffff);
-  border-radius: var(--border-radius-lg, 12px); /* Slightly larger radius */
+  background-color: var(--white);
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow-md, 0 3px 6px rgba(0,0,0,0.08));
-  border: 1px solid var(--color-border, #e0e0e0); /* Subtle border for definition */
-  transition: transform var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out), 
-              box-shadow var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out);
-  display: flex; /* Use flexbox for better internal control */
-  flex-direction: column; /* Stack image and info vertically */
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
 }
 
 .speaker-card:hover {
-  transform: translateY(-4px); /* Slightly less movement */
-  box-shadow: var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
 }
 
 .speaker-image {
-  /* NOTE: Fixed height can sometimes lead to very tall cards or empty space. 
-    Consider using aspect-ratio for more responsive image containers if appropriate:
-    aspect-ratio: 3 / 4; 
-    height: auto; 
-  */
-  height: 350px; /* Reduced height for a potentially more balanced card */
+  height: 500px; /* Kept original height */
   overflow: hidden;
-  background-color: var(--color-border, #e0e0e0); /* Placeholder background */
-  flex-shrink: 0; /* Prevent image container from shrinking */
+  background-color: var(--light-gray);
+  position: relative; /* Added for potential absolute positioning of credit line */
 }
-
 
 .speaker-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Keeps aspect ratio, covers container */
-  object-position: center top; /* Often better for portraits */
-  transition: transform var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out);
-  display: block; /* Remove potential whitespace below image */
+  object-fit: cover;
+  transition: transform var(--transition-fast) ease;
 }
-
 .speaker-card:hover .speaker-image img {
-  transform: scale(1.03); /* Slightly subtler scale */
+  transform: scale(1.05);
 }
 
-/* Ensure info area grows if needed, but doesn't shrink */
+/* Placeholder style for a credit line - Adjust as needed */
+.speaker-image .credit-line {
+  position: absolute;
+  bottom: var(--spacing-sm, 8px); /* Example positioning */
+  right: var(--spacing-sm, 8px); /* Example positioning */
+  font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.8); /* Example: Semi-transparent white */
+  background-color: rgba(0, 0, 0, 0.5); /* Example: Dark semi-transparent background */
+  padding: 2px 5px;
+  border-radius: 3px;
+  z-index: 1; /* Ensure it's above the image */
+  /* Add other styles as needed (font-family, etc.) */
+}
+
 .speaker-info {
-  padding: var(--spacing-lg, 1.5rem); 
-  font-family: var(--font-primary, sans-serif);
-  flex-grow: 1; /* Allow info section to take remaining space */
-  display: flex;
-  flex-direction: column; /* Stack elements inside info */
+  padding: var(--spacing-md);
 }
 
 .speaker-info h3 {
-  font-family: var(--font-secondary, var(--font-primary, sans-serif)); /* Use secondary font if defined */
-  font-size: 1.25rem; /* Slightly smaller, cleaner heading */
-  font-weight: 600; /* Semi-bold is often cleaner */
-  color: var(--color-primary, #2c3e50);
-  margin: 0 0 var(--spacing-xs, 0.25rem) 0; /* Reduced bottom margin */
-  line-height: 1.3; 
+  margin-bottom: 0.3rem;
+  color: var(--primary);
+  font-size: 1.3rem;
 }
 
 .speaker-info p.role {
-  font-size: 0.95rem; 
-  font-weight: 500; /* Medium weight */
-  color: var(--color-secondary, #3498db); /* Use secondary color for role */
-  margin: 0 0 var(--spacing-md, 1rem) 0; 
-  line-height: 1.4;
+  font-size: 1rem;
+  color: var(--secondary);
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
 }
 
 .speaker-info p.bio {
-  font-size: 0.9rem; /* Slightly smaller for better hierarchy */
-  line-height: 1.6; /* Good readability */
-  color: var(--color-text-muted, #7f8c8d);
-  margin: 0 0 var(--spacing-md, 1rem) 0; 
-  /* Make bio grow and push links down */
-  flex-grow: 1; 
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--gray);
+  margin-bottom: var(--spacing-sm);
 }
 
-.speaker-links {
-  margin-top: auto; /* Push links to the bottom */
-  padding-top: var(--spacing-sm, 0.5rem); /* Add space above links if bio is short */
-}
-
+/* Styles for general links within the speaker card */
 .speaker-links a {
-  font-size: 0.85rem;
-  font-weight: 600; /* Make links stand out slightly */
-  color: var(--color-accent, #e74c3c);
-  text-decoration: none; /* Cleaner look */
-  margin-right: var(--spacing-md, 1rem); /* Space out links */
-  transition: color var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--accent);
+  text-decoration: none; /* Optional: remove underline from normal links too */
+  margin-right: var(--spacing-sm, 8px); /* Add some space between links */
+  transition: color var(--transition-fast) ease; /* Add transition for color */
+}
+.speaker-links a:hover {
+  color: var(--primary);
+  text-decoration: underline; /* Add underline on hover for clarity */
 }
 
-.speaker-links a:last-child {
-  margin-right: 0;
+/* ===== NEW: Style for the Profile Button ===== */
+/* Assuming you have an <a href="..." class="profile-button">Profile</a> in your HTML */
+.speaker-links .profile-button {
+  display: inline-block; /* Allows padding and behaves like a block but flows inline */
+  background-color: var(--primary); /* Use primary color for button background */
+  color: var(--white); /* White text */
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px); /* Vertical and horizontal padding */
+  border-radius: 5px; /* Slightly rounded corners */
+  text-align: center; /* Center the text "Profile" within the button */
+  text-decoration: none; /* Remove underline */
+  font-size: 0.9rem; /* Match other link sizes or adjust as needed */
+  font-weight: 500; /* Match other link weights */
+  border: none; /* Remove default border if it's actually a <button> element */
+  cursor: pointer; /* Indicate it's clickable */
+  transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease; /* Smooth transition */
+  margin-top: var(--spacing-sm, 8px); /* Add some space above the button if needed */
 }
 
-.speaker-links a:hover,
-.speaker-links a:focus { /* Add focus state for accessibility */
-  color: var(--color-primary, #2c3e50);
-  text-decoration: underline; /* Underline on hover/focus */
+/* Hover and Focus styles for the button */
+.speaker-links .profile-button:hover,
+.speaker-links .profile-button:focus {
+  background-color: var(--accent); /* Change background on hover/focus */
+  color: var(--white); /* Keep text white, or change if accent color is light */
+  text-decoration: none; /* Ensure no underline on hover */
 }
 
-/* Optional: Improve focus visibility for the whole card */
-.speaker-card:focus-within {
-    box-shadow: 0 0 0 2px var(--color-secondary, #3498db), var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
-    /* Or use outline */
-    /* outline: 2px solid var(--color-secondary, #3498db); */
-    /* outline-offset: 2px; */
-}
+/* If the profile button should be centered within the speaker-links container */
+/* You might need this if the button is the only item or needs centering */
+/* .speaker-links {
+  text-align: center; 
+} */
 
 
 /* ==================== FOOTER ==================== */
