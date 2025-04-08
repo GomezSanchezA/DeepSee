@@ -570,224 +570,91 @@ section.reveal-active {
   font-style: normal;
 }
 
-/* ========== SPEAKER CARDS: CLEAN & PROFESSIONAL STYLE ========== */
-
-/* Container for all speaker cards */
+/* ==================== SPEAKERS SECTION ==================== */
 .speakers-grid {
-  /* If you want to reduce the gap between cards slightly: */
-  gap: var(--spacing-md);
-  margin-top: var(--spacing-md);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
 }
 
-/* Individual speaker card */
 .speaker-card {
-  background-color: var(--white);
-  border: 1px solid var(--border-color);   /* Subtle border */
-  border-radius: 8px;
+  background-color: #ffffff;  /* clean white background */
+  border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow-sm);
-  text-align: center;                     /* Center text */
-  transition: transform var(--transition-fast) ease,
-              box-shadow var(--transition-fast) ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;                    /* Ensure content is centered */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);  /* subtle shadow */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .speaker-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);  /* stronger shadow on hover */
 }
 
-/* Speaker image container */
 .speaker-image {
-  width: 100%;
-  height: 280px;       /* Reduced height for a more balanced look */
+  height: 500px;
   overflow: hidden;
-  background-color: var(--light-gray);
-  position: relative;  /* For photo credit positioning */
+  background-color: #e9ecef;  /* light gray background */
 }
 
-/* Actual speaker image styling */
 .speaker-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;  /* Ensures the image scales nicely */
-  transition: transform var(--transition-fast) ease;
+  object-fit: cover;
+  transition: transform 0.3s ease;
 }
 
-/* Slight zoom on hover */
 .speaker-card:hover .speaker-image img {
   transform: scale(1.05);
 }
 
-/* Photo credit text, placed in the bottom-right corner */
-.speaker-image .photo-credit {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  font-size: 0.85rem;
-  color: var(--dark);
-  background-color: rgba(255, 255, 255, 0.7);
-  padding: 2px 6px;
-  border-radius: 3px;
-  font-style: italic; /* or normal, depending on your preference */
-}
-
-/* Speaker info container */
 .speaker-info {
-  padding: var(--spacing-md);
-  display: flex;
-  flex-direction: column;
-  align-items: center; 
-  gap: 0.5rem; /* Tweak spacing between items */
+  padding: 1.5rem;  /* roughly equivalent to var(--spacing-md) */
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Speaker name */
+/* Updated speaker name style */
 .speaker-info h3 {
-  margin-bottom: 0.2rem;
-  color: var(--primary);
-  font-size: 1.2rem;
-  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: #21425d;  /* primary deep blue */
+  font-size: 1.5rem;  /* slightly larger font */
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
 }
 
-/* Speaker role or affiliation line */
+/* Updated role/affiliation style */
 .speaker-info p.role {
-  font-size: 1rem;
-  color: var(--secondary);
-  font-weight: 500;
+  font-size: 1.1rem;
+  color: #4b86b4;  /* secondary blue tone */
+  font-weight: 600;
+  margin-bottom: 1rem;
 }
 
-/* If you still have a short bio in some cards */
+/* If still used, updated bio text style */
 .speaker-info p.bio {
-  font-size: 0.95rem;
-  line-height: 1.4;
-  color: var(--gray);
-  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #6c757d;  /* clean gray */
+  margin-bottom: 1rem;
 }
 
-/* Links at the bottom of the card (e.g., Profile link) */
+/* Updated speaker link style with stronger button-like feel */
 .speaker-links a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--accent);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #63ace5;  /* accent blue */
   text-decoration: none;
-  border: 1px solid var(--accent);
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  transition: background-color var(--transition-fast) ease,
-              color var(--transition-fast) ease;
+  border: 1px solid #63ace5;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Hover states for the link */
 .speaker-links a:hover {
-  background-color: var(--accent);
-  color: var(--white);
+  color: #ffffff;
+  background-color: #63ace5;
 }
 
-
-/* ==================== CONTACT & REGISTRATION ==================== */
-#contact {
-  background-color: var(--white);
-  padding: var(--spacing-lg);
-  border-radius: 10px;
-  box-shadow: var(--shadow-md);
-  margin-top: var(--spacing-lg);
-}
-#contact h2 {
-  margin-bottom: var(--spacing-lg);
-}
-
-.contact-registration-content {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xl);
-}
-
-.registration-info {
-  flex: 1;
-  min-width: 300px;
-}
-.registration-info h3 {
-  margin-bottom: var(--spacing-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.registration-info p {
-  margin-bottom: var(--spacing-md);
-}
-.registration-info .cta-button {
-  margin-top: 0;
-}
-
-.contact-details {
-  flex: 1;
-  min-width: 300px;
-}
-.contact-details h3 {
-  margin-bottom: var(--spacing-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.contact-details p {
-  margin-bottom: var(--spacing-md);
-}
-
-.contact-item {
-  margin-bottom: var(--spacing-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-}
-.contact-item svg {
-  color: var(--primary);
-  width: 20px;
-  height: 20px;
-  flex-shrink: 0;
-}
-.contact-item a {
-  font-weight: 500;
-  word-break: break-all;
-}
-
-/* ==================== VENUE SECTION ==================== */
-.venue {
-  display: flex;
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
-  flex-wrap: wrap;
-}
-
-.venue-info {
-  flex: 1;
-  min-width: 300px;
-}
-.venue-info h3 {
-  margin-bottom: var(--spacing-sm);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-.venue-info p {
-  margin-bottom: var(--spacing-sm);
-}
-
-.venue-map {
-  flex: 1.2;
-  min-width: 300px;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-  min-height: 350px;
-}
-.venue-map iframe {
-  display: block;
-  width: 100%;
-  height: 100%;
-  min-height: 350px;
-}
 
 /* ==================== FOOTER ==================== */
 footer {
