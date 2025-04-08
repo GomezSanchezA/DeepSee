@@ -570,76 +570,121 @@ section.reveal-active {
   font-style: normal;
 }
 
-/* ==================== SPEAKERS SECTION ==================== */
+/* ========== SPEAKER CARDS: CLEAN & PROFESSIONAL STYLE ========== */
+
+/* Container for all speaker cards */
 .speakers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  /* If you want to reduce the gap between cards slightly: */
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
 }
 
+/* Individual speaker card */
 .speaker-card {
   background-color: var(--white);
-  border-radius: 10px;
+  border: 1px solid var(--border-color);   /* Subtle border */
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+  box-shadow: var(--shadow-sm);
+  text-align: center;                     /* Center text */
+  transition: transform var(--transition-fast) ease,
+              box-shadow var(--transition-fast) ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;                    /* Ensure content is centered */
 }
 
 .speaker-card:hover {
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
 }
 
+/* Speaker image container */
 .speaker-image {
-  height: 500px;
+  width: 100%;
+  height: 280px;       /* Reduced height for a more balanced look */
   overflow: hidden;
   background-color: var(--light-gray);
+  position: relative;  /* For photo credit positioning */
 }
 
-
+/* Actual speaker image styling */
 .speaker-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: cover;  /* Ensures the image scales nicely */
   transition: transform var(--transition-fast) ease;
 }
+
+/* Slight zoom on hover */
 .speaker-card:hover .speaker-image img {
   transform: scale(1.05);
 }
 
+/* Photo credit text, placed in the bottom-right corner */
+.speaker-image .photo-credit {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 0.85rem;
+  color: var(--dark);
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-style: italic; /* or normal, depending on your preference */
+}
+
+/* Speaker info container */
 .speaker-info {
   padding: var(--spacing-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  gap: 0.5rem; /* Tweak spacing between items */
 }
 
+/* Speaker name */
 .speaker-info h3 {
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.2rem;
   color: var(--primary);
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
+/* Speaker role or affiliation line */
 .speaker-info p.role {
   font-size: 1rem;
   color: var(--secondary);
   font-weight: 500;
-  margin-bottom: var(--spacing-sm);
 }
 
+/* If you still have a short bio in some cards */
 .speaker-info p.bio {
   font-size: 0.95rem;
-  line-height: 1.6;
+  line-height: 1.4;
   color: var(--gray);
-  margin-bottom: var(--spacing-sm);
+  margin-bottom: 0.5rem;
 }
 
+/* Links at the bottom of the card (e.g., Profile link) */
 .speaker-links a {
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--accent);
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  transition: background-color var(--transition-fast) ease,
+              color var(--transition-fast) ease;
 }
+
+/* Hover states for the link */
 .speaker-links a:hover {
-  color: var(--primary);
+  background-color: var(--accent);
+  color: var(--white);
 }
+
 
 /* ==================== CONTACT & REGISTRATION ==================== */
 #contact {
