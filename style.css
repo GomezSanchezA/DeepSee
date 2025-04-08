@@ -574,120 +574,156 @@ section.reveal-active {
 .speakers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  /* Make sure --spacing-lg is defined in your :root or replace with a value like 1.5rem */
+  gap: var(--spacing-lg, 1.5rem); 
+  margin-top: var(--spacing-lg, 1.5rem);
 }
 
 .speaker-card {
-  background-color: var(--white);
+  /* Make sure --white, --shadow-md, --transition-fast are defined or replace */
+  background-color: var(--white, #ffffff);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow-md);
-  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+  box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.1));
+  transition: transform var(--transition-fast, 0.2s) ease, 
+              box-shadow var(--transition-fast, 0.2s) ease;
 }
 
 .speaker-card:hover {
+  /* Make sure --shadow-lg is defined or replace */
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
 }
 
 .speaker-image {
-  height: 500px; /* Kept original height */
+  height: 500px; /* Original height */
   overflow: hidden;
-  background-color: var(--light-gray);
-  position: relative; /* Added for potential absolute positioning of credit line */
+  /* Make sure --light-gray is defined or replace */
+  background-color: var(--light-gray, #f0f0f0); 
+  position: relative; /* Needed for absolute positioning of the credit */
 }
 
 .speaker-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform var(--transition-fast) ease;
+  display: block; /* Prevents potential bottom space */
+  transition: transform var(--transition-fast, 0.2s) ease;
 }
 .speaker-card:hover .speaker-image img {
   transform: scale(1.05);
 }
 
-/* Placeholder style for a credit line - Adjust as needed */
-.speaker-image .credit-line {
+/* ===== CORRECTED: Style for the Photo Credit ===== */
+/* This now targets the class "photo-credit" from your HTML */
+.speaker-image .photo-credit {
   position: absolute;
-  bottom: var(--spacing-sm, 8px); /* Example positioning */
-  right: var(--spacing-sm, 8px); /* Example positioning */
+  bottom: 8px; /* Adjust as needed */
+  right: 8px;  /* Adjust as needed */
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.8); /* Example: Semi-transparent white */
-  background-color: rgba(0, 0, 0, 0.5); /* Example: Dark semi-transparent background */
-  padding: 2px 5px;
+  color: rgba(255, 255, 255, 0.85); /* Semi-transparent white text */
+  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+  padding: 3px 6px;
   border-radius: 3px;
   z-index: 1; /* Ensure it's above the image */
-  /* Add other styles as needed (font-family, etc.) */
+  /* You might want to add font-family here if needed */
+  /* font-family: var(--font-primary, sans-serif); */
 }
 
 .speaker-info {
-  padding: var(--spacing-md);
+  /* Make sure --spacing-md is defined or replace */
+  padding: var(--spacing-md, 1rem); 
 }
 
 .speaker-info h3 {
   margin-bottom: 0.3rem;
-  color: var(--primary);
+  /* Make sure --primary is defined or replace */
+  color: var(--primary, #333); 
   font-size: 1.3rem;
 }
 
 .speaker-info p.role {
   font-size: 1rem;
-  color: var(--secondary);
+  /* Make sure --secondary is defined or replace */
+  color: var(--secondary, #555); 
   font-weight: 500;
-  margin-bottom: var(--spacing-sm);
+   /* Make sure --spacing-sm is defined or replace */
+  margin-bottom: var(--spacing-sm, 0.5rem);
 }
+
+/* Added style for affiliation paragraph */
+.speaker-info p.affiliation {
+  font-size: 0.9rem; /* Slightly smaller */
+  line-height: 1.5;
+  /* Make sure --gray is defined or replace */
+  color: var(--gray, #777); 
+   /* Make sure --spacing-sm is defined or replace */
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
 
 .speaker-info p.bio {
   font-size: 0.95rem;
   line-height: 1.6;
-  color: var(--gray);
-  margin-bottom: var(--spacing-sm);
+   /* Make sure --gray is defined or replace */
+  color: var(--gray, #777);
+   /* Make sure --spacing-sm is defined or replace */
+  margin-bottom: var(--spacing-sm, 0.5rem);
 }
 
-/* Styles for general links within the speaker card */
+/* Styles for the container of links */
+.speaker-links {
+  /* Add some space above the links/button */
+   margin-top: var(--spacing-md, 1rem); 
+}
+
+/* General links (if any besides the button) */
 .speaker-links a {
   font-size: 0.9rem;
   font-weight: 500;
-  color: var(--accent);
-  text-decoration: none; /* Optional: remove underline from normal links too */
-  margin-right: var(--spacing-sm, 8px); /* Add some space between links */
-  transition: color var(--transition-fast) ease; /* Add transition for color */
+  /* Make sure --accent is defined or replace */
+  color: var(--accent, #007bff); 
+  text-decoration: none; 
+  transition: color var(--transition-fast, 0.2s) ease;
 }
 .speaker-links a:hover {
-  color: var(--primary);
-  text-decoration: underline; /* Add underline on hover for clarity */
+   /* Make sure --primary is defined or replace */
+  color: var(--primary, #333);
+  text-decoration: underline;
 }
 
-/* ===== NEW: Style for the Profile Button ===== */
-/* Assuming you have an <a href="..." class="profile-button">Profile</a> in your HTML */
-.speaker-links .profile-button {
-  display: inline-block; /* Allows padding and behaves like a block but flows inline */
-  background-color: var(--primary); /* Use primary color for button background */
-  color: var(--white); /* White text */
-  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px); /* Vertical and horizontal padding */
-  border-radius: 5px; /* Slightly rounded corners */
-  text-align: center; /* Center the text "Profile" within the button */
-  text-decoration: none; /* Remove underline */
-  font-size: 0.9rem; /* Match other link sizes or adjust as needed */
-  font-weight: 500; /* Match other link weights */
-  border: none; /* Remove default border if it's actually a <button> element */
-  cursor: pointer; /* Indicate it's clickable */
-  transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease; /* Smooth transition */
-  margin-top: var(--spacing-sm, 8px); /* Add some space above the button if needed */
+/* ===== CORRECTED: Style for the Profile Button ===== */
+/* Targets links with the class "profile-button" */
+.speaker-links a.profile-button {
+  display: inline-block; 
+  /* Make sure --primary and --white are defined or replace */
+  background-color: var(--primary, #333); 
+  color: var(--white, #ffffff); 
+  /* Make sure --spacing-sm and --spacing-md are defined or replace */
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px); 
+  border-radius: 5px; 
+  text-align: center; 
+  text-decoration: none; 
+  font-size: 0.9rem; 
+  font-weight: 500; 
+  border: none; 
+  cursor: pointer; 
+  transition: background-color var(--transition-fast, 0.2s) ease, color var(--transition-fast, 0.2s) ease;
+  /* Override general link styles */
+  margin-right: 0; /* Remove margin if it's the only button */
 }
 
-/* Hover and Focus styles for the button */
-.speaker-links .profile-button:hover,
-.speaker-links .profile-button:focus {
-  background-color: var(--accent); /* Change background on hover/focus */
-  color: var(--white); /* Keep text white, or change if accent color is light */
-  text-decoration: none; /* Ensure no underline on hover */
+/* Hover/Focus styles specifically for the button */
+.speaker-links a.profile-button:hover,
+.speaker-links a.profile-button:focus {
+  /* Make sure --accent and --white are defined or replace */
+  background-color: var(--accent, #007bff); 
+  color: var(--white, #ffffff); 
+  text-decoration: none; /* Ensure no underline on button hover */
 }
 
-/* If the profile button should be centered within the speaker-links container */
-/* You might need this if the button is the only item or needs centering */
+/* Optional: Center the button within the speaker-links div */
+/* Uncomment this if the profile button should be centered horizontally */
 /* .speaker-links {
   text-align: center; 
 } */
