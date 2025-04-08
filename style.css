@@ -571,88 +571,163 @@ section.reveal-active {
 }
 
 /* ==================== SPEAKERS SECTION ==================== */
+
+/* Define your root variables (examples below). 
+  Adjust these colors, fonts, and spacing to match your site's design system.
+*/
+/*
+:root {
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-secondary: var(--font-primary); /* Or a different font for specific elements */
+
+  /* Color Palette (Example: A slightly muted professional look) */
+/* --color-primary: #2c3e50;  /* Dark Blue/Gray */
+/* --color-secondary: #3498db; /* Standard Blue */
+/* --color-accent: #e74c3c;   /* Soft Red/Accent */
+/* --color-text-base: #333333; /* Dark Gray for text */
+/* --color-text-muted: #7f8c8d; /* Medium Gray for less important text */
+/* --color-background: #f8f9fa; /* Very Light Gray Background */
+/* --color-card-background: #ffffff; /* White */
+/* --color-border: #e_0_e_0_e_0_;     /* Light Gray Border */
+
+  /* Spacing */
+/* --spacing-xs: 0.25rem; /* 4px */
+/* --spacing-sm: 0.5rem;  /* 8px */
+/* --spacing-md: 1rem;    /* 16px */
+/* --spacing-lg: 1.5rem;  /* 24px */
+/* --spacing-xl: 2rem;    /* 32px */
+
+  /* Shadows */
+/* --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 3px 6px rgba(0, 0, 0, 0.06), 0 3px 6px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.06); */
+
+  /* Transitions */
+/* --transition-duration: 0.25s;
+  --transition-timing: ease-in-out; */
+
+  /* Borders */
+/* --border-radius-md: 8px;
+  --border-radius-lg: 12px; */
+/*}
+*/
+
 .speakers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  /* Consider adjusting minmax if 280px feels too small/large */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  gap: var(--spacing-lg, 1.5rem); /* Default fallback added */
+  margin-top: var(--spacing-xl, 2rem); /* Increased top margin slightly */
 }
 
 .speaker-card {
-  background-color: #ffffff;  /* clean white background */
-  border-radius: 10px;
+  background-color: var(--color-card-background, #ffffff);
+  border-radius: var(--border-radius-lg, 12px); /* Slightly larger radius */
   overflow: hidden;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);  /* subtle shadow */
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: var(--shadow-md, 0 3px 6px rgba(0,0,0,0.08));
+  border: 1px solid var(--color-border, #e0e0e0); /* Subtle border for definition */
+  transition: transform var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out), 
+              box-shadow var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out);
+  display: flex; /* Use flexbox for better internal control */
+  flex-direction: column; /* Stack image and info vertically */
 }
 
 .speaker-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);  /* stronger shadow on hover */
+  transform: translateY(-4px); /* Slightly less movement */
+  box-shadow: var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
 }
 
 .speaker-image {
-  height: 500px;
+  /* NOTE: Fixed height can sometimes lead to very tall cards or empty space. 
+    Consider using aspect-ratio for more responsive image containers if appropriate:
+    aspect-ratio: 3 / 4; 
+    height: auto; 
+  */
+  height: 350px; /* Reduced height for a potentially more balanced card */
   overflow: hidden;
-  background-color: #e9ecef;  /* light gray background */
+  background-color: var(--color-border, #e0e0e0); /* Placeholder background */
+  flex-shrink: 0; /* Prevent image container from shrinking */
 }
+
 
 .speaker-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  object-fit: cover; /* Keeps aspect ratio, covers container */
+  object-position: center top; /* Often better for portraits */
+  transition: transform var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out);
+  display: block; /* Remove potential whitespace below image */
 }
 
 .speaker-card:hover .speaker-image img {
-  transform: scale(1.05);
+  transform: scale(1.03); /* Slightly subtler scale */
 }
 
+/* Ensure info area grows if needed, but doesn't shrink */
 .speaker-info {
-  padding: 1.5rem;  /* roughly equivalent to var(--spacing-md) */
-  font-family: 'Poppins', sans-serif;
+  padding: var(--spacing-lg, 1.5rem); 
+  font-family: var(--font-primary, sans-serif);
+  flex-grow: 1; /* Allow info section to take remaining space */
+  display: flex;
+  flex-direction: column; /* Stack elements inside info */
 }
 
-/* Updated speaker name style */
 .speaker-info h3 {
-  margin-bottom: 0.3rem;
-  color: #21425d;  /* primary deep blue */
-  font-size: 1.5rem;  /* slightly larger font */
-  font-weight: 700;
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-secondary, var(--font-primary, sans-serif)); /* Use secondary font if defined */
+  font-size: 1.25rem; /* Slightly smaller, cleaner heading */
+  font-weight: 600; /* Semi-bold is often cleaner */
+  color: var(--color-primary, #2c3e50);
+  margin: 0 0 var(--spacing-xs, 0.25rem) 0; /* Reduced bottom margin */
+  line-height: 1.3; 
 }
 
-/* Updated role/affiliation style */
 .speaker-info p.role {
-  font-size: 1.1rem;
-  color: #4b86b4;  /* secondary blue tone */
-  font-weight: 600;
-  margin-bottom: 1rem;
+  font-size: 0.95rem; 
+  font-weight: 500; /* Medium weight */
+  color: var(--color-secondary, #3498db); /* Use secondary color for role */
+  margin: 0 0 var(--spacing-md, 1rem) 0; 
+  line-height: 1.4;
 }
 
-/* If still used, updated bio text style */
 .speaker-info p.bio {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #6c757d;  /* clean gray */
-  margin-bottom: 1rem;
+  font-size: 0.9rem; /* Slightly smaller for better hierarchy */
+  line-height: 1.6; /* Good readability */
+  color: var(--color-text-muted, #7f8c8d);
+  margin: 0 0 var(--spacing-md, 1rem) 0; 
+  /* Make bio grow and push links down */
+  flex-grow: 1; 
 }
 
-/* Updated speaker link style with stronger button-like feel */
+.speaker-links {
+  margin-top: auto; /* Push links to the bottom */
+  padding-top: var(--spacing-sm, 0.5rem); /* Add space above links if bio is short */
+}
+
 .speaker-links a {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #63ace5;  /* accent blue */
-  text-decoration: none;
-  border: 1px solid #63ace5;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size: 0.85rem;
+  font-weight: 600; /* Make links stand out slightly */
+  color: var(--color-accent, #e74c3c);
+  text-decoration: none; /* Cleaner look */
+  margin-right: var(--spacing-md, 1rem); /* Space out links */
+  transition: color var(--transition-duration, 0.25s) var(--transition-timing, ease-in-out);
 }
 
-.speaker-links a:hover {
-  color: #ffffff;
-  background-color: #63ace5;
+.speaker-links a:last-child {
+  margin-right: 0;
+}
+
+.speaker-links a:hover,
+.speaker-links a:focus { /* Add focus state for accessibility */
+  color: var(--color-primary, #2c3e50);
+  text-decoration: underline; /* Underline on hover/focus */
+}
+
+/* Optional: Improve focus visibility for the whole card */
+.speaker-card:focus-within {
+    box-shadow: 0 0 0 2px var(--color-secondary, #3498db), var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
+    /* Or use outline */
+    /* outline: 2px solid var(--color-secondary, #3498db); */
+    /* outline-offset: 2px; */
 }
 
 
