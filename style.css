@@ -84,13 +84,38 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
   outline: none;
 }
 
-h1, h2, h3 {
+h1 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: var(--spacing-md);
+  font-size: 2.8rem;
   line-height: 1.3;
+  margin-bottom: var(--spacing-md); /* adjust as needed */
 }
+
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 2rem;
+  line-height: 1.3;
+  margin-bottom: 0.5rem;     /* tighter */
+  padding-bottom: 0.2rem;    /* for underline spacing */
+  position: relative;
+  display: inline-block;
+}
+
+
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.4rem;
+  line-height: 1.3;
+  margin-bottom: 1rem; /* or var(--spacing-sm) */
+}
+
+
 h1 { font-size: 2.8rem; }
 h2 {
   font-size: 2rem;
@@ -974,3 +999,16 @@ footer {
   }
   .footer-links a { margin: 0; }
 }
+
+#contact .cta-button {
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+
+.contact-details {
+  margin-top: var(--spacing-lg); /* or var(--spacing-xl) for more space */
+}
+
+
