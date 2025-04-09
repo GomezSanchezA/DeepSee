@@ -238,22 +238,25 @@ nav ul li a:focus {
   transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
-/* Call to Action Button Style */
 .cta-button {
   display: inline-block;
   background-color: var(--cta-bg);
   color: var(--white);
-  padding: 0.9rem 2.2rem; /* Generous padding */
+  padding: 0.6rem 1.5rem;  /* Reduced padding for a smaller button */
   border-radius: 50px;
   text-decoration: none;
-  font-weight: 600; /* Bolder */
-  font-size: 1.1rem; /* Slightly larger */
+  font-weight: 600;
+  font-size: 1rem;         /* Slightly smaller font size */
   margin-top: var(--spacing-md);
-  transition: background-color var(--transition-fast) ease, transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
+  margin-bottom: 1rem;     /* Added bottom margin */
+  transition: background-color var(--transition-fast) ease,
+              transform var(--transition-fast) ease,
+              box-shadow var(--transition-fast) ease;
   box-shadow: var(--shadow-sm);
-  border: none; /* Remove border if it's a button element */
+  border: none;
   cursor: pointer;
 }
+
 .cta-button:hover,
 .cta-button:focus {
   background-color: var(--cta-hover-bg);
