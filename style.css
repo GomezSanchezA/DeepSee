@@ -67,6 +67,7 @@ a {
   text-decoration: none;
 }
 
+
 a:hover {
   color: var(--primary);
   text-decoration: underline;
@@ -83,36 +84,13 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
   outline: none;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
-  font-size: 2.8rem;
+  margin-bottom: var(--spacing-md);
   line-height: 1.3;
-  margin-bottom: var(--spacing-md); /* adjust as needed */
 }
-
-h2 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 2rem;
-  line-height: 1.3;
-  margin-bottom: 0.5rem;     /* tighter */
-  padding-bottom: 0.2rem;    /* for underline spacing */
-  position: relative;
-  display: inline-block;
-}
-
-h3 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 1.4rem;
-  line-height: 1.3;
-  margin-bottom: 1rem; /* or var(--spacing-sm) */
-}
-
 h1 { font-size: 2.8rem; }
 h2 {
   font-size: 2rem;
@@ -297,7 +275,8 @@ nav ul li a:focus {
   border-bottom: 1px solid var(--border-color); /* Usar variable de tema si existe */
   position: relative;
   z-index: 5;
-  margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl); 
+
 }
 
 .sponsors-row {
@@ -323,21 +302,21 @@ nav ul li a:focus {
 }
 
 .sponsor-logo a { /* Asegurar que el enlace llene el div */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-  text-decoration: none;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+   height: 100%;
+   text-decoration: none;
 }
 
 .sponsor-logo img {
-  /* <<< Usar max-width/max-height (como en la versión antigua) */
-  display: block;
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain; /* Mantener proporción */
-  /* Quitar width/height explícitos de intentos anteriores */
+   /* <<< Usar max-width/max-height (como en la versión antigua) */
+   display: block;
+   max-width: 100%;
+   max-height: 100%;
+   object-fit: contain; /* Mantener proporción */
+   /* Quitar width/height explícitos de intentos anteriores */
 }
 
 .sponsor-logo:hover {
@@ -364,13 +343,13 @@ nav ul li a:focus {
 }
 
 @media (max-width: 480px) {
-  .sponsors-row {
-    gap: var(--spacing-sm); /* Menos espacio aún */
-  }
-  .sponsor-logo {
-    width: 90px;
-    height: 45px;
-  }
+    .sponsors-row {
+        gap: var(--spacing-sm); /* Menos espacio aún */
+    }
+   .sponsor-logo {
+     width: 90px;
+     height: 45px;
+   }
 }
 
 /* ==================== SCROLL REVEAL SECTIONS ==================== */
@@ -596,7 +575,7 @@ section.reveal-active {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   /* Make sure --spacing-lg is defined in your :root or replace with a value like 1.5rem */
-  gap: var(--spacing-lg, 1.5rem);
+  gap: var(--spacing-lg, 1.5rem); 
   margin-top: var(--spacing-lg, 1.5rem);
 }
 
@@ -620,7 +599,7 @@ section.reveal-active {
   height: 500px; /* Original height */
   overflow: hidden;
   /* Make sure --light-gray is defined or replace */
-  background-color: var(--light-gray, #f0f0f0);
+  background-color: var(--light-gray, #f0f0f0); 
   position: relative; /* Needed for absolute positioning of the credit */
 }
 
@@ -653,20 +632,20 @@ section.reveal-active {
 
 .speaker-info {
   /* Make sure --spacing-md is defined or replace */
-  padding: var(--spacing-md, 1rem);
+  padding: var(--spacing-md, 1rem); 
 }
 
 .speaker-info h3 {
   margin-bottom: 0.3rem;
   /* Make sure --primary is defined or replace */
-  color: var(--primary, #333);
+  color: var(--primary, #333); 
   font-size: 1.3rem;
 }
 
 .speaker-info p.role {
   font-size: 1rem;
   /* Make sure --secondary is defined or replace */
-  color: var(--secondary, #555);
+  color: var(--secondary, #555); 
   font-weight: 500;
    /* Make sure --spacing-sm is defined or replace */
   margin-bottom: var(--spacing-sm, 0.5rem);
@@ -677,10 +656,11 @@ section.reveal-active {
   font-size: 0.9rem; /* Slightly smaller */
   line-height: 1.5;
   /* Make sure --gray is defined or replace */
-  color: var(--gray, #777);
+  color: var(--gray, #777); 
    /* Make sure --spacing-sm is defined or replace */
   margin-bottom: var(--spacing-sm, 0.5rem);
 }
+
 
 .speaker-info p.bio {
   font-size: 0.95rem;
@@ -694,7 +674,7 @@ section.reveal-active {
 /* Styles for the container of links */
 .speaker-links {
   /* Add some space above the links/button */
-  margin-top: var(--spacing-md, 1rem);
+   margin-top: var(--spacing-md, 1rem); 
 }
 
 /* General links (if any besides the button) */
@@ -702,12 +682,12 @@ section.reveal-active {
   font-size: 0.9rem;
   font-weight: 500;
   /* Make sure --accent is defined or replace */
-  color: var(--accent, #007bff);
-  text-decoration: none;
+  color: var(--accent, #007bff); 
+  text-decoration: none; 
   transition: color var(--transition-fast, 0.2s) ease;
 }
 .speaker-links a:hover {
-  /* Make sure --primary is defined or replace */
+   /* Make sure --primary is defined or replace */
   color: var(--primary, #333);
   text-decoration: underline;
 }
@@ -715,19 +695,19 @@ section.reveal-active {
 /* ===== CORRECTED: Style for the Profile Button ===== */
 /* Targets links with the class "profile-button" */
 .speaker-links a.profile-button {
-  display: inline-block;
+  display: inline-block; 
   /* Make sure --primary and --white are defined or replace */
-  background-color: var(--primary, #333);
-  color: var(--white, #ffffff);
+  background-color: var(--primary, #333); 
+  color: var(--white, #ffffff); 
   /* Make sure --spacing-sm and --spacing-md are defined or replace */
-  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
-  border-radius: 5px;
-  text-align: center;
-  text-decoration: none;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border: none;
-  cursor: pointer;
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px); 
+  border-radius: 5px; 
+  text-align: center; 
+  text-decoration: none; 
+  font-size: 0.9rem; 
+  font-weight: 500; 
+  border: none; 
+  cursor: pointer; 
   transition: background-color var(--transition-fast, 0.2s) ease, color var(--transition-fast, 0.2s) ease;
   /* Override general link styles */
   margin-right: 0; /* Remove margin if it's the only button */
@@ -737,16 +717,17 @@ section.reveal-active {
 .speaker-links a.profile-button:hover,
 .speaker-links a.profile-button:focus {
   /* Make sure --accent and --white are defined or replace */
-  background-color: var(--accent, #007bff);
-  color: var(--white, #ffffff);
+  background-color: var(--accent, #007bff); 
+  color: var(--white, #ffffff); 
   text-decoration: none; /* Ensure no underline on button hover */
 }
 
 /* Optional: Center the button within the speaker-links div */
 /* Uncomment this if the profile button should be centered horizontally */
 /* .speaker-links {
-  text-align: center;
+  text-align: center; 
 } */
+
 
 /* ==================== FOOTER ==================== */
 footer {
@@ -993,67 +974,3 @@ footer {
   }
   .footer-links a { margin: 0; }
 }
-
-#contact .cta-button {
-  padding: 0.6rem 1.4rem;
-  font-size: 1rem;
-  border-radius: 30px;
-}
-
-.contact-details {
-  margin-top: var(--spacing-lg); /* or var(--spacing-xl) for more space */
-}
-
-/* ==================== CONTACT & VENUE TWO-COLUMN LAYOUT ==================== */
-
-#contact-venue {
-  margin-bottom: var(--spacing-xl);
-  padding-top: var(--spacing-lg);
-  margin-top: calc(-1 * var(--spacing-lg));
-}
-
-.contact-venue-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing-xl); /* Maintain consistent spacing */
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: var(--spacing-lg);
-}
-
-/* Left: Registration + Contact */
-.left-column {
-  flex: 1;
-  min-width: 300px;
-  max-width: 600px;
-}
-
-/* Right: Venue + Map */
-.right-column {
-  flex: 1;
-  min-width: 300px;
-  max-width: 600px;
-}
-
-/* Optional: Adjust map iframe if needed */
-.venue-map iframe {
-  width: 100%;
-  height: 300px;
-  border-radius: 10px;
-  border: none;
-}
-
-/* Responsive behavior: stack on small screens */
-@media (max-width: 768px) {
-  .contact-venue-wrapper {
-    flex-direction: column;
-  }
-  .left-column,
-  .right-column {
-    max-width: 100%;
-  }
-  .venue-map iframe {
-    height: 250px;
-  }
-}
-
