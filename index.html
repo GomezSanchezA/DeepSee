@@ -1,33 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>DEEPSEE 2025 Symposium</title>
   <meta name="description" content="Join the DEEPSEE 2025 Symposium in Lille, France (June 3, 2025), exploring advancements in high-resolution imaging, spectroscopy, and chemometrics from single molecules to tissues.">
   <meta name="keywords" content="DEEPSEE, symposium, imaging, microscopy, spectroscopy, chemometrics, Lille, single molecule, tissue imaging, super resolution, Polytech Lille">
 
   <meta property="og:title" content="DEEPSEE 2025 Symposium">
   <meta property="og:description" content="Explore the latest in high-resolution imaging & spectroscopy. June 3, 2025, Lille, France.">
-  <meta property="og:image" content="REPLACE_WITH_URL_to_a_featured_image.jpg"> <meta property="og:url" content="REPLACE_WITH_YOUR_WEBSITE_URL"> <meta property="og:type" content="website">
+  <meta property="og:image" content="REPLACE_WITH_URL_to_a_featured_image.jpg">
+  <meta property="og:url" content="REPLACE_WITH_YOUR_WEBSITE_URL">
+  <meta property="og:type" content="website">
   <meta property="og:locale" content="en_US">
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="DEEPSEE 2025 Symposium">
   <meta name="twitter:description" content="Explore the latest in high-resolution imaging & spectroscopy. June 3, 2025, Lille, France.">
-  <meta name="twitter:image" content="REPLACE_WITH_URL_to_a_featured_image.jpg"> <link rel="icon" href="/path/to/favicon.ico" sizes="any"> <link rel="icon" href="/path/to/favicon.svg" type="image/svg+xml"> <link rel="apple-touch-icon" href="/path/to/apple-touch-icon.png"> <link rel="preconnect" href="https://fonts.googleapis.com">
+  <meta name="twitter:image" content="REPLACE_WITH_URL_to_a_featured_image.jpg">
+
+  <link rel="icon" href="/path/to/favicon.ico" sizes="any">
+  <link rel="icon" href="/path/to/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/path/to/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
 
+  <!-- Inline styles for event title and event name -->
+  <style>
+    .event-title {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .event-name {
+      color: #003366;
+      font-weight: bold;
+    }
+  </style>
 </head>
-
 <body>
   <header>
     <div class="header-content">
-      <div class="logo"><a href="#hero">DEEPSEE 2025</a></div>
+      <div class="logo">
+        <a href="#hero">DEEPSEE 2025</a>
+      </div>
       <button class="mobile-menu-btn" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navMenu">☰</button>
       <nav>
         <ul id="navMenu">
@@ -45,7 +63,7 @@
     <canvas id="particlesCanvas"></canvas>
     <div class="hero-content">
       <div class="date-location" id="dateLocation">June 3, 2025 • Lille, France</div>
-      <h1>DEEPSEE 2025 Symposium </h1>
+      <h1>DEEPSEE 2025 Symposium</h1>
       <p>Explore the latest in high-resolution imaging & spectroscopy</p>
       <a href="#contact" class="cta-button hero-cta">Register Now</a>
     </div>
@@ -54,30 +72,30 @@
   <div class="sponsors-section">
     <div class="container">
       <div class="sponsors-row">
-         <div class="sponsor-logo">
-            <a href="https://www.kuleuven.be/" target="_blank" title="KU Leuven">
-                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/KU_Leuven_logo.svg?raw=true" alt="KU Leuven Logo" />
-            </a>
+        <div class="sponsor-logo">
+          <a href="https://www.kuleuven.be/" target="_blank" title="KU Leuven">
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/KU_Leuven_logo.svg?raw=true" alt="KU Leuven Logo">
+          </a>
         </div>
         <div class="sponsor-logo">
-            <a href="https://lasir.cnrs.fr/" target="_blank" title="LASIRE">
-                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/LASIR_300pp.png?raw=true" alt="LASIRE Logo" />
-            </a>
+          <a href="https://lasir.cnrs.fr/" target="_blank" title="LASIRE">
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/LASIR_300pp.png?raw=true" alt="LASIRE Logo">
+          </a>
         </div>
         <div class="sponsor-logo">
-            <a href="https://www.univ-lille.fr/" target="_blank" title="Université de Lille">
-                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logotype_Université_de_Lille_2022.svg?raw=true" alt="Université de Lille Logo" />
-            </a>
+          <a href="https://www.univ-lille.fr/" target="_blank" title="Université de Lille">
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logotype_Université_de_Lille_2022.svg?raw=true" alt="Université de Lille Logo">
+          </a>
         </div>
         <div class="sponsor-logo">
-            <a href="https://www.polytech-lille.fr/" target="_blank" title="Reseau Polytech">
-                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Reseau_Polytech.svg?raw=true" alt="Reseau Polytech Logo" />
-            </a>
+          <a href="https://www.polytech-lille.fr/" target="_blank" title="Reseau Polytech">
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Reseau_Polytech.svg?raw=true" alt="Reseau Polytech Logo">
+          </a>
         </div>
         <div class="sponsor-logo">
-            <a href="https://www.cnrs.fr/" target="_blank" title="CNRS">
-                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Centre_national_de_la_recherche_scientifique_(2023-).svg?raw=true" alt="CNRS Logo" />
-            </a>
+          <a href="https://www.cnrs.fr/" target="_blank" title="CNRS">
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Logo_Centre_national_de_la_recherche_scientifique_(2023-).svg?raw=true" alt="CNRS Logo">
+          </a>
         </div>
       </div>
     </div>
@@ -92,37 +110,24 @@
             <strong>The DEEPSEE 2025 Symposium</strong> explores several of the latest advancements in
             <strong>high-resolution imaging, advanced spectroscopy, and chemometric techniques</strong>.
             With improvements in <em>sensitivity</em> and <em>imaging speed</em>, these technologies now enable
-            molecular-level insights from <em>single molecules</em> to <em>tissue-scale</em> imaging,
-            surpassing conventional optical methods.
-          </p><br>
+            molecular-level insights from <em>single molecules</em> to <em>tissue-scale</em> imaging, surpassing conventional optical methods.
+          </p>
+          <br>
           <p>
             The goal of this symposium is to share <strong>state-of-the-art developments</strong> in
-            <strong>instrumentation and applications</strong>, fostering discussions on
-            <em>current challenges and future directions</em>. Through invited talks and
-            in-depth discussions, we invite researchers from all disciplines to explore
-            fluorescence microscopy, super-resolution imaging, and data analysis,
-            strengthening collaborations and expanding the boundaries of molecular imaging.
+            <strong>instrumentation and applications</strong>, fostering discussions on <em>current challenges and future directions</em>.
+            Through invited talks and in-depth discussions, we invite researchers from all disciplines to explore
+            fluorescence microscopy, super-resolution imaging, and data analysis, strengthening collaborations and expanding the boundaries of molecular imaging.
           </p>
         </div>
-
         <div class="about-images">
           <div class="about-image">
-            <img
-              src="https://github.com/GomezSanchezA/DeepSee/blob/main/Lille%20TriScan%20Render%20Jon.png?raw=true"
-              alt="3D Render of TriScan Microscopy Setup"
-            />
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/Lille%20TriScan%20Render%20Jon.png?raw=true" alt="3D Render of TriScan Microscopy Setup">
           </div>
-
           <div class="comparison-container">
-            <img class="base-image"
-              src="https://github.com/GomezSanchezA/DeepSee/blob/main/Im2_processed.png?raw=true"
-              alt="Processed Microscopy Image - After"
-            />
+            <img class="base-image" src="https://github.com/GomezSanchezA/DeepSee/blob/main/Im2_processed.png?raw=true" alt="Processed Microscopy Image - After">
             <div class="comparison-overlay">
-              <img class="overlay-image"
-                src="https://github.com/GomezSanchezA/DeepSee/blob/main/Im1_processed.png?raw=true"
-                alt="Processed Microscopy Image - Before"
-              />
+              <img class="overlay-image" src="https://github.com/GomezSanchezA/DeepSee/blob/main/Im1_processed.png?raw=true" alt="Processed Microscopy Image - Before">
             </div>
             <div class="comparison-slider" aria-label="Image comparison slider handle"></div>
           </div>
@@ -134,198 +139,161 @@
       <h2>Program Schedule, June 3rd</h2>
       <div class="schedule">
         <div class="day">
-
           <div class="event">
             <div class="event-time">09:15 AM</div>
             <div class="event-details">
               <div class="event-title">Welcome</div>
             </div>
           </div>
-
           <div class="event">
             <div class="event-time">09:30 AM</div>
             <div class="event-details">
               <div class="event-title">Invited Talk: Lydia Danglot</div>
-               </div>
+            </div>
           </div>
-
           <div class="event">
             <div class="event-time">10:10 AM</div>
             <div class="event-details">
               <div class="event-title">Oral presentations</div>
             </div>
           </div>
-
           <div class="event break">
             <div class="event-time">10:40 AM</div>
             <div class="event-details">
               <div class="event-title"><span class="event-icon">☕</span> Coffee Break</div>
             </div>
           </div>
-
-  <div class="event">
-  <div class="event-time">11:10 AM</div>
-  <div class="event-details">
-    <div class="event-title">
-      <span class="event-name">Thomas Bocklitz:</span> Taking advantage of the synergy between artificial intelligence and image-based technologies.
-    </div>
-  </div>
-</div>
-
-<style>
-  /* Default styling for the event title */
-  .event-title {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  /* Styling for the name with a darker blue color */
-  .event-name {
-    color: #003366; /* Dark blue */
-    font-weight: bold;
-  }
-</style>
-
-
+          <div class="event">
+            <div class="event-time">11:10 AM</div>
+            <div class="event-details">
+              <div class="event-title">
+                <span class="event-name">Thomas Bocklitz:</span> Taking advantage of the synergy between artificial intelligence and image-based technologies.
+              </div>
+            </div>
+          </div>
           <div class="event">
             <div class="event-time">11:50 AM</div>
             <div class="event-details">
               <div class="event-title">Oral presentations</div>
             </div>
           </div>
-
           <div class="event">
             <div class="event-time">12:20 PM</div>
             <div class="event-details">
               <div class="event-title">Visit of the TriScan microscopy setup</div>
             </div>
           </div>
-
           <div class="event break">
-             <div class="event-time">01:50 PM</div>
-             <div class="event-details">
-               <div class="event-title"><span class="event-icon">🍽️</span> Lunch Break</div>
-             </div>
-           </div>
-
-
+            <div class="event-time">01:50 PM</div>
+            <div class="event-details">
+              <div class="event-title"><span class="event-icon">🍽️</span> Lunch Break</div>
+            </div>
+          </div>
           <div class="event">
             <div class="event-time">03:20 PM</div>
             <div class="event-details">
               <div class="event-title">Invited Talk</div>
-              </div>
+            </div>
           </div>
-
           <div class="event">
             <div class="event-time">04:00 PM</div>
             <div class="event-details">
               <div class="event-title">Oral presentations</div>
             </div>
           </div>
-
           <div class="event">
             <div class="event-time">04:30 PM</div>
             <div class="event-details">
               <div class="event-title">Invited Talk: Friedemann Kiefer</div>
-              </div>
+            </div>
           </div>
-
           <div class="event">
             <div class="event-time">05:10 PM</div>
             <div class="event-details">
-              <div class="event-title"><strong>End of Session & Closing Remarks</strong></div>
+              <div class="event-title"><strong>End of Session &amp; Closing Remarks</strong></div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-   <section id="speakers">
-          <h2>Invited Speakers</h2>
-          <div class="speakers-grid">
-              
-            <div class="speaker-card" id="speaker-kiefer">
-              <div class="speaker-image">
-                  <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Friedemann Kiefer">
-              </div>
-              <div class="speaker-info">
-                <h3>Friedemann Kiefer</h3>
-                <p class="role">Affiliation </p>
-                <p class="bio">Short bio or area of expertise for Friedemann Kiefer. </p>
-                <div class="speaker-links"> 
-                  <a href="#" target="_blank" class="profile-button">Profile</a> 
-                </div>
-              </div>
+    <section id="speakers">
+      <h2>Invited Speakers</h2>
+      <div class="speakers-grid">
+        <div class="speaker-card" id="speaker-kiefer">
+          <div class="speaker-image">
+            <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Friedemann Kiefer">
+          </div>
+          <div class="speaker-info">
+            <h3>Friedemann Kiefer</h3>
+            <p class="role">Affiliation</p>
+            <p class="bio">Short bio or area of expertise for Friedemann Kiefer.</p>
+            <div class="speaker-links">
+              <a href="#" target="_blank" class="profile-button">Profile</a>
             </div>
-
-            <div class="speaker-card" id="speaker-bocklitz">
-              <div class="speaker-image">
-                <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/thomas_picture.jpg?raw=true" alt="Headshot of Prof. Dr. Thomas Bocklitz">
-                <p class="photo-credit">Foto Anne Günther/Universität Jena</p>
-              </div>
-              <div class="speaker-info">
-                <h3>Prof. Dr. Thomas Bocklitz</h3>
-                <p class="role">
-                  Head of Leibniz-IPHT department "Photonic data science" &amp; Head of ACP research group "Photonic data science"
-                </p>
-                <p class="affiliation">
-                  Leibniz Institute of Photonic Technology (Leibniz-IPHT) <br>
-                  Institute of Physical Chemistry and Abbe Center of Photonics (IPC/ACP) at Friedrich-Schiller-University (FSU)
-                </p>
-                <div class="speaker-links">
-                   <a href="http://orcid.org/0000-0003-2778-6624" target="_blank" class="profile-button">Profile</a>
-                </div>
-              </div>
+          </div>
+        </div>
+        <div class="speaker-card" id="speaker-bocklitz">
+          <div class="speaker-image">
+            <img src="https://github.com/GomezSanchezA/DeepSee/blob/main/thomas_picture.jpg?raw=true" alt="Headshot of Prof. Dr. Thomas Bocklitz">
+            <p class="photo-credit">Foto Anne Günther/Universität Jena</p>
+          </div>
+          <div class="speaker-info">
+            <h3>Prof. Dr. Thomas Bocklitz</h3>
+            <p class="role">Head of Leibniz-IPHT department "Photonic data science" &amp; Head of ACP research group "Photonic data science"</p>
+            <p class="affiliation">
+              Leibniz Institute of Photonic Technology (Leibniz-IPHT)<br>
+              Institute of Physical Chemistry and Abbe Center of Photonics (IPC/ACP) at Friedrich-Schiller-University (FSU)
+            </p>
+            <div class="speaker-links">
+              <a href="http://orcid.org/0000-0003-2778-6624" target="_blank" class="profile-button">Profile</a>
             </div>
-
-
+          </div>
+        </div>
         <div class="speaker-card" id="speaker-danglot">
           <div class="speaker-image">
-             <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Lydia Danglot">
+            <img src="https://via.placeholder.com/300x250/cccccc/888888?text=Speaker+Photo" alt="Headshot of Lydia Danglot">
           </div>
           <div class="speaker-info">
             <h3>Lydia Danglot</h3>
-            <p class="role">Affiliation </p>
-            <p class="bio">Short bio or area of expertise for Lydia Danglot. </p>
-             <div class="speaker-links"> <a href="#" target="_blank">Profile</a> </div>
+            <p class="role">Affiliation</p>
+            <p class="bio">Short bio or area of expertise for Lydia Danglot.</p>
+            <div class="speaker-links">
+              <a href="#" target="_blank">Profile</a>
+            </div>
           </div>
         </div>
+      </div>
     </section>
 
-
     <section id="contact">
-      <h2>Contact & Registration</h2>
-
+      <h2>Contact &amp; Registration</h2>
       <div class="contact-registration-content">
         <div class="registration-info">
           <h3>🔗 Registration</h3>
           <p>
             We kindly invite you to register in advance to help us organize the event more effectively. Registration is free but mandatory for all participants. Please use the button below to access the registration form.
           </p>
-          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAVyA1eTPNCA8cM0U0OmYUQIfQXcqMuMSDrV85C-bqy8yUkA/viewform" target="_blank" class="cta-button">
-            Register via Google Forms
-          </a>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLSeAVyA1eTPNCA8cM0U0OmYUQIfQXcqMuMSDrV85C-bqy8yUkA/viewform" target="_blank" class="cta-button">Register via Google Forms</a>
         </div>
-
-         <div class="contact-details">
-             <h3>📧 Contact</h3>
-             <p>
-               If you have any questions about the symposium or encounter issues with registration, please feel free to contact the organizers:
-             </p>
-             <div class="contact-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                  <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-                </svg>
-                <a href="mailto:adrian.gomez-sanchez@univ-lille.fr">adrian.gomez-sanchez@univ-lille.fr</a>
-             </div>
-             <div class="contact-item">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                   <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
-                </svg>
-               <a href="mailto:riley.hargreaves@univ-lille.fr">riley.hargreaves@univ-lille.fr</a>
-             </div>
-         </div>
+        <div class="contact-details">
+          <h3>📧 Contact</h3>
+          <p>
+            If you have any questions about the symposium or encounter issues with registration, please feel free to contact the organizers:
+          </p>
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+            </svg>
+            <a href="mailto:adrian.gomez-sanchez@univ-lille.fr">adrian.gomez-sanchez@univ-lille.fr</a>
+          </div>
+          <div class="contact-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
+              <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414zM0 4.697v7.104l5.803-3.558zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586zm3.436-.586L16 11.801V4.697z"/>
+            </svg>
+            <a href="mailto:riley.hargreaves@univ-lille.fr">riley.hargreaves@univ-lille.fr</a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -335,14 +303,13 @@
         <div class="venue-info">
           <h3>📍 Polytech Lille Amphitheater</h3>
           <p>
-            Avenue Paul Langevin<br />
-            Cité Scientifique<br />
-            59655 Villeneuve d'Ascq<br />
+            Avenue Paul Langevin<br>
+            Cité Scientifique<br>
+            59655 Villeneuve d'Ascq<br>
             France
           </p>
           <p>
-            The symposium will be held in the main amphitheater at Polytech Lille, offering modern
-            facilities and audiovisual equipment ideal for our scientific discussions and presentations.
+            The symposium will be held in the main amphitheater at Polytech Lille, offering modern facilities and audiovisual equipment ideal for our scientific discussions and presentations.
           </p>
           <p>
             The venue is conveniently located on the Cité Scientifique campus and is easily accessible by public transportation (Metro Line 1, Stop "Cité Scientifique - Professeur Gabillard" or "4 Cantons - Stade Pierre Mauroy"). Detailed directions will be provided to registered participants closer to the event date.
@@ -357,28 +324,28 @@
             allowfullscreen=""
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
-            title="Location of Polytech Lille on Google Maps"
-          ></iframe>
-           </div>
+            title="Location of Polytech Lille on Google Maps">
+          </iframe>
+        </div>
       </div>
     </section>
-
-  </div><a href="#" class="back-to-top" id="backToTop" title="Back to Top">↑</a>
-
+  </div>
+  
+  <a href="#" class="back-to-top" id="backToTop" title="Back to Top">↑</a>
+  
   <footer>
     <div class="footer-content">
-        <div class="footer-links">
+      <div class="footer-links">
         <a href="#about">About</a>
         <a href="#schedule">Schedule</a>
         <a href="#speakers">Speakers</a>
         <a href="#venue">Venue</a>
         <a href="#contact">Contact</a>
-        </div>
-         <p class="copyright">© 2025 DeepSee Project. All Rights Reserved.</p>
+      </div>
+      <p class="copyright">© 2025 DeepSee Project. All Rights Reserved.</p>
     </div>
   </footer>
-
+  
   <script src="script.js" defer></script>
-
 </body>
 </html>
