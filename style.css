@@ -216,6 +216,7 @@ nav ul li a:focus {
   font-size: 3.2rem;
   margin-bottom: var(--spacing-sm);
   font-weight: 700;
+  color: --white; /* Replace with your desired color */
 }
 
 .hero p {
