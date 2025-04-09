@@ -1,6 +1,6 @@
-/* ==================== VARIABLES & BASE ==================== */
+/* Base Variables */
 :root {
-  --primary: #21425d; /* Slightly deeper blue */
+  --primary: #21425d;
   --secondary: #4b86b4;
   --accent: #63ace5;
   --light: #f8f9fa;
@@ -9,28 +9,24 @@
   --gray: #6c757d;
   --light-gray: #e9ecef;
   --border-color: #dee2e6;
-
   --cta-bg: var(--accent);
-  --cta-hover-bg: #529bd6; /* Darker accent */
+  --cta-hover-bg: #529bd6;
   --break-bg: #eaf4fb;
   --break-border: #b3d9f5;
-
   --font-body: 'Poppins', sans-serif;
-  --font-heading: 'Poppins', sans-serif; /* Using same font, different weight */
-
+  --font-heading: 'Poppins', sans-serif;
   --spacing-sm: 1rem;
   --spacing-md: 1.5rem;
-  --spacing-lg: 2.5rem; /* Increased slightly */
+  --spacing-lg: 2.5rem;
   --spacing-xl: 4rem;
-
-  --transition-speed: 0.5s; /* Slightly slower for smoother reveal */
+  --transition-speed: 0.5s;
   --transition-fast: 0.3s;
-
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.07); /* Softer shadow */
+  --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.07);
   --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Global Reset */
 * {
   margin: 0;
   padding: 0;
@@ -44,16 +40,16 @@ html {
 body {
   background-color: var(--light);
   color: var(--dark);
-  line-height: 1.7; /* Slightly increased for readability */
+  line-height: 1.7;
   font-family: var(--font-body);
   font-weight: 400;
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  overflow-x: hidden;
 }
 
 img {
   max-width: 100%;
   height: auto;
-  display: block; /* Remove bottom space */
+  display: block;
 }
 
 a {
@@ -62,72 +58,71 @@ a {
   transition: color var(--transition-fast) ease;
 }
 
-.logo a {
-  color: var(--white);
-  text-decoration: none;
-}
-
-
 a:hover {
   color: var(--primary);
   text-decoration: underline;
 }
 
-/* Accessibility: Visible focus states */
+/* Focus States */
 a:focus, button:focus, input:focus, textarea:focus, [tabindex]:focus {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
-  border-radius: 2px; /* Optional: makes outline match rounded corners */
+  border-radius: 2px;
 }
-/* Remove default outline when custom is applied */
 a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
   outline: none;
 }
 
-/* H1 Styles */
+/* Typography */
 h1 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
   margin-bottom: var(--spacing-md);
   line-height: 1.3;
-  font-size: 2.8rem; /* Tune H1 size individually */
+  font-size: 2.8rem;
 }
 
-/* H2 Styles */
 h2 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
   margin-bottom: var(--spacing-md);
   line-height: 1.3;
-  font-size: 2rem; /* Tune H2 size individually */
+  font-size: 2rem;
   position: relative;
-  display: inline-block;  /* Allows ::after positioning */
-  padding-bottom: 0.2rem;   /* Space for the underline */
+  display: inline-block;
+  padding-bottom: 0.2rem;
 }
 
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: var(--accent);
+  border-radius: 2px;
+}
 
-/* H3 Styles */
 h3 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
   margin-bottom: var(--spacing-md);
   line-height: 1.3;
-  font-size: 1.4rem; /* Tune H3 size individually */
+  font-size: 1.4rem;
 }
 
-/* Container Styles */
+/* Container */
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding-left: var(--spacing-md);
-  padding-right: var(--spacing-md);
+  padding: 0 var(--spacing-md);
 }
 
-
-/* ==================== HEADER ==================== */
+/* Header */
 header {
   background: linear-gradient(90deg, var(--primary), var(--secondary));
   color: var(--white);
@@ -144,7 +139,7 @@ header {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  position: relative; /* For mobile menu positioning */
+  position: relative;
 }
 
 .logo {
@@ -164,39 +159,39 @@ nav ul li {
 
 nav ul li a {
   color: var(--white);
-  text-decoration: none;
   font-weight: 500;
-  padding: 0.5rem 0.8rem; /* Increased padding */
+  padding: 0.5rem 0.8rem;
   border-radius: 4px;
   transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease;
 }
+
 nav ul li a:hover,
 nav ul li a:focus {
   background-color: rgba(255, 255, 255, 0.15);
-  color: var(--white); /* Ensure color remains white on hover */
-  text-decoration: none; /* Remove underline on hover */
+  color: var(--white);
 }
 
+/* Mobile Menu Button */
 .mobile-menu-btn {
-  display: none; /* Hidden by default */
+  display: none;
   background: none;
   border: none;
   color: var(--white);
-  font-size: 1.8rem; /* Increased size */
+  font-size: 1.8rem;
   cursor: pointer;
   padding: 0.5rem;
 }
 
-/* ==================== HERO SECTION ==================== */
+/* Hero Section */
 .hero {
   position: relative;
-  background-color: #1f1f1f; /* Dark background for contrast */
+  background-color: #1f1f1f;
   color: var(--white);
   text-align: center;
-  padding: var(--spacing-xl) var(--spacing-md); /* Increased padding */
-  overflow: hidden; /* Contains the canvas */
-  min-height: 60vh; /* Ensure decent height */
-  display: flex; /* Use flexbox for centering */
+  padding: var(--spacing-xl) var(--spacing-md);
+  overflow: hidden;
+  min-height: 60vh;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
@@ -207,43 +202,41 @@ nav ul li a:focus {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 1; /* Behind content */
+  z-index: 1;
 }
 
 .hero-content {
   position: relative;
-  z-index: 2; /* Above canvas */
+  z-index: 2;
   max-width: 800px;
   margin: 0 auto;
 }
 
 .hero h1 {
-  font-size: 3.2rem; /* Slightly larger */
+  font-size: 3.2rem;
   margin-bottom: var(--spacing-sm);
-  color: var(--white);
   font-weight: 700;
 }
 
 .hero p {
-  font-size: 1.3rem; /* Slightly larger */
+  font-size: 1.3rem;
   color: var(--light-gray);
   margin-bottom: var(--spacing-md);
-  max-width: 600px; /* Constrain width for readability */
-  margin-left: auto;
-  margin-right: auto;
+  max-width: 600px;
+  margin: 0 auto;
 }
 
 .date-location {
   display: inline-block;
-  padding: 0.6rem 1.8rem; /* Increased padding */
-  background-color: rgba(255, 255, 255, 0.1); /* Subtle background */
+  padding: 0.6rem 1.8rem;
+  background-color: rgba(255, 255, 255, 0.1);
   color: var(--white);
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Subtle border */
+  border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 50px;
   font-weight: 500;
   margin-bottom: var(--spacing-md);
-  opacity: 0; /* Starts hidden for animation */
-  transform: translateY(20px); /* Starts lower for animation */
+  opacity: 0;
+  transform: translateY(20px);
   transition: opacity var(--transition-speed) ease, transform var(--transition-speed) ease;
 }
 
@@ -251,16 +244,14 @@ nav ul li a:focus {
   display: inline-block;
   background-color: var(--cta-bg);
   color: var(--white);
-  padding: 0.6rem 1.5rem;  /* Reduced padding for a smaller button */
+  padding: 0.6rem 1.5rem;
   border-radius: 50px;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;         /* Slightly smaller font size */
+  font-size: 1rem;
   margin-top: 0.5rem;
-  margin-bottom: 3rem;     /* Added bottom margin */
-  transition: background-color var(--transition-fast) ease,
-              transform var(--transition-fast) ease,
-              box-shadow var(--transition-fast) ease;
+  margin-bottom: 3rem;
+  transition: background-color var(--transition-fast) ease, transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
   box-shadow: var(--shadow-sm);
   border: none;
   cursor: pointer;
@@ -269,160 +260,146 @@ nav ul li a:focus {
 .cta-button:hover,
 .cta-button:focus {
   background-color: var(--cta-hover-bg);
-  color: var(--white); /* Ensure color stays white */
-  transform: translateY(-3px); /* Slight lift */
+  transform: translateY(-3px);
   box-shadow: var(--shadow-md);
   text-decoration: none;
 }
+
 .hero-cta {
-  margin-top: var(--spacing-lg); /* More space in hero */
+  margin-top: var(--spacing-lg);
 }
 
-/* ==================== SPONSORS SECTION (Intento Final Combinado) ==================== */
+/* Sponsors Section */
 .sponsors-section {
   background-color: var(--white);
-  padding: var(--spacing-md) 0; /* Usar variable de tema si existe, o 1.5rem 0 */
+  padding: var(--spacing-md) 0;
   text-align: center;
-  box-shadow: var(--shadow-sm); /* Usar variable de tema si existe */
-  border-bottom: 1px solid var(--border-color); /* Usar variable de tema si existe */
+  box-shadow: var(--shadow-sm);
+  border-bottom: 1px solid var(--border-color);
   position: relative;
   z-index: 5;
-    margin-bottom: var(--spacing-xl); 
-
+  margin-bottom: var(--spacing-xl);
 }
 
 .sponsors-row {
   display: flex;
-  flex-wrap: wrap; /* <<< PERMITIR ENVOLVER (Wrapping) */
-  justify-content: center; /* Centrar horizontalmente */
-  align-items: center; /* Centrar verticalmente */
-  gap: var(--spacing-lg); /* Espacio entre logos (ajusta 2.5rem o el valor de tu tema) */
-  padding: 0 var(--spacing-md); /* Espacio a los lados */
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: 0 var(--spacing-md);
 }
 
 .sponsor-logo {
-  /* <<< VOLVER A DIMENSIONES FIJAS (como en la versión antigua) */
   width: 140px;
   height: 70px;
-  /* Flex solo para centrar la imagen dentro de la caja fija */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem; /* Pequeño padding interno opcional */
+  padding: 0.25rem;
   box-sizing: border-box;
-  transition: transform var(--transition-fast) ease; /* Usar variable de tema */
+  transition: transform var(--transition-fast) ease;
 }
 
-.sponsor-logo a { /* Asegurar que el enlace llene el div */
-   display: flex;
-   align-items: center;
-   justify-content: center;
-   width: 100%;
-   height: 100%;
-   text-decoration: none;
+.sponsor-logo a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
 }
 
 .sponsor-logo img {
-   /* <<< Usar max-width/max-height (como en la versión antigua) */
-   display: block;
-   max-width: 100%;
-   max-height: 100%;
-   object-fit: contain; /* Mantener proporción */
-   /* Quitar width/height explícitos de intentos anteriores */
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
 }
 
 .sponsor-logo:hover {
   transform: scale(1.05);
 }
 
-.sponsor-logo a:hover img,
-.sponsor-logo a:focus img {
-  filter: none;
-  opacity: 1;
-}
-
-/* ==================== RESPONSIVE AJUSTES (SIN SCROLL) ==================== */
+/* Responsive Sponsors */
 @media (max-width: 768px) {
   .sponsors-row {
-    gap: var(--spacing-md); /* Menos espacio */
-    /* Ya no se necesita overflow-x: auto; */
+    gap: var(--spacing-md);
   }
   .sponsor-logo {
-    /* Ajustar tamaño fijo para móvil */
     width: 110px;
     height: 55px;
   }
 }
 
 @media (max-width: 480px) {
-    .sponsors-row {
-        gap: var(--spacing-sm); /* Menos espacio aún */
-    }
-   .sponsor-logo {
-     width: 90px;
-     height: 45px;
-   }
+  .sponsors-row {
+    gap: var(--spacing-sm);
+  }
+  .sponsor-logo {
+    width: 90px;
+    height: 45px;
+  }
 }
 
-/* ==================== SCROLL REVEAL SECTIONS ==================== */
+/* Scroll Reveal Sections */
 section {
   margin-bottom: var(--spacing-xl);
-  padding-top: var(--spacing-lg); /* Space for sticky header */
-  margin-top: calc(-1 * var(--spacing-lg)); /* Offset for anchor links */
+  padding-top: var(--spacing-lg);
+  margin-top: calc(-1 * var(--spacing-lg));
   opacity: 0;
   transform: translateY(30px);
   transition: opacity var(--transition-speed) ease-out, transform var(--transition-speed) ease-out;
 }
-/* Skip reveal for hero as it has its own animation */
+
 section.hero {
   opacity: 1;
   transform: translateY(0);
   padding-top: 0;
   margin-top: 0;
-  margin-bottom: 0; /* No bottom margin for hero */
+  margin-bottom: 0;
 }
+
 section.reveal-active {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* ==================== ABOUT SECTION ==================== */
+/* About Section */
 #about {
-  padding-bottom: var(--spacing-lg); /* Add some bottom padding */
+  padding-bottom: var(--spacing-lg);
 }
+
 .about-content {
-  /* Using grid layout with two equal columns */
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: start;
-  margin-top: 0rem;
+  margin-top: 0;
 }
 
-/* Text column */
 .about-text {
-  max-width: 600px; /* Optional: limit text width for readability */
+  max-width: 600px;
 }
+
 .about-text p {
   margin-bottom: var(--spacing-sm);
 }
 
-/* Images column */
 .about-images {
   display: flex;
-  flex-direction: column; /* Stack the two images vertically */
+  flex-direction: column;
   gap: 1rem;
-  align-items: center; /* Center images horizontally in this column */
+  align-items: center;
 }
 
-/* Style each image box with a fixed height so the image doesn't collapse */
 .about-image,
 .comparison-container {
   width: 100%;
   max-width: 400px;
-  height: 200px;  /* Fixed height to ensure visibility */
+  height: 200px;
   border-radius: 8px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
@@ -433,11 +410,11 @@ section.reveal-active {
   object-fit: cover;
 }
 
-/* ==================== COMPARISON SLIDER STYLES ==================== */
+/* Comparison Slider */
 .comparison-container {
-  cursor: ew-resize; /* Indicate horizontal sliding */
+  cursor: ew-resize;
 }
-.comparison-container .base-image { /* Bottom (base) image */
+.comparison-container .base-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -445,51 +422,49 @@ section.reveal-active {
   height: 100%;
   object-fit: cover;
 }
-.comparison-overlay { /* Container for the top image */
+.comparison-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Allow clicks/drags to pass through */
-  overflow: hidden; /* Clip the image inside */
+  pointer-events: none;
+  overflow: hidden;
 }
-.comparison-overlay .overlay-image { /* Top (overlay) image */
+.comparison-overlay .overlay-image {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Initial clip: show 50% */
   clip-path: inset(0 calc(100% - 50%) 0 0);
-  user-select: none; /* Prevent image selection during drag */
-  -webkit-user-drag: none; /* Prevent image drag */
+  user-select: none;
+  -webkit-user-drag: none;
 }
-.comparison-slider { /* The slider handle */
+.comparison-slider {
   position: absolute;
   top: 0;
   bottom: 0;
-  left: 50%; /* Initial position */
+  left: 50%;
   width: 4px;
-  background: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+  background: rgba(255, 255, 255, 0.8);
   cursor: ew-resize;
   transform: translateX(-50%);
   z-index: 10;
   transition: background var(--transition-fast) ease;
-  pointer-events: none; /* Slider itself doesn't capture events */
+  pointer-events: none;
 }
-.comparison-container:hover .comparison-slider { /* Highlight on container hover */
+.comparison-container:hover .comparison-slider {
   background: var(--white);
 }
-/* The draggable circle indicator */
 .comparison-slider::after {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30px; /* Larger circle */
+  width: 30px;
   height: 30px;
   background: var(--white);
   border-radius: 50%;
@@ -497,13 +472,13 @@ section.reveal-active {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
-/* ==================== SCHEDULE SECTION ==================== */
+/* Schedule Section */
 .schedule {
   background-color: var(--white);
   border-radius: 10px;
   box-shadow: var(--shadow-md);
   padding: var(--spacing-lg);
-  margin-top: 0rem;
+  margin-top: 0;
 }
 
 .day {
@@ -513,7 +488,7 @@ section.reveal-active {
   margin-bottom: 0;
 }
 
-.day h3 { /* Styling for Day headers */
+.day h3 {
   color: var(--primary);
   margin-bottom: var(--spacing-md);
   font-size: 1.6rem;
@@ -524,7 +499,7 @@ section.reveal-active {
 .event {
   display: flex;
   border-left: 4px solid var(--secondary);
-  padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-md);
+  padding: var(--spacing-sm) var(--spacing-md);
   margin-bottom: var(--spacing-sm);
   transition: background-color var(--transition-fast) ease, border-color var(--transition-fast) ease;
   border-radius: 0 4px 4px 0;
@@ -567,7 +542,6 @@ section.reveal-active {
   color: var(--primary);
 }
 
-/* Special style for break events */
 .event.break {
   background-color: var(--break-bg);
   border-left-color: var(--break-border);
@@ -582,166 +556,128 @@ section.reveal-active {
   font-style: normal;
 }
 
-/* ==================== SPEAKERS SECTION ==================== */
+/* Speakers Section */
 .speakers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  /* Make sure --spacing-lg is defined in your :root or replace with a value like 1.5rem */
-  gap: var(--spacing-lg, 1.5rem); 
-  margin-top: 0rem;
+  gap: var(--spacing-lg, 1.5rem);
+  margin-top: 0;
 }
 
 .speaker-card {
-  /* Make sure --white, --shadow-md, --transition-fast are defined or replace */
-  background-color: var(--white, #ffffff);
+  background-color: var(--white);
   border-radius: 10px;
   overflow: hidden;
-  box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.1));
-  transition: transform var(--transition-fast, 0.2s) ease, 
-              box-shadow var(--transition-fast, 0.2s) ease;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast) ease, box-shadow var(--transition-fast) ease;
 }
 
 .speaker-card:hover {
-  /* Make sure --shadow-lg is defined or replace */
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
+  box-shadow: var(--shadow-lg);
 }
 
 .speaker-image {
-  height: 500px; /* Original height */
+  height: 500px;
   overflow: hidden;
-  /* Make sure --light-gray is defined or replace */
-  background-color: var(--light-gray, #f0f0f0); 
-  position: relative; /* Needed for absolute positioning of the credit */
+  background-color: var(--light-gray);
+  position: relative;
 }
 
 .speaker-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block; /* Prevents potential bottom space */
-  transition: transform var(--transition-fast, 0.2s) ease;
+  display: block;
+  transition: transform var(--transition-fast) ease;
 }
+
 .speaker-card:hover .speaker-image img {
   transform: scale(1.05);
 }
 
-/* ===== CORRECTED: Style for the Photo Credit ===== */
-/* This now targets the class "photo-credit" from your HTML */
 .speaker-image .photo-credit {
   position: absolute;
-  bottom: 8px; /* Adjust as needed */
-  right: 8px;  /* Adjust as needed */
+  bottom: 8px;
+  right: 8px;
   font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.85); /* Semi-transparent white text */
-  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+  color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(0, 0, 0, 0.6);
   padding: 3px 6px;
   border-radius: 3px;
-  z-index: 1; /* Ensure it's above the image */
-  /* You might want to add font-family here if needed */
-  /* font-family: var(--font-primary, sans-serif); */
+  z-index: 1;
 }
 
 .speaker-info {
-  /* Make sure --spacing-md is defined or replace */
-  padding: var(--spacing-md, 1rem); 
+  padding: var(--spacing-md, 1rem);
 }
 
 .speaker-info h3 {
   margin-bottom: 0.3rem;
-  /* Make sure --primary is defined or replace */
-  color: var(--primary, #333); 
+  color: var(--primary, #333);
   font-size: 1.3rem;
 }
 
 .speaker-info p.role {
   font-size: 1rem;
-  /* Make sure --secondary is defined or replace */
-  color: var(--secondary, #555); 
+  color: var(--secondary, #555);
   font-weight: 500;
-   /* Make sure --spacing-sm is defined or replace */
   margin-bottom: var(--spacing-sm, 0.5rem);
 }
 
-/* Added style for affiliation paragraph */
 .speaker-info p.affiliation {
-  font-size: 0.9rem; /* Slightly smaller */
+  font-size: 0.9rem;
   line-height: 1.5;
-  /* Make sure --gray is defined or replace */
-  color: var(--gray, #777); 
-   /* Make sure --spacing-sm is defined or replace */
+  color: var(--gray, #777);
   margin-bottom: var(--spacing-sm, 0.5rem);
 }
-
 
 .speaker-info p.bio {
   font-size: 0.95rem;
   line-height: 1.6;
-   /* Make sure --gray is defined or replace */
   color: var(--gray, #777);
-   /* Make sure --spacing-sm is defined or replace */
   margin-bottom: var(--spacing-sm, 0.5rem);
 }
 
-/* Styles for the container of links */
 .speaker-links {
-  /* Add some space above the links/button */
-   margin-top: var(--spacing-md, 1rem); 
+  margin-top: var(--spacing-md, 1rem);
 }
 
-/* General links (if any besides the button) */
 .speaker-links a {
   font-size: 0.9rem;
   font-weight: 500;
-  /* Make sure --accent is defined or replace */
-  color: var(--accent, #007bff); 
-  text-decoration: none; 
-  transition: color var(--transition-fast, 0.2s) ease;
+  color: var(--accent, #007bff);
+  text-decoration: none;
+  transition: color var(--transition-fast) ease;
 }
+
 .speaker-links a:hover {
-   /* Make sure --primary is defined or replace */
   color: var(--primary, #333);
   text-decoration: underline;
 }
 
-/* ===== CORRECTED: Style for the Profile Button ===== */
-/* Targets links with the class "profile-button" */
 .speaker-links a.profile-button {
-  display: inline-block; 
-  /* Make sure --primary and --white are defined or replace */
-  background-color: var(--primary, #333); 
-  color: var(--white, #ffffff); 
-  /* Make sure --spacing-sm and --spacing-md are defined or replace */
-  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px); 
-  border-radius: 5px; 
-  text-align: center; 
-  text-decoration: none; 
-  font-size: 0.9rem; 
-  font-weight: 500; 
-  border: none; 
-  cursor: pointer; 
-  transition: background-color var(--transition-fast, 0.2s) ease, color var(--transition-fast, 0.2s) ease;
-  /* Override general link styles */
-  margin-right: 0; /* Remove margin if it's the only button */
+  display: inline-block;
+  background-color: var(--primary, #333);
+  color: var(--white, #ffffff);
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px);
+  border-radius: 5px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-fast) ease, color var(--transition-fast) ease;
 }
 
-/* Hover/Focus styles specifically for the button */
 .speaker-links a.profile-button:hover,
 .speaker-links a.profile-button:focus {
-  /* Make sure --accent and --white are defined or replace */
-  background-color: var(--accent, #007bff); 
-  color: var(--white, #ffffff); 
-  text-decoration: none; /* Ensure no underline on button hover */
+  background-color: var(--accent, #007bff);
+  color: var(--white, #ffffff);
 }
 
-/* Optional: Center the button within the speaker-links div */
-/* Uncomment this if the profile button should be centered horizontally */
-/* .speaker-links {
-  text-align: center; 
-} */
-
-
-/* ==================== FOOTER ==================== */
+/* Footer */
 footer {
   background-color: var(--dark);
   color: var(--light-gray);
@@ -749,6 +685,7 @@ footer {
   text-align: center;
   margin-top: var(--spacing-xl);
 }
+
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -775,18 +712,21 @@ footer {
 .social-links {
   margin-bottom: var(--spacing-md);
 }
+
 .social-links a {
   display: inline-block;
   margin: 0 0.7rem;
   color: var(--light-gray);
   transition: transform var(--transition-fast) ease, color var(--transition-fast) ease;
 }
+
 .social-links a:hover,
 .social-links a:focus {
   color: var(--white);
   transform: translateY(-3px);
   text-decoration: none;
 }
+
 .social-links svg {
   width: 24px;
   height: 24px;
@@ -798,7 +738,7 @@ footer {
   color: var(--gray);
 }
 
-/* ==================== BACK TO TOP BUTTON ==================== */
+/* Back to Top Button */
 .back-to-top {
   position: fixed;
   bottom: 25px;
@@ -824,37 +764,34 @@ footer {
   opacity: 1;
   visibility: visible;
 }
+
 .back-to-top:hover,
 .back-to-top:focus {
   background-color: var(--secondary);
   transform: translateY(-3px);
   color: var(--white);
   text-decoration: none;
-
 }
 
-/* Instead, use something like: */
+/* Venue Section */
 .venue {
   display: flex;
-  flex-direction: row;  /* Items side by side */
-  gap: 2rem;            /* Optional space between columns */
+  flex-direction: row;
+  gap: 2rem;
 }
 
 .venue-info,
 .venue-map {
-  flex: 1;              /* Equal space for each column */
+  flex: 1;
 }
 
-
-/* ==================== RESPONSIVE DESIGN ==================== */
-
+/* Responsive Design */
 @media (max-width: 992px) {
   .about-content {
     flex-direction: column;
     align-items: center;
   }
   .about-text {
-    flex: none;
     width: 100%;
     text-align: center;
   }
@@ -869,9 +806,6 @@ footer {
     width: calc(50% - var(--spacing-sm));
     max-width: 300px;
   }
-
-
-
   .contact-registration-content {
     flex-direction: column;
     gap: var(--spacing-lg);
@@ -884,8 +818,6 @@ footer {
   .hero { padding: var(--spacing-lg) var(--spacing-sm); min-height: 50vh; }
   .hero h1 { font-size: 2.6rem; }
   .hero p { font-size: 1.1rem; }
-
-  .header-content { }
   .mobile-menu-btn {
     display: block;
     position: absolute;
@@ -920,10 +852,8 @@ footer {
     text-align: center;
   }
   nav ul li a {
-    display: block;
     padding: var(--spacing-sm) var(--spacing-md);
   }
-
   .sponsors-row {
     gap: var(--spacing-md);
   }
@@ -931,7 +861,6 @@ footer {
     height: 50px;
     max-width: 120px;
   }
-
   .event {
     flex-direction: column;
     align-items: flex-start;
@@ -941,15 +870,12 @@ footer {
     width: 100%;
     margin-bottom: 0.5rem;
     margin-right: 0;
-    font-weight: 500;
   }
-
   .speakers-grid {
     grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: var(--spacing-md);
   }
   .speaker-image { height: 200px; }
-
   .about-images {
     flex-direction: column;
     align-items: center;
@@ -957,10 +883,8 @@ footer {
   .about-image, .comparison-container {
     width: 90%;
     max-width: 350px;
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
   }
-
   footer {
     padding: var(--spacing-md) var(--spacing-sm);
   }
@@ -977,16 +901,13 @@ footer {
   .hero h1 { font-size: 2.2rem; }
   .hero p { font-size: 1rem; }
   .cta-button { padding: 0.7rem 1.8rem; font-size: 1rem; }
-
   .speakers-grid {
     grid-template-columns: 1fr;
   }
-
   .about-image, .comparison-container {
     width: 100%;
     max-width: none;
   }
-
   .footer-links {
     display: flex;
     flex-direction: column;
@@ -994,4 +915,3 @@ footer {
   }
   .footer-links a { margin: 0; }
 }
-
