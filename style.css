@@ -856,13 +856,18 @@ footer {
     max-width: 300px;
   }
 
-  .venue {
-    flex-direction: column;
-  }
-  .venue-info, .venue-map {
-    flex: none;
-    width: 100%;
-  }
+.venue {
+  display: flex;              /* Enable flex layout */
+  flex-direction: row;        /* Lay items out side by side */
+  gap: 2rem;                  /* Optional: adjust gap between columns */
+}
+
+.venue-info,
+.venue-map {
+  flex: 1;                    /* Each takes equal space */
+  width: 50%;                 /* Alternatively, you can use width if you prefer */
+}
+
 
   .contact-registration-content {
     flex-direction: column;
