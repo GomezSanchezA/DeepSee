@@ -503,7 +503,7 @@ section.reveal-active {
   border-radius: 10px;
   box-shadow: var(--shadow-md);
   padding: var(--spacing-lg);
-  margin-top: var(--spacing-lg);
+  margin-top: 2rem;
 }
 
 .day {
