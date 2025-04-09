@@ -84,39 +84,48 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
   outline: none;
 }
 
-h1, h2, h3 {
+/* H1 Styles */
+h1 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
   margin-bottom: var(--spacing-md);
   line-height: 1.3;
+  font-size: 2.8rem; /* Tune H1 size individually */
 }
-h1 { font-size: 2.8rem; }
-h2 {
-  font-size: 2rem;
-  position: relative;
-  display: inline-block; /* Allows ::after positioning */
-  padding-bottom: 0.5rem; /* Space for the underline */
-}
-/* Underline style for H2 */
-h2::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px; /* Fixed width or percentage */
-  height: 4px;
-  background-color: var(--accent);
-  border-radius: 2px;
-}
-h3 { font-size: 1.4rem; }
 
+/* H2 Styles */
+h2 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.3;
+  font-size: 2rem; /* Tune H2 size individually */
+  position: relative;
+  display: inline-block;  /* Allows ::after positioning */
+  padding-bottom: 0.2rem;   /* Space for the underline */
+}
+
+
+/* H3 Styles */
+h3 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: var(--spacing-md);
+  line-height: 1.3;
+  font-size: 1.4rem; /* Tune H3 size individually */
+}
+
+/* Container Styles */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
 }
+
 
 /* ==================== HEADER ==================== */
 header {
