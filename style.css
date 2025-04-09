@@ -257,7 +257,7 @@ nav ul li a:focus {
   font-weight: 600;
   font-size: 1rem;         /* Slightly smaller font size */
   margin-top: var(--spacing-md);
-  margin-bottom: 1rem;     /* Added bottom margin */
+  margin-bottom: 3rem;     /* Added bottom margin */
   transition: background-color var(--transition-fast) ease,
               transform var(--transition-fast) ease,
               box-shadow var(--transition-fast) ease;
