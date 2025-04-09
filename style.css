@@ -975,3 +975,14 @@ footer {
   .footer-links a { margin: 0; }
 }
 
+#contact .cta-button {
+  padding: 0.6rem 1.4rem;
+  font-size: 1rem;
+  border-radius: 30px;
+}
+
+#contact h2 {
+  margin-bottom: var(--spacing-lg);
+}
+
+
