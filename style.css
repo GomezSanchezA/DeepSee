@@ -526,7 +526,7 @@ section.reveal-active {
 .event-title {
   font-weight: 600;
   margin-bottom: 0.25rem;
-  color: var(--light);
+  color: var(--white);
 }
 
 .event-speaker {
