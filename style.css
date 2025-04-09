@@ -99,8 +99,8 @@ h2 {
   font-size: 2rem;
   position: relative;
   display: inline-block;
-  padding-bottom: 0.0rem; /* Space for underline */
-  margin-bottom: 0.0rem;  /* ✅ Less space below all h2s */
+  padding-bottom: 0.5rem; /* Space for underline */
+  margin-bottom: 0.7rem;  /* ✅ Less space below all h2s */
   line-height: 1.3;
 }
 
