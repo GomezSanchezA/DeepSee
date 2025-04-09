@@ -981,8 +981,9 @@ footer {
   border-radius: 30px;
 }
 
-#contact h2 {
-  margin-bottom: var(--spacing-lg);
+
+.contact-details {
+  margin-top: var(--spacing-lg); /* or var(--spacing-xl) for more space */
 }
 
 
