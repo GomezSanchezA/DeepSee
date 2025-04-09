@@ -869,12 +869,64 @@ footer {
     max-width: 300px;
   }
 
+ /* ==================== VENUE SECTION ==================== */
+#venue {
+  padding-bottom: var(--spacing-lg); /* Add bottom padding if desired */
+}
+
+.venue {
+  display: flex;          /* 1. Enable Flexbox layout */
+  flex-wrap: wrap;        /* 2. Allow wrapping on smaller screens if needed (fallback) */
+  gap: var(--spacing-lg); /* 3. Add space between the columns (e.g., 2.5rem) */
+  align-items: flex-start; /* 4. Align items to the top */
+  margin-top: var(--spacing-lg); /* Add space below the H2 heading */
+}
+
+.venue-info {
+  flex: 1 1 50%; /* 5. Allow growing/shrinking, aim for 50% basis */
+  min-width: 300px; /* Prevent it from getting too small */
+  /* You could use width instead of flex-basis if preferred: */
+  /* width: calc(50% - (var(--spacing-lg) / 2)); */
+}
+
+.venue-map {
+  flex: 1 1 45%; /* 6. Allow growing/shrinking, aim for ~45-50% basis */
+  min-width: 300px; /* Prevent it from getting too small */
+  min-height: 350px; /* Ensure map has a decent minimum height */
+  /* You could use width instead of flex-basis if preferred: */
+  /* width: calc(50% - (var(--spacing-lg) / 2)); */
+}
+
+.venue-map iframe {
+  display: block; /* Remove potential extra space below iframe */
+  width: 100%;    /* Make iframe fill its container width */
+  height: 100%;   /* Make iframe fill its container height */
+  min-height: 350px; /* Match container's min-height */
+  border-radius: 8px; /* Keep your rounded corners */
+  box-shadow: var(--shadow-sm); /* Optional: add subtle shadow */
+}
+
+/* --- Responsive Adjustments for Venue --- */
+@media (max-width: 768px) { /* Adjust breakpoint as needed */
   .venue {
-    flex-direction: column;
+    flex-direction: column; /* 7. Stack columns vertically on smaller screens */
+    gap: var(--spacing-md); /* Adjust gap for vertical stacking */
   }
-  .venue-info, .venue-map {
-    flex: none;
-    width: 100%;
+
+  /* Reset flex-basis/width if needed, ensure they take full width */
+  .venue-info,
+  .venue-map {
+     flex-basis: auto; /* Reset basis */
+     width: 100%;    /* Take full available width */
+  }
+
+   .venue-map {
+     min-height: 300px; /* Adjust map height for mobile if needed */
+  }
+   .venue-map iframe {
+     min-height: 300px; /* Adjust map height for mobile if needed */
+  }
+}
   }
 
   .contact-registration-content {
