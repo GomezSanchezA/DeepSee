@@ -830,7 +830,21 @@ footer {
   transform: translateY(-3px);
   color: var(--white);
   text-decoration: none;
+
 }
+
+/* Instead, use something like: */
+.venue {
+  display: flex;
+  flex-direction: row;  /* Items side by side */
+  gap: 2rem;            /* Optional space between columns */
+}
+
+.venue-info,
+.venue-map {
+  flex: 1;              /* Equal space for each column */
+}
+
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 
@@ -856,17 +870,6 @@ footer {
     max-width: 300px;
   }
 
-/* Instead, use something like: */
-.venue {
-  display: flex;
-  flex-direction: row;  /* Items side by side */
-  gap: 2rem;            /* Optional space between columns */
-}
-
-.venue-info,
-.venue-map {
-  flex: 1;              /* Equal space for each column */
-}
 
 
   .contact-registration-content {
