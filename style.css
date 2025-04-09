@@ -856,16 +856,16 @@ footer {
     max-width: 300px;
   }
 
+/* Instead, use something like: */
 .venue {
-  display: flex;              /* Enable flex layout */
-  flex-direction: row;        /* Lay items out side by side */
-  gap: 2rem;                  /* Optional: adjust gap between columns */
+  display: flex;
+  flex-direction: row;  /* Items side by side */
+  gap: 2rem;            /* Optional space between columns */
 }
 
 .venue-info,
 .venue-map {
-  flex: 1;                    /* Each takes equal space */
-  width: 50%;                 /* Alternatively, you can use width if you prefer */
+  flex: 1;              /* Equal space for each column */
 }
 
 
