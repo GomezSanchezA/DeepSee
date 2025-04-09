@@ -84,27 +84,20 @@ a:focus:not(:focus-visible), button:focus:not(:focus-visible) {
   outline: none;
 }
 
-h1 {
+h1, h2, h3 {
   font-family: var(--font-heading);
   font-weight: 700;
   color: var(--primary);
-  font-size: 2.8rem;
+  margin-bottom: var(--spacing-md);
   line-height: 1.3;
-  margin-bottom: var(--spacing-md); /* adjust as needed */
 }
-
+h1 { font-size: 2.8rem; }
 h2 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--primary);
   font-size: 2rem;
-  line-height: 1.3;
-  margin-bottom: 0.5rem;     /* tighter */
-  padding-bottom: 0.5rem;     /* for underline spacing */
   position: relative;
   display: inline-block; /* Allows ::after positioning */
+  padding-bottom: 0.5rem; /* Space for the underline */
 }
-
 /* Underline style for H2 */
 h2::after {
   content: '';
@@ -116,15 +109,7 @@ h2::after {
   background-color: var(--accent);
   border-radius: 2px;
 }
-
-h3 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  color: var(--primary);
-  font-size: 1.4rem;
-  line-height: 1.3;
-  margin-bottom: 1rem; /* or var(--spacing-sm) */
-}
+h3 { font-size: 1.4rem; }
 
 .container {
   max-width: 1200px;
@@ -281,39 +266,42 @@ nav ul li a:focus {
   margin-top: var(--spacing-lg); /* More space in hero */
 }
 
-/* ==================== SPONSORS SECTION ==================== */
+/* ==================== SPONSORS SECTION (Intento Final Combinado) ==================== */
 .sponsors-section {
   background-color: var(--white);
-  padding: var(--spacing-md) 0;
+  padding: var(--spacing-md) 0; /* Usar variable de tema si existe, o 1.5rem 0 */
   text-align: center;
-  box-shadow: var(--shadow-sm);
-  border-bottom: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm); /* Usar variable de tema si existe */
+  border-bottom: 1px solid var(--border-color); /* Usar variable de tema si existe */
   position: relative;
   z-index: 5;
-  margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl); 
+
 }
 
 .sponsors-row {
   display: flex;
-  flex-wrap: wrap; /* Allow wrapping */
-  justify-content: center; /* Center horizontally */
-  align-items: center; /* Center vertically */
-  gap: var(--spacing-lg); /* Space between logos */
-  padding: 0 var(--spacing-md); /* Space on sides */
+  flex-wrap: wrap; /* <<< PERMITIR ENVOLVER (Wrapping) */
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  gap: var(--spacing-lg); /* Espacio entre logos (ajusta 2.5rem o el valor de tu tema) */
+  padding: 0 var(--spacing-md); /* Espacio a los lados */
 }
 
 .sponsor-logo {
-  width: 140px; /* Fixed width */
-  height: 70px; /* Fixed height */
+  /* <<< VOLVER A DIMENSIONES FIJAS (como en la versión antigua) */
+  width: 140px;
+  height: 70px;
+  /* Flex solo para centrar la imagen dentro de la caja fija */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0.25rem;
+  padding: 0.25rem; /* Pequeño padding interno opcional */
   box-sizing: border-box;
-  transition: transform var(--transition-fast) ease;
+  transition: transform var(--transition-fast) ease; /* Usar variable de tema */
 }
 
-.sponsor-logo a {
+.sponsor-logo a { /* Asegurar que el enlace llene el div */
    display: flex;
    align-items: center;
    justify-content: center;
@@ -323,14 +311,45 @@ nav ul li a:focus {
 }
 
 .sponsor-logo img {
+   /* <<< Usar max-width/max-height (como en la versión antigua) */
    display: block;
    max-width: 100%;
    max-height: 100%;
-   object-fit: contain; /* Maintain aspect ratio */
+   object-fit: contain; /* Mantener proporción */
+   /* Quitar width/height explícitos de intentos anteriores */
 }
 
 .sponsor-logo:hover {
   transform: scale(1.05);
+}
+
+.sponsor-logo a:hover img,
+.sponsor-logo a:focus img {
+  filter: none;
+  opacity: 1;
+}
+
+/* ==================== RESPONSIVE AJUSTES (SIN SCROLL) ==================== */
+@media (max-width: 768px) {
+  .sponsors-row {
+    gap: var(--spacing-md); /* Menos espacio */
+    /* Ya no se necesita overflow-x: auto; */
+  }
+  .sponsor-logo {
+    /* Ajustar tamaño fijo para móvil */
+    width: 110px;
+    height: 55px;
+  }
+}
+
+@media (max-width: 480px) {
+    .sponsors-row {
+        gap: var(--spacing-sm); /* Menos espacio aún */
+    }
+   .sponsor-logo {
+     width: 90px;
+     height: 45px;
+   }
 }
 
 /* ==================== SCROLL REVEAL SECTIONS ==================== */
@@ -518,18 +537,12 @@ section.reveal-active {
 }
 
 .event-title {
-  font-weight: 600; /* Ensure title is bold */
+  font-weight: 600;
   margin-bottom: 0.25rem;
   color: var(--dark);
 }
 
-/* Specific style for speaker name within event title */
-.event-name {
-  color: #003366; /* Dark blue, as per original inline style */
-  font-weight: bold; /* Explicitly bold */
-}
-
-.event-speaker { /* Legacy if used elsewhere, might be replaced by .event-name */
+.event-speaker {
   font-size: 0.95rem;
   color: var(--gray);
   opacity: 0.9;
@@ -561,192 +574,160 @@ section.reveal-active {
 .speakers-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: var(--spacing-lg, 1.5rem);
+  /* Make sure --spacing-lg is defined in your :root or replace with a value like 1.5rem */
+  gap: var(--spacing-lg, 1.5rem); 
   margin-top: var(--spacing-lg, 1.5rem);
 }
 
 .speaker-card {
+  /* Make sure --white, --shadow-md, --transition-fast are defined or replace */
   background-color: var(--white, #ffffff);
   border-radius: 10px;
   overflow: hidden;
   box-shadow: var(--shadow-md, 0 4px 6px rgba(0,0,0,0.1));
-  transition: transform var(--transition-fast, 0.2s) ease,
+  transition: transform var(--transition-fast, 0.2s) ease, 
               box-shadow var(--transition-fast, 0.2s) ease;
-  display: flex;
-  flex-direction: column; /* Stack image and info vertically */
 }
 
 .speaker-card:hover {
+  /* Make sure --shadow-lg is defined or replace */
   transform: translateY(-5px);
-  box-shadow: var(--shadow-lg, 0 8px 15px rgba(0,0,0,0.15));
+  box-shadow: var(--shadow-lg, 0 10px 15px rgba(0,0,0,0.1));
 }
 
 .speaker-image {
-  height: 200px; /* Fixed height for consistency */
-  overflow: hidden; /* Hide parts of image that overflow */
-  position: relative; /* For photo credit positioning */
+  height: 500px; /* Original height */
+  overflow: hidden;
+  /* Make sure --light-gray is defined or replace */
+  background-color: var(--light-gray, #f0f0f0); 
+  position: relative; /* Needed for absolute positioning of the credit */
 }
 
 .speaker-image img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Cover the area, cropping if needed */
-  object-position: center top; /* Prioritize top of the image */
+  object-fit: cover;
+  display: block; /* Prevents potential bottom space */
+  transition: transform var(--transition-fast, 0.2s) ease;
+}
+.speaker-card:hover .speaker-image img {
+  transform: scale(1.05);
 }
 
+/* ===== CORRECTED: Style for the Photo Credit ===== */
+/* This now targets the class "photo-credit" from your HTML */
 .speaker-image .photo-credit {
   position: absolute;
-  bottom: 5px;
-  right: 8px;
-  background-color: rgba(0, 0, 0, 0.5);
-  color: white;
-  padding: 2px 6px;
+  bottom: 8px; /* Adjust as needed */
+  right: 8px;  /* Adjust as needed */
   font-size: 0.7rem;
+  color: rgba(255, 255, 255, 0.85); /* Semi-transparent white text */
+  background-color: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+  padding: 3px 6px;
   border-radius: 3px;
+  z-index: 1; /* Ensure it's above the image */
+  /* You might want to add font-family here if needed */
+  /* font-family: var(--font-primary, sans-serif); */
 }
 
 .speaker-info {
-  padding: var(--spacing-md); /* Use theme variable */
-  flex-grow: 1; /* Allow info to take remaining space */
-  display: flex;
-  flex-direction: column; /* Arrange info content vertically */
+  /* Make sure --spacing-md is defined or replace */
+  padding: var(--spacing-md, 1rem); 
 }
 
 .speaker-info h3 {
-  margin-bottom: 0.5rem; /* Tighter spacing below name */
+  margin-bottom: 0.3rem;
+  /* Make sure --primary is defined or replace */
+  color: var(--primary, #333); 
   font-size: 1.3rem;
 }
 
-.speaker-info .role,
-.speaker-info .affiliation {
-  font-size: 0.9rem;
-  color: var(--gray);
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-.speaker-info .bio {
-  font-size: 0.95rem;
-  margin-bottom: var(--spacing-sm); /* Use theme variable */
-  flex-grow: 1; /* Allow bio to push links down */
-}
-
-.speaker-links {
-  margin-top: auto; /* Push links to the bottom */
-  padding-top: var(--spacing-sm); /* Add space above links */
-}
-
-.speaker-links a,
-.profile-button { /* Apply consistent styling */
-  display: inline-block;
-  background-color: var(--secondary);
-  color: var(--white);
-  padding: 0.5rem 1rem;
-  border-radius: 20px; /* Pill shape */
-  text-decoration: none;
+.speaker-info p.role {
+  font-size: 1rem;
+  /* Make sure --secondary is defined or replace */
+  color: var(--secondary, #555); 
   font-weight: 500;
+   /* Make sure --spacing-sm is defined or replace */
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
+/* Added style for affiliation paragraph */
+.speaker-info p.affiliation {
+  font-size: 0.9rem; /* Slightly smaller */
+  line-height: 1.5;
+  /* Make sure --gray is defined or replace */
+  color: var(--gray, #777); 
+   /* Make sure --spacing-sm is defined or replace */
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
+
+.speaker-info p.bio {
+  font-size: 0.95rem;
+  line-height: 1.6;
+   /* Make sure --gray is defined or replace */
+  color: var(--gray, #777);
+   /* Make sure --spacing-sm is defined or replace */
+  margin-bottom: var(--spacing-sm, 0.5rem);
+}
+
+/* Styles for the container of links */
+.speaker-links {
+  /* Add some space above the links/button */
+   margin-top: var(--spacing-md, 1rem); 
+}
+
+/* General links (if any besides the button) */
+.speaker-links a {
   font-size: 0.9rem;
-  transition: background-color var(--transition-fast) ease, transform var(--transition-fast) ease;
+  font-weight: 500;
+  /* Make sure --accent is defined or replace */
+  color: var(--accent, #007bff); 
+  text-decoration: none; 
+  transition: color var(--transition-fast, 0.2s) ease;
+}
+.speaker-links a:hover {
+   /* Make sure --primary is defined or replace */
+  color: var(--primary, #333);
+  text-decoration: underline;
 }
 
-.speaker-links a:hover,
-.profile-button:hover {
-  background-color: var(--primary);
-  color: var(--white); /* Ensure text remains white */
-  transform: translateY(-2px);
-  text-decoration: none;
+/* ===== CORRECTED: Style for the Profile Button ===== */
+/* Targets links with the class "profile-button" */
+.speaker-links a.profile-button {
+  display: inline-block; 
+  /* Make sure --primary and --white are defined or replace */
+  background-color: var(--primary, #333); 
+  color: var(--white, #ffffff); 
+  /* Make sure --spacing-sm and --spacing-md are defined or replace */
+  padding: var(--spacing-sm, 8px) var(--spacing-md, 16px); 
+  border-radius: 5px; 
+  text-align: center; 
+  text-decoration: none; 
+  font-size: 0.9rem; 
+  font-weight: 500; 
+  border: none; 
+  cursor: pointer; 
+  transition: background-color var(--transition-fast, 0.2s) ease, color var(--transition-fast, 0.2s) ease;
+  /* Override general link styles */
+  margin-right: 0; /* Remove margin if it's the only button */
 }
 
-/* ==================== VENUE SECTION ==================== */
-#venue {
-  padding-bottom: var(--spacing-lg); /* Add bottom padding if desired */
+/* Hover/Focus styles specifically for the button */
+.speaker-links a.profile-button:hover,
+.speaker-links a.profile-button:focus {
+  /* Make sure --accent and --white are defined or replace */
+  background-color: var(--accent, #007bff); 
+  color: var(--white, #ffffff); 
+  text-decoration: none; /* Ensure no underline on button hover */
 }
 
-.venue {
-  display: flex;          /* Enable Flexbox layout */
-  flex-wrap: wrap;        /* Allow wrapping on smaller screens if needed (fallback) */
-  gap: var(--spacing-lg); /* Add space between the columns (e.g., 2.5rem) */
-  align-items: flex-start; /* Align items to the top */
-  margin-top: var(--spacing-lg); /* Add space below the H2 heading */
-}
+/* Optional: Center the button within the speaker-links div */
+/* Uncomment this if the profile button should be centered horizontally */
+/* .speaker-links {
+  text-align: center; 
+} */
 
-.venue-info {
-  flex: 1 1 50%; /* Allow growing/shrinking, aim for 50% basis */
-  min-width: 300px; /* Prevent it from getting too small */
-}
-.venue-info h3 {
-  margin-bottom: var(--spacing-sm); /* Add space below venue name */
-}
-.venue-info p {
-  margin-bottom: var(--spacing-sm); /* Space between paragraphs */
-}
-
-.venue-map {
-  flex: 1 1 45%; /* Allow growing/shrinking, aim for ~45-50% basis */
-  min-width: 300px; /* Prevent it from getting too small */
-  min-height: 350px; /* Ensure map has a decent minimum height */
-}
-
-.venue-map iframe {
-  display: block; /* Remove potential extra space below iframe */
-  width: 100%;    /* Make iframe fill its container width */
-  height: 100%;   /* Make iframe fill its container height */
-  min-height: 350px; /* Match container's min-height */
-  border: 0; /* Ensure no border from iframe itself */
-  border-radius: 8px; /* Match card styling */
-  box-shadow: var(--shadow-sm); /* Optional: add subtle shadow */
-}
-
-/* ==================== CONTACT & REGISTRATION SECTION ==================== */
-#contact {
- padding-bottom: var(--spacing-lg);
-}
-
-.contact-registration-content {
- display: grid;
- grid-template-columns: 1fr 1fr; /* Two equal columns */
- gap: var(--spacing-lg); /* Space between columns */
- margin-top: var(--spacing-lg);
- background-color: var(--white);
- padding: var(--spacing-lg);
- border-radius: 10px;
- box-shadow: var(--shadow-md);
-}
-
-.registration-info,
-.contact-details {
- /* Styles apply to both columns */
-}
-
-.registration-info h3,
-.contact-details h3 {
- margin-bottom: var(--spacing-md); /* Space below subheadings */
-}
-
-.registration-info p,
-.contact-details p {
- margin-bottom: var(--spacing-md); /* Space below paragraphs */
-}
-
-.registration-info .cta-button {
- margin-top: 0; /* Reset margin if needed, adjust as necessary */
-}
-
-.contact-details .contact-item {
- display: flex;
- align-items: center;
- margin-bottom: var(--spacing-sm); /* Space between contact lines */
-}
-
-.contact-details .contact-item svg {
- margin-right: 0.8rem; /* Space between icon and text */
- flex-shrink: 0; /* Prevent icon from shrinking */
- color: var(--secondary); /* Icon color */
-}
-
-.contact-details .contact-item a {
- word-break: break-all; /* Prevent long emails from overflowing */
-}
 
 /* ==================== FOOTER ==================== */
 footer {
@@ -754,9 +735,8 @@ footer {
   color: var(--light-gray);
   padding: var(--spacing-lg) var(--spacing-md);
   text-align: center;
-  margin-top: var(--spacing-xl); /* Add space above footer */
+  margin-top: var(--spacing-xl);
 }
-
 .footer-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -770,199 +750,228 @@ footer {
   color: var(--light-gray);
   margin: 0 var(--spacing-sm);
   text-decoration: none;
+  font-weight: 500;
   transition: color var(--transition-fast) ease;
 }
 
-.footer-links a:hover {
+.footer-links a:hover,
+.footer-links a:focus {
   color: var(--white);
   text-decoration: underline;
 }
 
+.social-links {
+  margin-bottom: var(--spacing-md);
+}
+.social-links a {
+  display: inline-block;
+  margin: 0 0.7rem;
+  color: var(--light-gray);
+  transition: transform var(--transition-fast) ease, color var(--transition-fast) ease;
+}
+.social-links a:hover,
+.social-links a:focus {
+  color: var(--white);
+  transform: translateY(-3px);
+  text-decoration: none;
+}
+.social-links svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
+}
+
 .copyright {
   font-size: 0.9rem;
-  opacity: 0.8;
+  color: var(--gray);
 }
 
 /* ==================== BACK TO TOP BUTTON ==================== */
 .back-to-top {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  background-color: var(--secondary);
+  bottom: 25px;
+  right: 25px;
+  background-color: var(--primary);
   color: var(--white);
   width: 45px;
   height: 45px;
   border-radius: 50%;
   display: flex;
-  align-items: center;
   justify-content: center;
-  font-size: 1.5rem;
+  align-items: center;
   text-decoration: none;
-  box-shadow: var(--shadow-md);
-  opacity: 0; /* Hidden by default */
+  font-size: 1.5rem;
+  opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
-  transition: opacity var(--transition-fast) ease, visibility var(--transition-fast) ease, transform var(--transition-fast) ease, background-color var(--transition-fast) ease;
-  z-index: 900;
+  transition: opacity var(--transition-fast) ease, visibility var(--transition-fast) ease, transform var(--transition-fast) ease;
+  box-shadow: var(--shadow-md);
+  z-index: 999;
 }
 
 .back-to-top.visible {
   opacity: 1;
   visibility: visible;
-  transform: translateY(0);
 }
-
-.back-to-top:hover {
-  background-color: var(--primary);
-  color: var(--white); /* Ensure color stays white */
+.back-to-top:hover,
+.back-to-top:focus {
+  background-color: var(--secondary);
+  transform: translateY(-3px);
+  color: var(--white);
   text-decoration: none;
 }
 
 /* ==================== RESPONSIVE DESIGN ==================== */
 
 @media (max-width: 992px) {
-  .container {
-      padding-left: var(--spacing-sm);
-      padding-right: var(--spacing-sm);
-  }
-
-  h1 { font-size: 2.5rem; }
-  h2 { font-size: 1.8rem; }
-  h3 { font-size: 1.3rem; }
-
   .about-content {
-      grid-template-columns: 1fr; /* Stack about section columns */
-      gap: var(--spacing-lg);
+    flex-direction: column;
+    align-items: center;
   }
-
+  .about-text {
+    flex: none;
+    width: 100%;
+    text-align: center;
+  }
   .about-images {
-      gap: var(--spacing-md); /* Adjust gap between images */
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 100%;
+    gap: var(--spacing-md);
   }
   .about-image, .comparison-container {
-      max-width: 100%; /* Allow images to take full width */
-      height: 250px; /* Adjust height if needed */
+    width: calc(50% - var(--spacing-sm));
+    max-width: 300px;
   }
 
-   .contact-registration-content {
-      grid-template-columns: 1fr; /* Stack contact/reg columns */
-      gap: var(--spacing-lg);
+  .venue {
+    flex-direction: column;
+  }
+  .venue-info, .venue-map {
+    flex: none;
+    width: 100%;
+  }
+
+  .contact-registration-content {
+    flex-direction: column;
+    gap: var(--spacing-lg);
   }
 }
 
 @media (max-width: 768px) {
-  .header-content {
-      flex-wrap: wrap; /* Allow header items to wrap */
-  }
-  nav {
-      width: 100%;
-      max-height: 0; /* Hidden by default */
-      overflow: hidden;
-      transition: max-height 0.4s ease-out;
-      order: 3; /* Place nav below logo and button */
-      background-color: var(--primary); /* Match header gradient start */
-      position: absolute; /* Position below header content */
-      top: 100%; /* Start right below the header */
-      left: 0;
-      box-shadow: var(--shadow-sm); /* Add shadow when open */
-  }
-  nav.active {
-      max-height: 500px; /* Reveal menu */
-  }
-  nav ul {
-      flex-direction: column; /* Stack menu items */
-      padding: var(--spacing-sm) 0; /* Padding inside dropdown */
-  }
-  nav ul li {
-      margin-left: 0;
-      text-align: center; /* Center menu items */
-  }
-  nav ul li a {
-      display: block; /* Make links take full width */
-      padding: var(--spacing-sm) var(--spacing-md); /* Adjust padding */
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Separator */
-  }
-  nav ul li:last-child a {
-      border-bottom: none; /* Remove last border */
-  }
-  .mobile-menu-btn {
-      display: block; /* Show mobile menu button */
-      order: 2; /* Place button after logo */
-  }
-
-  .hero h1 { font-size: 2.2rem; }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  .hero { padding: var(--spacing-lg) var(--spacing-sm); min-height: 50vh; }
+  .hero h1 { font-size: 2.6rem; }
   .hero p { font-size: 1.1rem; }
 
-  .sponsors-row {
-      gap: var(--spacing-md); /* Less space */
+  .header-content { }
+  .mobile-menu-btn {
+    display: block;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: var(--spacing-md);
+    z-index: 1002;
   }
-  .sponsor-logo {
-      width: 110px;
-      height: 55px;
+  nav {
+    width: 100%;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--primary);
+    box-shadow: var(--shadow-md);
+    z-index: 1001;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-out;
+  }
+  nav ul {
+    flex-direction: column;
+    padding: var(--spacing-sm) 0;
+    align-items: center;
+  }
+  nav ul.active {
+    max-height: 100vh;
+  }
+  nav ul li {
+    margin: var(--spacing-sm) 0;
+    width: 100%;
+    text-align: center;
+  }
+  nav ul li a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 
-  /* --- Responsive Adjustments for Venue --- */
-  .venue {
-    flex-direction: column; /* Stack venue columns vertically */
-    gap: var(--spacing-md);   /* Adjust gap for vertical stacking */
+  .sponsors-row {
+    gap: var(--spacing-md);
   }
-  /* Reset flex properties ensure they take full width */
-  .venue-info,
-  .venue-map {
-     flex-basis: auto; /* Reset basis */
-     width: 100%;    /* Take full available width */
-     min-width: unset; /* Remove min-width */
+  .sponsor-logo {
+    height: 50px;
+    max-width: 120px;
   }
-   .venue-map {
-     min-height: 300px; /* Adjust map height for mobile */
+
+  .event {
+    flex-direction: column;
+    align-items: flex-start;
+    border-left-width: 3px;
   }
-   .venue-map iframe {
-     min-height: 300px; /* Adjust map height for mobile */
+  .event-time {
+    width: 100%;
+    margin-bottom: 0.5rem;
+    margin-right: 0;
+    font-weight: 500;
+  }
+
+  .speakers-grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: var(--spacing-md);
+  }
+  .speaker-image { height: 200px; }
+
+  .about-images {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-image, .comparison-container {
+    width: 90%;
+    max-width: 350px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  footer {
+    padding: var(--spacing-md) var(--spacing-sm);
+  }
+  .footer-links a {
+    margin: 0 0.5rem;
+    display: inline-block;
+    margin-bottom: 0.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  :root { /* Slightly smaller spacing on very small screens */
-      --spacing-sm: 0.8rem;
-      --spacing-md: 1.2rem;
-      --spacing-lg: 2rem;
-      --spacing-xl: 3rem;
-  }
-  .hero h1 { font-size: 1.9rem; }
+  h1 { font-size: 2.2rem; }
+  h2 { font-size: 1.6rem; }
+  .hero h1 { font-size: 2.2rem; }
   .hero p { font-size: 1rem; }
-  .date-location { padding: 0.5rem 1.2rem; font-size: 0.9rem;}
   .cta-button { padding: 0.7rem 1.8rem; font-size: 1rem; }
 
-  .sponsors-row {
-      gap: var(--spacing-sm); /* Less space still */
-  }
-  .sponsor-logo {
-      width: 90px;
-      height: 45px;
-  }
-
-  .event {
-      padding-left: var(--spacing-sm); /* Reduce event padding */
-  }
-  .event-time {
-      width: 90px; /* Reduce time width */
-      margin-right: var(--spacing-md);
-      font-size: 0.9rem;
-  }
-
   .speakers-grid {
-      grid-template-columns: 1fr; /* Single column speaker grid */
-      gap: var(--spacing-md);
+    grid-template-columns: 1fr;
   }
 
-  .footer-links a {
-      display: block; /* Stack footer links */
-      margin: 0.5rem 0;
+  .about-image, .comparison-container {
+    width: 100%;
+    max-width: none;
   }
-  .back-to-top {
-      bottom: 1rem;
-      right: 1rem;
-      width: 40px;
-      height: 40px;
-      font-size: 1.3rem;
+
+  .footer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
   }
+  .footer-links a { margin: 0; }
 }
+
