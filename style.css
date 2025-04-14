@@ -559,10 +559,11 @@ section.reveal-active {
 /* Speakers Section */
 .speakers-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--spacing-lg, 1.5rem);
   margin-top: 0;
 }
+
 
 .speaker-card {
   background-color: var(--white);
@@ -894,6 +895,19 @@ footer {
     margin-bottom: 0.5rem;
   }
 }
+
+@media (max-width: 992px) {
+  .speakers-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .speakers-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 @media (max-width: 480px) {
   h1 { font-size: 2.2rem; }
