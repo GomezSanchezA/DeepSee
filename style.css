@@ -321,6 +321,31 @@ nav ul li a:focus {
   transform: scale(1.05);
 }
 
+.speaker-name {
+   /* Option 1: Simple gray color */
+   color: gray; /* You can use specific hex codes like #666666 or #888888 */
+
+   /* Option 2: Make it stand out more */
+   /* color: #555; */      /* A slightly darker gray */
+   /* font-style: italic; */ /* Italicize the name */
+   /* display: block; */   /* Put the name on a new line */
+   /* margin-top: 4px; */  /* Add some space above if on a new line */
+   /* font-size: 0.9em; */ /* Make the name slightly smaller */
+   /* margin-left: 0.5em; */ /* Add space if kept on the same line */
+ }
+
+ /* Optional: Add space between title and name if they are on the same line */
+ .event-title .speaker-name {
+    /* Add a little space before the name if it's not on a new line */
+    /* Only apply if display is not block */
+    margin-left: 0.5em;
+ }
+
+ /* Ensure names that were originally the only content don't get extra spacing */
+ .event-title > .speaker-name:only-child {
+     margin-left: 0; /* Remove left margin if the span is the ONLY thing in event-title */
+ }
+
 /* Responsive Sponsors */
 @media (max-width: 768px) {
   .sponsors-row {
