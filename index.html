@@ -125,7 +125,6 @@
         </div>
 <div class="about-images">
   <div class="about-image">
-    <!-- Video replaces the old TriScan.png -->
     <video
       id="triscan-video"
       muted
@@ -140,26 +139,34 @@
   </div>
 
   <div class="comparison-container">
-    <img class="base-image" src="/public/CellLayerColored.png" alt="Processed Microscopy Image - After">
-    <div class="comparison-overlay">
-      <img class="overlay-image" src="/public/CellLayerGray.png" alt="Processed Microscopy Image - Before">
-    </div>
-    <div class="comparison-slider" aria-label="Image comparison slider handle"></div>
+    <!-- … your comparison markup … -->
   </div>
 </div>
 
 <script>
   const vid = document.getElementById('triscan-video');
+  let forward = true;
+
+  // Ensure we can play negative rates
   vid.playbackRate = 1;
   vid.loop = false;
 
-  vid.addEventListener('ended', () => {
-    vid.playbackRate = -1;
+  // Once metadata is loaded, start at the beginning
+  vid.addEventListener('loadedmetadata', () => {
+    vid.currentTime = 0;
     vid.play();
   });
 
   vid.addEventListener('timeupdate', () => {
-    if (vid.playbackRate < 0 && vid.currentTime <= 0.1) {
+    if (forward && vid.currentTime >= vid.duration - 0.05) {
+      // reached (almost) end → reverse
+      forward = false;
+      vid.playbackRate = -1;
+      // start stepping backward
+      vid.play();
+    } else if (!forward && vid.currentTime <= 0.05) {
+      // reached (almost) start → forward
+      forward = true;
       vid.playbackRate = 1;
       vid.play();
     }
