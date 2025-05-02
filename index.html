@@ -123,58 +123,71 @@
             fluorescence microscopy, super-resolution imaging, and data analysis, strengthening collaborations and expanding the boundaries of molecular imaging.
           </p>
         </div>
-<div class="about-images">
-  <div class="about-image">
-    <video
-      id="triscan-video"
-      muted
-      autoplay
-      playsinline
-      poster="/public/TriScan.png"
-      src="/public/TriScan.mp4"
-      style="width:100%;max-width:600px;"
-    >
-      Your browser doesn’t support HTML5 video.
-    </video>
-  </div>
 
-  <div class="comparison-container">
-    <!-- … your comparison markup … -->
+
+ <div class="about-images">
+      <div class="about-image">
+        <video
+          id="triscan-video"
+          muted
+          autoplay
+          playsinline
+          poster="/public/TriScan.png"
+          style="width:100%; max-width:600px;"
+        >
+          <source src="/public/TriScan.mp4" type="video/mp4">
+          Your browser doesn’t support HTML5 video.
+        </video>
+      </div>
+
+      <div class="comparison-container">
+        <img
+          class="base-image"
+          src="/public/CellLayerColored.png"
+          alt="Processed Microscopy Image - After"
+        >
+        <div class="comparison-overlay">
+          <img
+            class="overlay-image"
+            src="/public/CellLayerGray.png"
+            alt="Processed Microscopy Image - Before"
+          >
+        </div>
+        <div class="comparison-slider" aria-label="Image comparison slider handle"></div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 <script>
   const vid = document.getElementById('triscan-video');
-  let forward = true;
+  let reverseInterval;
 
-  // Ensure we can play negative rates
+  // Ensure we play forward first
   vid.playbackRate = 1;
   vid.loop = false;
 
-  // Once metadata is loaded, start at the beginning
+  // When the video naturally ends, start stepping it backwards
+  vid.addEventListener('ended', () => {
+    reverseInterval = setInterval(() => {
+      // Step backwards by 0.1s increments
+      if (vid.currentTime > 0.1) {
+        vid.currentTime = vid.currentTime - 0.1;
+      } else {
+        // Once we reach the start, clear the reverse loop and play forward again
+        clearInterval(reverseInterval);
+        vid.play();
+      }
+    }, 100); // every 100ms
+  });
+
+  // Kick everything off once metadata is loaded
   vid.addEventListener('loadedmetadata', () => {
     vid.currentTime = 0;
     vid.play();
   });
-
-  vid.addEventListener('timeupdate', () => {
-    if (forward && vid.currentTime >= vid.duration - 0.05) {
-      // reached (almost) end → reverse
-      forward = false;
-      vid.playbackRate = -1;
-      // start stepping backward
-      vid.play();
-    } else if (!forward && vid.currentTime <= 0.05) {
-      // reached (almost) start → forward
-      forward = true;
-      vid.playbackRate = 1;
-      vid.play();
-    }
-  });
 </script>
-
-    </section>
-
+        
  <section id="schedule">
    <h2>Program Schedule, June 3rd</h2>
    <div class="schedule">
