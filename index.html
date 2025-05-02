@@ -170,15 +170,14 @@
   // When the video naturally ends, start stepping it backwards
   vid.addEventListener('ended', () => {
     reverseInterval = setInterval(() => {
-      // Step backwards by 0.1s increments
-      if (vid.currentTime > 0.05) {
-        vid.currentTime = vid.currentTime - 0.03;
+      // Step backwards by 0.25s increments
+      if (vid.currentTime > 0.025) {
+        vid.currentTime = vid.currentTime - 0.025;
       } else {
-        // Once we reach the start, clear the reverse loop and play forward again
         clearInterval(reverseInterval);
         vid.play();
       }
-    }, 30); // every 30ms
+    }, 25); // every 25ms
   });
 
   // Kick everything off once metadata is loaded
