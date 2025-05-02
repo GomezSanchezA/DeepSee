@@ -172,13 +172,13 @@
     reverseInterval = setInterval(() => {
       // Step backwards by 0.1s increments
       if (vid.currentTime > 0.05) {
-        vid.currentTime = vid.currentTime - 0.05;
+        vid.currentTime = vid.currentTime - 0.03;
       } else {
         // Once we reach the start, clear the reverse loop and play forward again
         clearInterval(reverseInterval);
         vid.play();
       }
-    }, 50); // every 50ms
+    }, 30); // every 30ms
   });
 
   // Kick everything off once metadata is loaded
