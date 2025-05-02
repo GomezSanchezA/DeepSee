@@ -123,19 +123,49 @@
             fluorescence microscopy, super-resolution imaging, and data analysis, strengthening collaborations and expanding the boundaries of molecular imaging.
           </p>
         </div>
-      <div class="about-images">
-          <div class="about-image">
-            <img src="/public/TriScan.png	" alt="3D Render of TriScan Microscopy Setup">
-          </div>
-          <div class="comparison-container">
-            <img class="base-image" src="/public/CellLayerColored.png" alt="Processed Microscopy Image - After">
-            <div class="comparison-overlay">
-              <img class="overlay-image" src="/public/CellLayerGray.png" alt="Processed Microscopy Image - Before">
-            </div>
-            <div class="comparison-slider" aria-label="Image comparison slider handle"></div>
-          </div>
-        </div>
-      </div>
+<div class="about-images">
+  <div class="about-image">
+    <!-- Video replaces the old TriScan.png -->
+    <video
+      id="triscan-video"
+      muted
+      autoplay
+      playsinline
+      poster="/public/TriScan.png"
+      src="/public/TriScan.mp4"
+      style="width:100%;max-width:600px;"
+    >
+      Your browser doesn’t support HTML5 video.
+    </video>
+  </div>
+
+  <div class="comparison-container">
+    <img class="base-image" src="/public/CellLayerColored.png" alt="Processed Microscopy Image - After">
+    <div class="comparison-overlay">
+      <img class="overlay-image" src="/public/CellLayerGray.png" alt="Processed Microscopy Image - Before">
+    </div>
+    <div class="comparison-slider" aria-label="Image comparison slider handle"></div>
+  </div>
+</div>
+
+<script>
+  const vid = document.getElementById('triscan-video');
+  vid.playbackRate = 1;
+  vid.loop = false;
+
+  vid.addEventListener('ended', () => {
+    vid.playbackRate = -1;
+    vid.play();
+  });
+
+  vid.addEventListener('timeupdate', () => {
+    if (vid.playbackRate < 0 && vid.currentTime <= 0.1) {
+      vid.playbackRate = 1;
+      vid.play();
+    }
+  });
+</script>
+
     </section>
 
  <section id="schedule">
